@@ -21,7 +21,7 @@ function LandingPage() {
         </div>
 
         <div className="mt-6">
-          <OnlineButton>
+          <OnlineButton onClick={() => window.location.hash = '#online'}>
             Enter &rarr;
           </OnlineButton>
         </div>
@@ -44,7 +44,7 @@ function LandingPage() {
         </div>
 
         <div className="mt-6">
-          <OfflineButton>
+          <OfflineButton onClick={() => window.location.hash = '#offline'}>
             Enter &rarr;
           </OfflineButton>
         </div>
