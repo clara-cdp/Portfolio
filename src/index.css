@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-serif: "Newsreader", serif;
+  --font-display-serif: "Bodoni Moda", serif;
+
+  --color-brand-cyan: #17D0D0;
+  --color-brand-cream: #F5F2ED;
+  --color-brand-gold: #c5a880;
+  --color-brand-orange: #FFC556;
+  --color-brand-dark: #080B14;
+  --color-brand-light: #938582;
+}
