@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import LandingPage from './LandingPage'
+import LandingPage from './pages/LandingPage'
 import OfflinePage from './pages/OfflinePage'
 
 function App() {

@@ -1,4 +1,4 @@
-import { OnlineButton, OfflineButton } from './components/Button'
+import { OnlineButton, OfflineButton } from '../components/Button/Button'
 
 function LandingPage() {
   return (
