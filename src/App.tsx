@@ -1,3 +1,5 @@
+import { OnlineButton, OfflineButton } from './components/Button'
+
 function App() {
   return (
     <main className="flex flex-col md:flex-row h-screen w-screen overflow-hidden">
@@ -19,12 +21,9 @@ function App() {
         </div>
 
         <div className="mt-6">
-          <button
-            type="button"
-            className="border border-brand-cyan text-brand-cyan px-6 py-2.5 rounded-sm font-sans tracking-[0.2em] text-xs uppercase cursor-pointer"
-          >
+          <OnlineButton>
             Enter &rarr;
-          </button>
+          </OnlineButton>
         </div>
       </section>
 
@@ -45,12 +44,9 @@ function App() {
         </div>
 
         <div className="mt-6">
-          <button
-            type="button"
-            className="border border-brand-dark text-brand-dark px-6 py-2.5 rounded-sm font-sans tracking-[0.2em] text-xs uppercase cursor-pointer"
-          >
+          <OfflineButton>
             Enter &rarr;
-          </button>
+          </OfflineButton>
         </div>
       </section>
     </main>
