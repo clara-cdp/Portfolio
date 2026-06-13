@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { OnlineButton, OfflineButton } from './Button';
+import { OnlineButton, OfflineButton } from '../Button';
 
 describe('Button components', () => {
   it('renders OnlineButton and handles click events', () => {
