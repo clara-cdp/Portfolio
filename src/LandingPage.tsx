@@ -1,6 +1,6 @@
 import { OnlineButton, OfflineButton } from './components/Button'
 
-function App() {
+function LandingPage() {
   return (
     <main className="flex flex-col md:flex-row h-screen w-screen overflow-hidden">
       {/* ON LINE Section */}
@@ -53,7 +53,7 @@ function App() {
   )
 }
 
-export default App
+export default LandingPage
 
 
 
