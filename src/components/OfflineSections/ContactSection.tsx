@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Footer from '../Footer/Footer';
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -79,13 +80,7 @@ export default function ContactSection() {
         </div>
 
         {/* Footer Area */}
-        <div className="border-t border-brand-cream/10 pt-12 mt-auto flex flex-col gap-2 text-[10px] tracking-[0.2em] font-mono text-brand-light uppercase select-none">
-          <div>PORTFOLIO 2026</div>
-          <div className="normal-case tracking-wider">
-            <span className="uppercase tracking-[0.2em]">MADE WITH REACT + TAILWIND </span>
-            by Clara Cerdà de Palou
-          </div>
-        </div>
+        <Footer variant="nested" />
       </div>
     </section>
   );

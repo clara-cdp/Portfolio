@@ -15,32 +15,49 @@ describe('ProjectsSection Component', () => {
   it('renders all projects from offLineProjects data with correct properties', () => {
     render(<ProjectsSection />);
     
-    // Check titles
-    const titles = screen.getAllByRole('heading', { level: 4 });
-    expect(titles).toHaveLength(offLineProjects.length);
-    
-    offLineProjects.forEach((proj, idx) => {
-      expect(titles[idx]).toHaveTextContent(proj.title);
-      expect(screen.getAllByText(proj.tagline)[idx]).toBeInTheDocument();
-      expect(screen.getAllByText(proj.description)[idx]).toBeInTheDocument();
+    offLineProjects.forEach((proj) => {
+      // Find the correct image element by matching its sibling link
+      const imgElements = screen.getAllByAltText(proj.title);
+      const imgElement = imgElements.find(img => {
+        const textContainer = img.parentElement?.nextElementSibling;
+        return textContainer?.querySelector('a')?.getAttribute('href') === proj.link;
+      });
+      
+      expect(imgElement).toBeDefined();
+      expect(imgElement).toHaveAttribute('src', proj.image);
+      
+      const cardRoot = imgElement!.parentElement!.parentElement;
+      expect(cardRoot).toBeInTheDocument();
+      
+      // Query elements inside card root
+      expect(cardRoot).toHaveTextContent(proj.title);
+      expect(cardRoot).toHaveTextContent(proj.tagline);
+      expect(cardRoot).toHaveTextContent(proj.description);
       
       // Check tags
       proj.tags.forEach(tag => {
-        // Since tags are duplicated across projects, expect them to be found multiple times
-        const matchingTags = screen.getAllByText(tag);
-        expect(matchingTags.length).toBeGreaterThanOrEqual(offLineProjects.length);
+        expect(cardRoot).toHaveTextContent(tag);
       });
+      
+      // Check link
+      const link = cardRoot?.querySelector('a');
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', proj.link);
     });
   });
 
   it('applies style classes corresponding to layout variants', () => {
     render(<ProjectsSection />);
 
-    // Get the content container for each project.
-    // The details component has the description text, we can find its parent div.
-    offLineProjects.forEach((proj, idx) => {
-      const descText = screen.getAllByText(proj.description)[idx];
-      const textContainer = descText.parentElement;
+    offLineProjects.forEach((proj) => {
+      const imgElements = screen.getAllByAltText(proj.title);
+      const imgElement = imgElements.find(img => {
+        const textContainer = img.parentElement?.nextElementSibling;
+        return textContainer?.querySelector('a')?.getAttribute('href') === proj.link;
+      });
+      
+      expect(imgElement).toBeDefined();
+      const textContainer = imgElement!.parentElement!.nextElementSibling;
       expect(textContainer).toBeInTheDocument();
 
       if (proj.variant === 'background') {
@@ -61,9 +78,14 @@ describe('ProjectsSection Component', () => {
     render(<ProjectsSection />);
     
     offLineProjects.forEach((proj, idx) => {
-      const descText = screen.getAllByText(proj.description)[idx];
-      // The parent of textContainer is the card root (flex wrapper)
-      const cardRoot = descText.parentElement?.parentElement;
+      const imgElements = screen.getAllByAltText(proj.title);
+      const imgElement = imgElements.find(img => {
+        const textContainer = img.parentElement?.nextElementSibling;
+        return textContainer?.querySelector('a')?.getAttribute('href') === proj.link;
+      });
+      
+      expect(imgElement).toBeDefined();
+      const cardRoot = imgElement!.parentElement!.parentElement;
       expect(cardRoot).toBeInTheDocument();
       
       if (idx % 2 !== 0) {

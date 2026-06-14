@@ -72,12 +72,12 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText(/Ideas are interesting/i)).toBeInTheDocument();
     expect(screen.getByText(/Finished work is more convincing/i)).toBeInTheDocument();
 
-    // Check project cards rendering (3 cards of KOMO Brand System)
-    const projectTitles = screen.getAllByText('KOMO Brand System');
-    expect(projectTitles).toHaveLength(3);
+    // Check project cards rendering (1 card of KOMO, 2 cards of KOMO Brand System)
+    expect(screen.getByText('KOMO')).toBeInTheDocument();
+    expect(screen.getAllByText('KOMO Brand System')).toHaveLength(2);
 
-    const projectTaglines = screen.getAllByText('BRAND IDENTITY - 2026');
-    expect(projectTaglines).toHaveLength(3);
+    expect(screen.getByText('COFFEE HUSK PACKAGING CONCEPT')).toBeInTheDocument();
+    expect(screen.getAllByText('BRAND IDENTITY - 2026')).toHaveLength(2);
 
     const detailLinks = screen.getAllByText(/see details/i);
     expect(detailLinks).toHaveLength(3);
