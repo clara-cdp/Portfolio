@@ -7,6 +7,16 @@ import komoFemmodel from '../assets/KOMO/femmodel.png';
 import komoPalette from '../assets/KOMO/logopalete2.png';
 import komoPdf from '../assets/KOMO/Komo_making_off.pdf';
 import komoVideo from '../assets/KOMO/vid1_2.mp4';
+import komoCup from '../assets/KOMO/cupwithlogo.png';
+import komoLogotype from '../assets/KOMO/logotype.png';
+import komoLogprod from '../assets/KOMO/logprod.png';
+
+// Import SPOTLIGHT assets
+import spotlightHero from '../assets/SPOTLIGHT/spotlight.jpg';
+import spotlightBag from '../assets/SPOTLIGHT/spotBag.jpg';
+import spotlightTote from '../assets/SPOTLIGHT/toteBag.png';
+import spotlightPosters from '../assets/SPOTLIGHT/dual-poster-mockup-8bit-freebie.jpg';
+import spotlightBracelet from '../assets/SPOTLIGHT/two thin bracelet.jpg';
 
 export interface ProjectDetail {
   client?: string;
@@ -63,27 +73,40 @@ export const offLineProjects: Project[] = [
       ],
       pdfUrl: komoPdf,
       videoUrl: komoVideo,
-      gallery: [komoDisplay, komoFemmodel, komoPalette]
+      gallery: [komoDisplay, komoFemmodel, komoPalette, komoCup, komoLogotype, komoLogprod]
     }
   },
   {
-    id: "komo-2",
-    title: "KOMO Brand System",
-    tagline: "BRAND IDENTITY - 2026",
-    description: "A complete visual identity for a sustainable architecture collective — logo system, typographic framework, material specifications, and brand guidelines across digital and print.",
-    image: coffeeMockup,
-    tags: ["Branding", "Identity", "Strategy"],
-    link: "#offline/projects/komo-2",
+    id: "Spotlight",
+    title: "SPOTLIGHT",
+    tagline: "THEATRE TECHNOLOGY FESTIVAL IDENTITY",
+    description: "Visual identity system for an international festival dedicated to theatre technology, scenography, and performing arts production. It shifts attention away from performers and towards the craftspeople backstage.",
+    image: spotlightHero,
+    tags: ["Branding", "Identity", "Creative Direction"],
+    link: "#offline/projects/Spotlight",
     variant: 'background',
     details: {
-      client: "KOMO Collective",
-      role: "Visual Designer",
-      deliverables: ["Branding", "Identity System", "Creative Direction"],
+      client: "Independent Concept",
+      role: "Visual & System Designer",
+      deliverables: ["Visual Identity", "Design System", "Physical Applications", "Editorial Design"],
       longDescription: [
-        "As a continuation of the brand identity, this study focuses on the packaging, spatial application, and interior signage concepts for the collective's Denmark office.",
-        "The design uses high-texture paper stocks, low-ink typography sheets, and debossed logo guidelines to ensure that all touchpoints feel tactile, architectural, and minimal."
+        "## Concept",
+        "Spotlight is an international festival dedicated to theatre technology, scenography, and performing arts production.",
+        "The project shifts attention away from performers and towards the technicians, designers, and craftspeople working behind the scenes. Inspired by the theatre spotlight, the identity explores the relationship between what is visible on stage and what remains hidden backstage.",
+        "## Challenge",
+        "Create a visual identity system capable of working across multiple applications while remaining recognisable without relying on the logo alone.",
+        "The system needed to communicate both the technical and creative sides of the performing arts industry while remaining simple, flexible, and highly functional.",
+        "## Design System",
+        "The identity is built around three core elements:",
+        "*Black & White — representing the contrast between stage and backstage, audience and technician, light and darkness.*",
+        "*Typography — Cascadia Code provides a technical yet approachable voice throughout the project.*",
+        "*The Zero (0) — replacing the letter 'O' in SP0TLIGHT, becoming a secondary mark and recurring visual element across the system.*",
+        "The result is a minimalist identity where typography, hierarchy, and repetition become more important than the logo itself.",
+        "## Applications",
+        "The system was developed across a range of physical and editorial applications, including: Posters, Event programme booklet, Festival passes and tickets, Signage, and Merchandise.",
+        "Each application follows the same visual principles, demonstrating the flexibility and consistency of the identity system."
       ],
-      gallery: [coffeeMockup]
+      gallery: [spotlightPosters, spotlightTote, spotlightBracelet]
     }
   },
   {
