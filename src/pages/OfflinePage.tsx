@@ -10,7 +10,7 @@ export default function OfflinePage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-cream text-brand-dark font-sans relative overflow-x-hidden flex flex-col justify-between">
+    <div className="min-h-screen bg-brand-cream text-brand-dark font-sans relative flex flex-col justify-between">
       {/* Navigation Header */}
       <header className="w-full flex justify-between items-center py-6 px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50">
         <div
