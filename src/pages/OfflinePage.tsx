@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import ProjectsSection from '../components/OfflineSections/ProjectsSection';
 
 const journeyEntries = [
   {
@@ -78,11 +79,10 @@ function TimelineEntryRow({ entry }: { entry: typeof journeyEntries[number] }) {
   return (
     <div
       ref={ref}
-      className={`grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0 transition-all duration-[900ms] ease-out transform ${
-        isVisible
+      className={`grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0 transition-all duration-[900ms] ease-out transform ${isVisible
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-16'
-      }`}
+        }`}
     >
       {/* Year Column */}
       <div className="col-span-12 md:col-span-2 text-brand-cream/60 font-mono text-xs md:text-sm tracking-wider uppercase md:pt-[5px]">
@@ -258,6 +258,9 @@ export default function OfflinePage() {
           </div>
         </div>
       </section>
+
+      {/* Section 03 -- PROJECTS */}
+      <ProjectsSection />
     </div>
   );
 }
