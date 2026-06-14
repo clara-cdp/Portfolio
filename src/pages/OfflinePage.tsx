@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 
 const journeyEntries = [
   {
@@ -41,6 +42,75 @@ const journeyEntries = [
     ]
   }
 ];
+
+function TimelineEntryRow({ entry }: { entry: typeof journeyEntries[number] }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    const currentRef = ref.current;
+
+    const timer = setTimeout(() => {
+      observer = new IntersectionObserver(
+        ([item]) => {
+          setIsVisible(item.isIntersecting);
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px',
+        }
+      );
+
+      if (currentRef) {
+        observer.observe(currentRef);
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (observer && currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0 transition-all duration-[900ms] ease-out transform ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-16'
+      }`}
+    >
+      {/* Year Column */}
+      <div className="col-span-12 md:col-span-2 text-brand-cream/60 font-mono text-xs md:text-sm tracking-wider uppercase md:pt-[5px]">
+        {entry.year}
+      </div>
+
+      {/* Content Column */}
+      <div className="col-span-12 md:col-span-10 grid grid-cols-12 gap-6 md:gap-8">
+        {/* Title & Subtitle */}
+        <div className="col-span-12 md:col-span-5 flex flex-col gap-1">
+          <h4 className="text-brand-gold text-lg md:text-xl font-serif font-normal">
+            {entry.title}
+          </h4>
+          <p className="text-brand-cream text-xs md:text-sm font-sans tracking-wide">
+            {entry.subtitle}
+          </p>
+        </div>
+
+        {/* Description Paragraphs */}
+        <div className="col-span-12 md:col-span-7 text-brand-light text-sm md:text-base leading-relaxed tracking-wide font-sans space-y-2">
+          {entry.description.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function OfflinePage() {
   const navigateToLanding = () => {
@@ -133,20 +203,20 @@ export default function OfflinePage() {
       >
         {/* Left Column: Eyebrow and Heading */}
         <div className="flex-1 flex flex-col items-start">
-          <p className="text-brand-light text-xs font-bold tracking-[0.25em] uppercase mb-8 md:mb-12 font-sans">
+          <p className="text-brand-light text-xs font-mono tracking-[0.25em] uppercase mb-8 md:mb-12 font-sans">
             01 - DESIGN IDENTITY
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-display-serif font-normal tracking-tight leading-[1.05] select-none text-brand-dark">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-serif font-normal tracking-tight leading-[1.05] select-none text-brand-dark">
             Design as <span className="block italic">communication</span>
           </h2>
         </div>
 
         {/* Right Column: Title and paragraphs */}
         <div className="flex-1 flex flex-col justify-start md:pt-[2px] max-w-xl">
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-brand-dark font-sans mb-8">
+          <h3 className="text-lg sm:text-lg font-bold tracking-tight text-brand-dark font-sans mt-10 mb-6">
             Design is not decoration.
           </h3>
-          <div className="space-y-6 text-brand-light text-sm sm:text-base leading-relaxed tracking-wide font-sans">
+          <div className="space-y-2 text-brand-light text-sm sm:text-base[16px] leading-relaxed tracking-wide font-sans">
             <p>
               Good design is not about making things look better.
               <br />
@@ -170,10 +240,10 @@ export default function OfflinePage() {
         <div className="max-w-7xl mx-auto w-full px-8 md:px-16 lg:px-24">
           {/* Section Header */}
           <div className="mb-16 md:mb-24 lg:mb-32">
-            <p className="text-brand-light text-xs font-bold tracking-[0.25em] uppercase mb-8 md:mb-12 font-sans">
+            <p className="text-brand-light text-xs font-mono tracking-[0.25em] uppercase mb-8 md:mb-12 font-sans">
               02 - JOURNEY
             </p>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-display-serif font-normal tracking-tight leading-[1.1] select-none text-brand-cream">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-serif font-normal tracking-tight leading-[1.1] select-none text-brand-cream">
               Not a straight line.
               <br />
               A <span className="italic">better</span> path.
@@ -183,35 +253,7 @@ export default function OfflinePage() {
           {/* Entries list */}
           <div className="flex flex-col">
             {journeyEntries.map((entry) => (
-              <div
-                key={entry.year}
-                className="grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0"
-              >
-                {/* Year Column */}
-                <div className="col-span-12 md:col-span-2 text-brand-cream/60 font-sans text-xs md:text-sm tracking-wider uppercase">
-                  {entry.year}
-                </div>
-
-                {/* Content Column */}
-                <div className="col-span-12 md:col-span-10 grid grid-cols-12 gap-6 md:gap-8">
-                  {/* Title & Subtitle */}
-                  <div className="col-span-12 md:col-span-5 flex flex-col gap-1">
-                    <h4 className="text-brand-gold text-lg md:text-xl font-serif font-bold tracking-tight">
-                      {entry.title}
-                    </h4>
-                    <p className="text-brand-light text-xs md:text-sm font-sans tracking-wide">
-                      {entry.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Description Paragraphs */}
-                  <div className="col-span-12 md:col-span-7 text-brand-light text-sm md:text-base leading-relaxed tracking-wide font-sans space-y-6">
-                    {entry.description.map((p, i) => (
-                      <p key={i}>{p}</p>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <TimelineEntryRow key={entry.year} entry={entry} />
             ))}
           </div>
         </div>
