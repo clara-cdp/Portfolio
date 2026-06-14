@@ -153,4 +153,83 @@ describe('OfflinePage Component', () => {
     expect(entryContainer).toHaveClass('opacity-0');
     expect(entryContainer).toHaveClass('translate-y-16');
   });
+
+  it('toggles mobile menu dropdown when hamburger menu button is clicked and closes on link click', () => {
+    const { container } = render(<OfflinePage />);
+    
+    const menuBtn = screen.getByRole('button', { name: /toggle menu/i });
+    expect(menuBtn).toBeInTheDocument();
+    
+    const dropdownPanel = container.querySelector('.absolute');
+    expect(dropdownPanel).toBeInTheDocument();
+    expect(dropdownPanel).toHaveClass('invisible');
+    expect(dropdownPanel).not.toHaveClass('visible');
+    
+    // Toggle to open
+    act(() => {
+      menuBtn.click();
+    });
+    expect(dropdownPanel).toHaveClass('visible');
+    expect(dropdownPanel).not.toHaveClass('invisible');
+    
+    // Click dropdown link to close
+    const dropdownLinks = dropdownPanel?.querySelectorAll('a');
+    expect(dropdownLinks).toHaveLength(4);
+    expect(dropdownLinks?.[0]).toHaveTextContent('Identity');
+    
+    act(() => {
+      dropdownLinks?.[0].click();
+    });
+    expect(dropdownPanel).toHaveClass('invisible');
+    expect(dropdownPanel).not.toHaveClass('visible');
+  });
+
+  it('toggles header text color between dark and light based on active section background', async () => {
+    const callbacks: { callback: any; element: any }[] = [];
+
+    window.IntersectionObserver = vi.fn().mockImplementation(function (callback) {
+      return {
+        observe: vi.fn().mockImplementation(function (element) {
+          callbacks.push({ callback, element });
+        }),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+      };
+    });
+
+    render(<OfflinePage />);
+
+    // Wait for observers initialization
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
+    // Initially, header has dark text
+    const headerTitle = screen.getByText('CLARA').parentElement;
+    expect(headerTitle).toHaveClass('text-brand-dark/70');
+    expect(headerTitle).not.toHaveClass('text-brand-cream/80');
+
+    // Find the observer corresponding to journey (dark section)
+    const journeyObserver = callbacks.find(obs => obs.element.id === 'journey');
+    expect(journeyObserver).toBeDefined();
+
+    // Trigger intersection on journey (dark section)
+    act(() => {
+      journeyObserver?.callback([{ isIntersecting: true, target: journeyObserver.element }]);
+    });
+
+    // Header title should transition to light text
+    expect(headerTitle).toHaveClass('text-brand-cream/80');
+    expect(headerTitle).not.toHaveClass('text-brand-dark/70');
+
+    // Trigger intersection on projects (light section)
+    const projectsObserver = callbacks.find(obs => obs.element.id === 'projects');
+    expect(projectsObserver).toBeDefined();
+    
+    act(() => {
+      projectsObserver?.callback([{ isIntersecting: true, target: projectsObserver.element }]);
+    });
+
+    // Header title should transition back to dark text
+    expect(headerTitle).toHaveClass('text-brand-dark/70');
+    expect(headerTitle).not.toHaveClass('text-brand-cream/80');
+  });
 });
