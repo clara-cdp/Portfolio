@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <main className="max-w-7xl mx-auto w-full min-h-screen px-8 md:px-16 lg:px-24 pt-32 pb-16 flex flex-col justify-between relative">
+    <main id="hero" className="max-w-7xl mx-auto w-full min-h-screen px-8 md:px-16 lg:px-24 pt-32 pb-16 flex flex-col justify-between relative">
       <div className="hidden md:block h-12" />
 
       {/* Content Block */}
