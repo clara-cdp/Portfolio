@@ -14,7 +14,8 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
-  if (currentPath === '#offline') {
+  const offlineHashes = ['#offline', '#identity', '#journey', '#projects', '#contact'];
+  if (offlineHashes.includes(currentPath) || currentPath.startsWith('#offline')) {
     return <OfflinePage />
   }
 

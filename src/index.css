@@ -13,3 +13,7 @@
   --color-brand-dark: #080B14;
   --color-brand-light: #938582;
 }
+
+html {
+  scroll-behavior: smooth;
+}

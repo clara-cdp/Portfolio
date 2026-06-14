@@ -21,4 +21,10 @@ describe('App Router', () => {
     render(<App />);
     expect(screen.getByText(/offline - design portfolio/i)).toBeInTheDocument();
   });
+
+  it('renders the OfflinePage when hash is a sub-section of offline (e.g., #identity)', () => {
+    window.location.hash = '#identity';
+    render(<App />);
+    expect(screen.getByText(/offline - design portfolio/i)).toBeInTheDocument();
+  });
 });
