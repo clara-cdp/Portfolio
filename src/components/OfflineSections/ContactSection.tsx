@@ -36,9 +36,8 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={ref}
-      className={`w-full bg-brand-dark text-brand-cream pt-24 md:pt-32 lg:pt-40 pb-12 transition-all duration-[900ms] ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
-      }`}
+      className={`w-full bg-brand-dark text-brand-cream pt-24 md:pt-32 lg:pt-40 pb-12 transition-all duration-[900ms] ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+        }`}
     >
       <div className="max-w-7xl mx-auto w-full px-8 md:px-16 lg:px-24 flex flex-col justify-between min-h-[50vh]">
         {/* Contact Content */}
@@ -55,10 +54,10 @@ export default function ContactSection() {
           {/* Links Grid */}
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 md:gap-16 font-sans text-sm sm:text-base tracking-wide">
             <a
-              href="mailto:claramartinez@gmail.com"
+              href="mailto:clarianne.cdp@gmail.com"
               className="text-brand-cream/85 hover:text-brand-cream transition-colors duration-350 border-b border-brand-cream/10 hover:border-brand-cream pb-1 self-start cursor-pointer"
             >
-              claramartinez@gmail.com
+              clarianne.cdp@gmail.com
             </a>
             <a
               href="https://linkedin.com/in/clara-cdp"
