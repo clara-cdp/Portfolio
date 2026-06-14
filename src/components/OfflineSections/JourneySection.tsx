@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import RevealWrapper from '../RevealWrapper/RevealWrapper';
 
 const journeyEntries = [
   {
@@ -44,43 +44,10 @@ const journeyEntries = [
 ];
 
 function TimelineEntryRow({ entry }: { entry: typeof journeyEntries[number] }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-    const currentRef = ref.current;
-
-    const timer = setTimeout(() => {
-      observer = new IntersectionObserver(
-        ([item]) => {
-          setIsVisible(item.isIntersecting);
-        },
-        {
-          threshold: 0.1,
-          rootMargin: '0px 0px -100px 0px',
-        }
-      );
-
-      if (currentRef) {
-        observer.observe(currentRef);
-      }
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      if (observer && currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
   return (
-    <div
-      ref={ref}
-      className={`grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0 transition-all duration-[900ms] ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
-      }`}
+    <RevealWrapper
+      threshold={0.1}
+      className="grid grid-cols-12 gap-6 md:gap-8 py-12 border-t border-brand-cream/10 first:border-t-0 w-full"
     >
       {/* Year Column */}
       <div className="col-span-12 md:col-span-2 text-brand-cream/60 font-mono text-xs md:text-sm tracking-wider uppercase md:pt-[5px]">
@@ -106,7 +73,7 @@ function TimelineEntryRow({ entry }: { entry: typeof journeyEntries[number] }) {
           ))}
         </div>
       </div>
-    </div>
+    </RevealWrapper>
   );
 }
 

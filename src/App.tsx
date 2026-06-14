@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import LandingPage from './pages/LandingPage'
 import OfflinePage from './pages/OfflinePage'
+import OfflineProjectDetailPage from './components/OfflineSections/OfflineProjectDetailPage'
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash)
@@ -13,6 +14,11 @@ function App() {
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
+
+  if (currentPath.startsWith('#offline/projects/')) {
+    const projectId = currentPath.replace('#offline/projects/', '')
+    return <OfflineProjectDetailPage projectId={projectId} />
+  }
 
   const offlineHashes = ['#offline', '#identity', '#journey', '#projects', '#contact'];
   if (offlineHashes.includes(currentPath) || currentPath.startsWith('#offline')) {
