@@ -1,10 +1,17 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import App from '../App';
 
 describe('App Router', () => {
   beforeEach(() => {
     window.location.hash = '';
+    window.IntersectionObserver = vi.fn().mockImplementation(function () {
+      return {
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+      };
+    });
   });
 
   afterEach(() => {
