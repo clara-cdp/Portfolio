@@ -88,9 +88,9 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText(/together/i)).toBeInTheDocument();
 
     // Check links
-    const emailLink = screen.getByRole('link', { name: 'claramartinez@gmail.com' });
+    const emailLink = screen.getByRole('link', { name: 'clarianne.cdp@gmail.com' });
     expect(emailLink).toBeInTheDocument();
-    expect(emailLink).toHaveAttribute('href', 'mailto:claramartinez@gmail.com');
+    expect(emailLink).toHaveAttribute('href', 'mailto:clarianne.cdp@gmail.com');
 
     const linkedinLink = screen.getByRole('link', { name: 'linkedin.com/in/clara-cdp' });
     expect(linkedinLink).toBeInTheDocument();
@@ -203,7 +203,7 @@ describe('OfflinePage Component', () => {
     await new Promise((resolve) => setTimeout(resolve, 150));
 
     // Initially, header has dark text
-    const headerTitle = screen.getByText('CLARA').parentElement;
+    const headerTitle = screen.getByText('CLARA');
     expect(headerTitle).toHaveClass('text-brand-dark/70');
     expect(headerTitle).not.toHaveClass('text-brand-cream/80');
 
@@ -231,5 +231,14 @@ describe('OfflinePage Component', () => {
     // Header title should transition back to dark text
     expect(headerTitle).toHaveClass('text-brand-dark/70');
     expect(headerTitle).not.toHaveClass('text-brand-cream/80');
+  });
+
+  it('does not apply overflow-x-hidden to the page container to prevent double scrollbars', () => {
+    const { container } = render(<OfflinePage />);
+    const pageWrapper = container.firstChild;
+    expect(pageWrapper).toBeInTheDocument();
+    expect(pageWrapper).not.toHaveClass('overflow-x-hidden');
+    expect(pageWrapper).not.toHaveClass('overflow-y-auto');
+    expect(pageWrapper).not.toHaveClass('overflow-y-scroll');
   });
 });
