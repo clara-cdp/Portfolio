@@ -24,9 +24,9 @@ describe('ContactSection Component', () => {
     render(<ContactSection />);
     
     // Check mailto link
-    const emailLink = screen.getByRole('link', { name: 'claramartinez@gmail.com' });
+    const emailLink = screen.getByRole('link', { name: 'clarianne.cdp@gmail.com' });
     expect(emailLink).toBeInTheDocument();
-    expect(emailLink).toHaveAttribute('href', 'mailto:claramartinez@gmail.com');
+    expect(emailLink).toHaveAttribute('href', 'mailto:clarianne.cdp@gmail.com');
     
     // Check LinkedIn link
     const linkedinLink = screen.getByRole('link', { name: 'linkedin.com/in/clara-cdp' });
