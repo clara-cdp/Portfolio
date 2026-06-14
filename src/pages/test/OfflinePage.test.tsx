@@ -64,6 +64,23 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText('Design & Development')).toBeInTheDocument();
     expect(screen.getByText('how to build experiences')).toBeInTheDocument();
     expect(screen.getByText(/The more I worked with brands/i)).toBeInTheDocument();
+
+    // Check Section 03 - Projects elements
+    expect(screen.getByText('03 - PROJECTS')).toBeInTheDocument();
+    expect(screen.getByText(/Work as/i)).toBeInTheDocument();
+    expect(screen.getByText(/evidence/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ideas are interesting/i)).toBeInTheDocument();
+    expect(screen.getByText(/Finished work is more convincing/i)).toBeInTheDocument();
+
+    // Check project cards rendering (3 cards of KOMO Brand System)
+    const projectTitles = screen.getAllByText('KOMO Brand System');
+    expect(projectTitles).toHaveLength(3);
+
+    const projectTaglines = screen.getAllByText('BRAND IDENTITY - 2026');
+    expect(projectTaglines).toHaveLength(3);
+
+    const detailLinks = screen.getAllByText(/see details/i);
+    expect(detailLinks).toHaveLength(3);
   });
 
   it('toggles visibility classes based on scroll intersection events', async () => {
