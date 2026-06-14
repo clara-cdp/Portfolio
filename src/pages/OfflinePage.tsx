@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ProjectsSection from '../components/OfflineSections/ProjectsSection';
+import ContactSection from '../components/OfflineSections/ContactSection';
 
 const journeyEntries = [
   {
@@ -261,6 +262,9 @@ export default function OfflinePage() {
 
       {/* Section 03 -- PROJECTS */}
       <ProjectsSection />
+
+      {/* Section 04 -- CONTACT */}
+      <ContactSection />
     </div>
   );
 }
