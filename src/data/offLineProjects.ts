@@ -36,6 +36,7 @@ export interface ProjectDetail {
   pdfUrl?: string;
   videoUrl?: string;
   figmaUrl?: string;
+  hero?: string;
 }
 
 export interface Project {
@@ -43,7 +44,7 @@ export interface Project {
   title: string;
   tagline: string;
   description: string;
-  image: string;
+  cardHero: string;
   tags: string[];
   link: string;
   variant: 'minimal' | 'background' | 'outlined';
@@ -56,7 +57,7 @@ export const offLineProjects: Project[] = [
     title: "KOMO",
     tagline: "COFFEE HUSK PACKAGING CONCEPT",
     description: "A speculative coffee brand exploring circular packaging systems made from coffee husk waste. Developed as an exercise in branding, packaging design, and AI-assisted creative direction.",
-    image: komoHero,
+    cardHero: komoHero,
     tags: ["Branding", "Packaging", "Creative Direction"],
     link: "#offline/projects/komo-1",
     variant: 'minimal',
@@ -91,7 +92,7 @@ export const offLineProjects: Project[] = [
     title: "SPOTLIGHT",
     tagline: "THEATRE TECHNOLOGY FESTIVAL IDENTITY",
     description: "Visual identity system for an international festival dedicated to theatre technology, scenography, and performing arts production. It shifts attention away from performers and towards the craftspeople backstage.",
-    image: spotlightHero,
+    cardHero: spotlightHero,
     tags: ["Branding", "Identity", "Creative Direction"],
     link: "#offline/projects/Spotlight",
     variant: 'background',
@@ -124,7 +125,7 @@ export const offLineProjects: Project[] = [
     title: "TEMARI NO OUCHI",
     tagline: "BRANDING & DIGITAL EXPERIENCE",
     description: "A branding and website design project for a cat café and adoption centre heavily inspired by Japanese kawaii culture, combining a playful themed atmosphere with a streamlined adoption process.",
-    image: temariHero,
+    cardHero: temariHero,
     tags: ["Branding", "UI/UX", "Identity"],
     link: "#offline/projects/temari-no-ouchi",
     variant: 'outlined',
