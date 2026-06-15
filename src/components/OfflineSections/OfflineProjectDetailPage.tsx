@@ -135,7 +135,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
                         rel="noopener noreferrer"
                         className="group flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full sm:w-fit lg:w-full xl:w-fit whitespace-normal text-center"
                       >
-                        View full brand book (PDF) &rarr;
+                        {details.pdfLabel || "View full brand book (PDF)"} &rarr;
                       </a>
                     </div>
                   )}
