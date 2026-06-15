@@ -89,9 +89,9 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
         {/* Case Narrative Section (Dark Mode - Journey Style) */}
         <section className="w-full bg-brand-dark text-brand-cream py-20 md:py-28 border-t border-b border-brand-cream/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-            <div className="grid grid-cols-12 gap-8 md:gap-16 lg:gap-24">
+            <div className="grid grid-cols-12 gap-8 lg:gap-16 xl:gap-24">
               {/* Left Column: Metadata */}
-              <div className="col-span-12 md:col-span-4 flex flex-col gap-8 text-sm">
+              <div className="col-span-12 lg:col-span-4 flex flex-col gap-8 text-sm">
                 <RevealWrapper className="flex flex-col gap-8">
                   {details?.client && (
                     <div>
@@ -133,7 +133,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
                         href={details.pdfUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full text-center sm:w-auto"
+                        className="group flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full sm:w-fit lg:w-full xl:w-fit whitespace-normal text-center"
                       >
                         View full brand book (PDF) &rarr;
                       </a>
@@ -146,7 +146,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
                         href={details.figmaUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full text-center sm:w-auto"
+                        className="group flex items-center justify-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full sm:w-fit lg:w-full xl:w-fit whitespace-normal text-center"
                       >
                         View Figma Design &rarr;
                       </a>
@@ -159,7 +159,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
               </div>
 
               {/* Right Column: Case description */}
-              <div className="col-span-12 md:col-span-8 text-brand-light text-sm sm:text-base leading-relaxed tracking-wide space-y-6 md:pt-[2px]">
+              <div className="col-span-12 lg:col-span-8 text-brand-light text-sm sm:text-base leading-relaxed tracking-wide space-y-6 lg:pt-[2px]">
                 {details?.longDescription ? (
                   details.longDescription.map((item, index) => {
                     if (item.startsWith('## ')) {
