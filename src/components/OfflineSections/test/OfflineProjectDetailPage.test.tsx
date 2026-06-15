@@ -66,6 +66,50 @@ describe('OfflineProjectDetailPage Component', () => {
     expect(videoElement).not.toBeInTheDocument();
   });
 
+  it('renders Figma link and construction note dynamically if present', () => {
+    const project = offLineProjects[2]; // temari-no-ouchi (has figma)
+    render(<OfflineProjectDetailPage projectId={project.id} />);
+
+    const figmaLink = screen.getByRole('link', { name: /view figma design/i });
+    expect(figmaLink).toBeInTheDocument();
+    expect(figmaLink).toHaveAttribute('href', project.details!.figmaUrl);
+
+    expect(screen.getByText(/\* web under construction/i)).toBeInTheDocument();
+  });
+
+  it('does not render Figma link or note if they are absent from project details', () => {
+    const project = offLineProjects[0]; // komo-1 (no figma)
+    render(<OfflineProjectDetailPage projectId={project.id} />);
+
+    const figmaLink = screen.queryByRole('link', { name: /view figma design/i });
+    expect(figmaLink).not.toBeInTheDocument();
+
+    expect(screen.queryByText(/\* web under construction/i)).not.toBeInTheDocument();
+  });
+
+  it('renders custom details.hero as the hero image source when present, falling back to cardHero', () => {
+    const projectWithoutHero = offLineProjects[0]; // komo-1
+    const { rerender } = render(<OfflineProjectDetailPage projectId={projectWithoutHero.id} />);
+    const imgElements = screen.getAllByRole('img');
+    const heroImgFallback = imgElements.find(img => img.getAttribute('alt') === projectWithoutHero.title);
+    expect(heroImgFallback).toHaveAttribute('src', projectWithoutHero.cardHero);
+
+    // Temporarily set a custom hero image
+    const originalDetails = offLineProjects[0].details;
+    offLineProjects[0].details = {
+      ...originalDetails,
+      hero: 'mock-hero-image.jpg'
+    };
+
+    rerender(<OfflineProjectDetailPage projectId={projectWithoutHero.id} />);
+    const imgElementsUpdated = screen.getAllByRole('img');
+    const heroImgCustom = imgElementsUpdated.find(img => img.getAttribute('alt') === projectWithoutHero.title);
+    expect(heroImgCustom).toHaveAttribute('src', 'mock-hero-image.jpg');
+
+    // Restore original details
+    offLineProjects[0].details = originalDetails;
+  });
+
   it('renders an error message and back navigation link if project ID is not found', () => {
     render(<OfflineProjectDetailPage projectId="invalid-id" />);
     
