@@ -1,4 +1,4 @@
-import coffeeMockup from '../assets/coffelogowithlogo.png';
+import coffeeMockup from '../assets/KOMO/cupwithlogo.png';
 
 // Import KOMO assets
 import komoHero from '../assets/KOMO/hero.png';
