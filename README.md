@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h2 align="center">Clara Cerdà de Palou — Design Portfolio</h2>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  <p align="center">
+    A digital showcase of graphic design, editorial curation, and creative direction.
+    <br />
+    <strong>Design &bull; Thinking &bull; Communication</strong>
+  </p>
+</div>
 
-Currently, two official plugins are available:
+<br />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Welcome to My Creative Space! 👋
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This portfolio is an interactive digital gallery built to showcase my design journey and projects. I wanted to create a portfolio experience that feels clean, minimalist, and editorial, letting the work speak for itself while maintaining a smooth and engaging user interface.
 
-## Expanding the ESLint configuration
+Here is a quick look at the experiences built into this project:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **🎬 Cinematic Intro**: When you first land on the page, you're greeted with a smooth, staggered animation that sets a clean, design-focused tone before entering the main portfolio.
+*   **📐 Graphic Design Showcase**: An interactive grid showcasing branding, editorial layout, and visual identity projects. Each project features deep-dive process books, physical mockups, and video showcases.
+*   **📖 Editorial & Traditional Art Slideshow**: A dedicated space for physical art forms, featuring a keyboard-navigable slideshow (you can use your left and right arrow keys to browse!).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Built With
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*   **React 19 & TypeScript** — For robust, modern components and application logic.
+*   **Vite** — Providing a lightning-fast development cycle and production build.
+*   **Tailwind CSS v4** — Hand-crafted color palettes and custom bezier curve staggered animations.
+*   **Vitest & React Testing Library** — A full test suite checking component behaviors, routes, and layout changes.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Current Status & Roadmap 🚀
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> [!NOTE]  
+> This is a **partial release** dedicated specifically to my **Graphic Design** projects. 
+> 
+> The **Web Development** showcase is currently on the way and will be integrated soon—stay tuned!
