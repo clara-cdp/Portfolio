@@ -40,6 +40,7 @@ import artSea from '../../assets/ART/watercolor_Sea.jpg';
 export default function OfflineEditorialPage() {
   const [isMounted, setIsMounted] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isDarkBg, setIsDarkBg] = useState(false);
 
   // Traditional Art Slides Data
   const traditionalArtSlides = [
@@ -79,6 +80,46 @@ export default function OfflineEditorialPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [traditionalArtSlides.length]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        'intro',
+        'met',
+        'alice',
+        'company',
+        'japan-book',
+        'okinawa',
+        'fright-fest',
+        'inventor',
+        'cm',
+        'dragon',
+        'slideshow'
+      ];
+      const darkSections = ['alice', 'japan-book', 'fright-fest', 'dragon'];
+      let currentDark = false;
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom >= 0) {
+            if (darkSections.includes(id)) {
+              currentDark = true;
+            }
+          }
+        }
+      }
+      setIsDarkBg(currentDark);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMounted]);
+
+  const useLightText = isDarkBg;
+
   const nextSlide = () => {
     setActiveSlide(prev => (prev === traditionalArtSlides.length - 1 ? 0 : prev + 1));
   };
@@ -89,11 +130,13 @@ export default function OfflineEditorialPage() {
 
   return (
     <div className="min-h-screen bg-brand-cream text-brand-dark font-sans relative overflow-x-hidden flex flex-col justify-between">
-      {/* Navigation Header (Light Mode) */}
-      <header className="w-full flex justify-between items-center py-6 px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50 bg-brand-cream/90 backdrop-blur-md border-b border-brand-dark/5">
+      {/* Navigation Header */}
+      <header className="w-full flex justify-between items-center py-6 px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50 bg-transparent transition-all duration-300">
         <a
           href="#"
-          className="font-sans text-[10px] tracking-[0.25em] font-bold text-brand-dark/70 uppercase select-none cursor-pointer hover:text-brand-dark transition-colors duration-200"
+          className={`font-sans text-[10px] tracking-[0.25em] font-bold uppercase select-none cursor-pointer transition-colors duration-300 ${
+            useLightText ? 'text-brand-cream/80 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'
+          }`}
         >
           <span className="md:hidden">CLAR CDP</span>
           <span className="hidden md:inline">CLARA CERDÀ DE PALOU</span>
@@ -102,7 +145,9 @@ export default function OfflineEditorialPage() {
         {/* Back Link */}
         <a
           href="#projects"
-          className="font-sans text-[10px] tracking-[0.25em] font-bold uppercase text-brand-dark/70 hover:text-brand-dark transition-colors duration-200 cursor-pointer inline-flex items-center gap-1.5"
+          className={`font-sans text-[10px] tracking-[0.25em] font-bold uppercase transition-colors duration-300 cursor-pointer inline-flex items-center gap-1.5 ${
+            useLightText ? 'text-brand-cream/80 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'
+          }`}
         >
           &larr; Back to portfolio
         </a>
@@ -118,7 +163,7 @@ export default function OfflineEditorialPage() {
         {/* ========================================================================= */}
 
         {/* Title & Intro Block (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark pt-32 pb-12">
+        <section id="intro" className="w-full bg-brand-cream text-brand-dark pt-32 pb-12">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="max-w-3xl mt-12 mb-8">
               <span className="text-brand-light text-xs font-mono font-semibold tracking-[0.25em] uppercase mb-4 block animate-pulse">
@@ -135,7 +180,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 1. Met (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-16 md:py-24 border-b border-brand-dark/5">
+        <section id="met" className="w-full bg-brand-cream text-brand-dark py-16 md:py-24 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="col-span-12 lg:col-span-7 grid grid-cols-2 gap-4">
@@ -172,7 +217,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 2. Alice in Wonderland (Dark background) */}
-        <section className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
+        <section id="alice" className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="flex flex-col gap-8">
               <RevealWrapper>
@@ -211,7 +256,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 4. Company (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
+        <section id="company" className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
@@ -246,7 +291,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 5. Japan Book (Dark background) */}
-        <section className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
+        <section id="japan-book" className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               {/* Left Column: Large picture (Layout details) */}
@@ -296,7 +341,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 6. Okinawa (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
+        <section id="okinawa" className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16">
               <div className="col-span-12 lg:col-span-5 flex flex-col justify-center gap-4 order-last lg:order-first">
@@ -348,7 +393,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 7. Fright Fest (Dark background) */}
-        <section className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
+        <section id="fright-fest" className="w-full bg-brand-dark text-brand-cream py-20 md:py-28">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
@@ -381,7 +426,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 3. The Inventor (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
+        <section id="inventor" className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="flex flex-col gap-8">
               <RevealWrapper>
@@ -445,7 +490,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 8. CM (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-12 md:py-16 border-b border-brand-dark/5">
+        <section id="cm" className="w-full bg-brand-cream text-brand-dark py-12 md:py-16 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="col-span-12 lg:col-span-7 flex flex-col gap-4 justify-center">
@@ -481,7 +526,7 @@ export default function OfflineEditorialPage() {
         </section>
 
         {/* 9. Dragon (Dark background) */}
-        <section className="w-full bg-brand-dark text-brand-cream py-12 md:py-16">
+        <section id="dragon" className="w-full bg-brand-dark text-brand-cream py-12 md:py-16">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="col-span-12 lg:col-span-5 flex justify-center lg:justify-start">
@@ -521,7 +566,7 @@ export default function OfflineEditorialPage() {
         {/* ========================================================================= */}
 
         {/* Slideshow and Intro Block (Light background) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
+        <section id="slideshow" className="w-full bg-brand-cream text-brand-dark py-20 md:py-28 border-b border-brand-dark/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
 
             {/* Subsection Header */}

@@ -9,6 +9,7 @@ interface OfflineProjectDetailPageProps {
 
 export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDetailPageProps) {
   const [isMounted, setIsMounted] = useState(false);
+  const [isDarkBg, setIsDarkBg] = useState(false);
 
   // Find project by ID
   const project = offLineProjects.find((p) => p.id === projectId);
@@ -23,6 +24,33 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
 
     return () => clearTimeout(timer);
   }, [projectId]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['detail-hero', 'detail-narrative', 'detail-gallery'];
+      let currentDark = false;
+
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom >= 0) {
+            if (id === 'detail-narrative') {
+              currentDark = true;
+            }
+          }
+        }
+      }
+      setIsDarkBg(currentDark);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [projectId, isMounted]);
+
+  const useLightText = isDarkBg;
 
   if (!project) {
     return (
@@ -39,11 +67,13 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
 
   return (
     <div className="min-h-screen bg-brand-cream text-brand-dark font-sans relative overflow-x-hidden flex flex-col justify-between">
-      {/* Navigation Header (Light Mode) */}
-      <header className="w-full flex justify-between items-center py-6 px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50 bg-brand-cream/90 backdrop-blur-md border-b border-brand-dark/5">
+      {/* Navigation Header */}
+      <header className="w-full flex justify-between items-center py-6 px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50 bg-transparent transition-all duration-300">
         <a
           href="#"
-          className="font-sans text-[10px] tracking-[0.25em] font-bold text-brand-dark/70 uppercase select-none cursor-pointer hover:text-brand-dark transition-colors duration-200"
+          className={`font-sans text-[10px] tracking-[0.25em] font-bold uppercase select-none cursor-pointer transition-colors duration-300 ${
+            useLightText ? 'text-brand-cream/80 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'
+          }`}
         >
           <span className="md:hidden">CLAR CDP</span>
           <span className="hidden md:inline">CLARA CERDÀ DE PALOU</span>
@@ -52,7 +82,9 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
         {/* Back Link */}
         <a
           href="#projects"
-          className="font-sans text-[10px] tracking-[0.25em] font-bold uppercase text-brand-dark/70 hover:text-brand-dark transition-colors duration-200 cursor-pointer inline-flex items-center gap-1.5"
+          className={`font-sans text-[10px] tracking-[0.25em] font-bold uppercase transition-colors duration-300 cursor-pointer inline-flex items-center gap-1.5 ${
+            useLightText ? 'text-brand-cream/80 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'
+          }`}
         >
           &larr; Back to portfolio
         </a>
@@ -64,7 +96,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
           }`}
       >
         {/* Title & Hero Section (Light Mode) */}
-        <section className="w-full bg-brand-cream text-brand-dark pt-32 pb-12">
+        <section id="detail-hero" className="w-full bg-brand-cream text-brand-dark pt-32 pb-12">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             {/* Project Header Title */}
             <div className="max-w-3xl mt-12 mb-16">
@@ -88,7 +120,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
         </section>
 
         {/* Case Narrative Section (Dark Mode - Journey Style) */}
-        <section className="w-full bg-brand-dark text-brand-cream py-20 md:py-28 border-t border-b border-brand-cream/5">
+        <section id="detail-narrative" className="w-full bg-brand-dark text-brand-cream py-20 md:py-28 border-t border-b border-brand-cream/5">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             <div className="grid grid-cols-12 gap-8 lg:gap-16 xl:gap-24">
               {/* Left Column: Metadata */}
@@ -200,7 +232,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
         </section>
 
         {/* Video & Media Showcase Section (Light Mode) */}
-        <section className="w-full bg-brand-cream text-brand-dark py-20 md:py-28">
+        <section id="detail-gallery" className="w-full bg-brand-cream text-brand-dark py-20 md:py-28">
           <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
             {/* Image Showcase Block */}
             {details?.gallery && details.gallery.length > 0 && (

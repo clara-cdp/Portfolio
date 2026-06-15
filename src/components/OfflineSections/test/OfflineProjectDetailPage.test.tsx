@@ -3,7 +3,8 @@ import { describe, it, expect } from 'vitest';
 import OfflineProjectDetailPage from '../OfflineProjectDetailPage';
 import { offLineProjects } from '../../../data/offLineProjects';
 
-describe('OfflineProjectDetailPage Component', () => {
+describe('OfflineProjectDetailPage Component', () =>>,StartLine:1,TargetContent:
+
   it('renders project detail header, metadata, and description paragraphs for a valid project', () => {
     const project = offLineProjects[0]; // komo-1
     render(<OfflineProjectDetailPage projectId={project.id} />);
