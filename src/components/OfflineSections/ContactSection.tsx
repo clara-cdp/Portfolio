@@ -44,7 +44,7 @@ export default function ContactSection() {
         {/* Contact Content */}
         <div className="max-w-3xl mb-16 md:mb-24">
           <p className="text-brand-light text-xs font-mono tracking-[0.25em] uppercase mb-8 md:mb-12">
-            04 - CONTACT
+            05 - CONTACT
           </p>
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] font-serif font-normal tracking-tight leading-[1.1] select-none text-brand-cream mb-12 md:mb-16">
             Let's work

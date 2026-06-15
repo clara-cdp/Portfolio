@@ -34,4 +34,10 @@ describe('App Router', () => {
     render(<App />);
     expect(screen.getByText(/offline - design portfolio/i)).toBeInTheDocument();
   });
+
+  it('renders the OfflineEditorialPage when hash is #offline/editorial', () => {
+    window.location.hash = '#offline/editorial';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: /small editorial/i })).toBeInTheDocument();
+  });
 });
