@@ -17,6 +17,11 @@ import spotlightBag from '../assets/SPOTLIGHT/spotBag.jpg';
 import spotlightTote from '../assets/SPOTLIGHT/toteBag.png';
 import spotlightPosters from '../assets/SPOTLIGHT/dual-poster-mockup-8bit-freebie.jpg';
 import spotlightBracelet from '../assets/SPOTLIGHT/two thin bracelet.jpg';
+import spotlightUrbanPoster from '../assets/SPOTLIGHT/88_urban_poster_mockup.jpg';
+import spotlightMagazine from '../assets/SPOTLIGHT/MagazineMockupV2.jpg';
+import spotlightPosterMockups from '../assets/SPOTLIGHT/Poster_Mockups.jpg';
+import spotlightWater from '../assets/SPOTLIGHT/SpotWater.png';
+import spotlightLogo from '../assets/SPOTLIGHT/logo.png';
 
 // Import TEMARI assets
 import temariHero from '../assets/Temari/hero.jpg';
@@ -26,6 +31,16 @@ import temariStyles2 from '../assets/Temari/styles2.jpg';
 import temariCatCard from '../assets/Temari/Cat card-2.png';
 import temariMobileCatCard from '../assets/Temari/temari_Mobile cat card.png';
 import temariPdf from '../assets/Temari/temariNoOuchi.pdf';
+import temariCardHero from '../assets/Temari/temariCard.png';
+
+// Import TB assets
+import tbCardHero from '../assets/TB/cardhero.jpg';
+import tbHero from '../assets/TB/hero.png';
+import tbMaresme3 from '../assets/TB/Maresme_tribuna_3.jpg';
+import tbMaresme1 from '../assets/TB/TRIBUNA_maresme.jpg';
+import tbMaresme2 from '../assets/TB/TRIBUNA_maresme_2.jpg';
+import tbGridSystem from '../assets/TB/grid_system.png';
+import tbPdf from '../assets/TB/TB_num_370.pdf';
 
 export interface ProjectDetail {
   client?: string;
@@ -34,6 +49,7 @@ export interface ProjectDetail {
   longDescription?: string[];
   gallery?: string[];
   pdfUrl?: string;
+  pdfLabel?: string;
   videoUrl?: string;
   figmaUrl?: string;
   hero?: string;
@@ -57,7 +73,7 @@ export const offLineProjects: Project[] = [
     title: "KOMO",
     tagline: "COFFEE HUSK PACKAGING CONCEPT",
     description: "A speculative coffee brand exploring circular packaging systems made from coffee husk waste. Developed as an exercise in branding, packaging design, and AI-assisted creative direction.",
-    cardHero: komoHero,
+    cardHero: komoCup,
     tags: ["Branding", "Packaging", "Creative Direction"],
     link: "#offline/projects/komo-1",
     variant: 'minimal',
@@ -84,7 +100,8 @@ export const offLineProjects: Project[] = [
       ],
       pdfUrl: komoPdf,
       videoUrl: komoVideo,
-      gallery: [komoDisplay, komoFemmodel, komoPalette, komoCup, komoLogotype, komoLogprod]
+      hero: komoHero,
+      gallery: [komoDisplay, komoPalette, komoFemmodel, komoCup, komoLogotype]
     }
   },
   {
@@ -92,7 +109,7 @@ export const offLineProjects: Project[] = [
     title: "SPOTLIGHT",
     tagline: "THEATRE TECHNOLOGY FESTIVAL IDENTITY",
     description: "Visual identity system for an international festival dedicated to theatre technology, scenography, and performing arts production. It shifts attention away from performers and towards the craftspeople backstage.",
-    cardHero: spotlightHero,
+    cardHero: spotlightPosterMockups,
     tags: ["Branding", "Identity", "Creative Direction"],
     link: "#offline/projects/Spotlight",
     variant: 'background',
@@ -117,7 +134,16 @@ export const offLineProjects: Project[] = [
         "The system was developed across a range of physical and editorial applications, including: Posters, Event programme booklet, Festival passes and tickets, Signage, and Merchandise.",
         "Each application follows the same visual principles, demonstrating the flexibility and consistency of the identity system."
       ],
-      gallery: [spotlightPosters, spotlightTote, spotlightBracelet]
+      hero: spotlightHero,
+      gallery: [
+        spotlightLogo,
+        spotlightPosters,
+        spotlightMagazine,
+        spotlightWater,
+        spotlightUrbanPoster,
+        spotlightTote,
+        spotlightBracelet,
+      ]
     }
   },
   {
@@ -125,7 +151,7 @@ export const offLineProjects: Project[] = [
     title: "TEMARI NO OUCHI",
     tagline: "BRANDING & DIGITAL EXPERIENCE",
     description: "A branding and website design project for a cat café and adoption centre heavily inspired by Japanese kawaii culture, combining a playful themed atmosphere with a streamlined adoption process.",
-    cardHero: temariHero,
+    cardHero: temariCardHero,
     tags: ["Branding", "UI/UX", "Identity"],
     link: "#offline/projects/temari-no-ouchi",
     variant: 'outlined',
@@ -151,8 +177,52 @@ export const offLineProjects: Project[] = [
         "Together, these elements create a cohesive brand experience that supports both the café and its adoption mission."
       ],
       pdfUrl: temariPdf,
+      hero: temariHero,
       figmaUrl: "https://www.figma.com/design/ZJZjH1sPflhnioSijMncYL/Untitled?node-id=0-1&p=f&t=OPMcwCEb29J0HJKj-0",
       gallery: [temariLogo, temariStyles, temariStyles2, temariCatCard, temariMobileCatCard]
     }
+  },
+  {
+    id: "tribuna-maresme",
+    title: "TRIBUNA MARESME",
+    tagline: "EDITORIAL DESIGN & LAYOUT SYSTEM",
+    description: "An editorial design project for a regional magazine focused on local culture, community news, and events. Balances clear information hierarchy with strong visual storytelling.",
+    cardHero: tbCardHero,
+    tags: ["Editorial", "Layout", "Typography"],
+    link: "#offline/projects/tribuna-maresme",
+    variant: 'minimal',
+    details: {
+      client: "Tribuna Maresme",
+      role: "Lead Editorial Designer",
+      deliverables: [
+        "Editorial Design System",
+        "Magazine Layout Design",
+        "Cover Design",
+        "Feature Article Layouts",
+        "News and Community Sections",
+        "Typography and Grid System",
+        "Image Treatment and Visual Hierarchy",
+        "Print-ready Publication Assets"
+      ],
+      longDescription: [
+        "## Concept",
+        "Tribuna Maresme is an editorial design project developed for a regional magazine focused on local culture, community news, events, and lifestyle.",
+        "The objective was to create a publication that feels professional and trustworthy while remaining accessible and engaging for a broad audience. The design balances clear information hierarchy with strong visual storytelling, allowing readers to easily navigate a wide range of content.",
+        "## Challenge",
+        "Design a magazine system capable of handling diverse editorial content while maintaining consistency throughout the publication.",
+        "The project required organizing large amounts of information clearly, creating a flexible layout system for different article types, balancing text-heavy content with photography and graphic elements, and establishing a recognisable visual identity that could be maintained across multiple issues.",
+        "## Design Approach",
+        "The publication is built around a structured editorial grid that prioritises readability and visual rhythm.",
+        "Key design principles include clear typographic hierarchy for headlines, subheadings, body text, and captions, a consistent grid system allowing flexibility across different sections, careful use of whitespace, strong integration of photography, and balanced layouts that guide readers naturally through the content.",
+        "The result is a publication that feels organised, approachable, and easy to navigate while maintaining a professional editorial standard.",
+        "## Outcome",
+        "Tribuna Maresme demonstrates the application of editorial design principles to a real-world publication format. The project focuses on clarity, structure, and readability while creating a cohesive visual experience across the entire magazine."
+      ],
+      pdfUrl: tbPdf,
+      pdfLabel: "view view issue 270",
+      hero: tbHero,
+      gallery: [tbMaresme1, tbMaresme2, tbMaresme3, tbGridSystem]
+    }
   }
 ];
+

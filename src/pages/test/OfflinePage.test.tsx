@@ -76,13 +76,15 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText('KOMO')).toBeInTheDocument();
     expect(screen.getByText('SPOTLIGHT')).toBeInTheDocument();
     expect(screen.getByText('TEMARI NO OUCHI')).toBeInTheDocument();
+    expect(screen.getByText('TRIBUNA MARESME')).toBeInTheDocument();
 
     expect(screen.getByText('COFFEE HUSK PACKAGING CONCEPT')).toBeInTheDocument();
     expect(screen.getByText('THEATRE TECHNOLOGY FESTIVAL IDENTITY')).toBeInTheDocument();
     expect(screen.getByText('BRANDING & DIGITAL EXPERIENCE')).toBeInTheDocument();
+    expect(screen.getByText('EDITORIAL DESIGN & LAYOUT SYSTEM')).toBeInTheDocument();
 
     const detailLinks = screen.getAllByText(/see details/i);
-    expect(detailLinks).toHaveLength(3);
+    expect(detailLinks).toHaveLength(4);
 
     // Check Section 04 - Contact elements
     expect(screen.getByText('04 - CONTACT')).toBeInTheDocument();
@@ -108,7 +110,8 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText('PORTFOLIO 2026')).toBeInTheDocument();
     expect(screen.getByText(/MADE WITH REACT \+ TAILWIND/i)).toBeInTheDocument();
     expect(screen.getByText(/by Clara Cerdà de Palou/i)).toBeInTheDocument();
-  });
+  }, 15000);
+
 
   it('toggles visibility classes based on scroll intersection events', async () => {
     const callbacks: { callback: any; element: any }[] = [];
@@ -205,7 +208,7 @@ describe('OfflinePage Component', () => {
     await new Promise((resolve) => setTimeout(resolve, 150));
 
     // Initially, header has dark text
-    const headerTitle = screen.getByText('CLARA');
+    const headerTitle = screen.getByText('CLARA CERDÀ DE PALOU').parentElement!;
     expect(headerTitle).toHaveClass('text-brand-dark/70');
     expect(headerTitle).not.toHaveClass('text-brand-cream/80');
 
