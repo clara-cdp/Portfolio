@@ -20,7 +20,7 @@ describe('App Router', () => {
 
   it('renders the LandingPage by default', () => {
     render(<App />);
-    expect(screen.getByText(/hi, i'm clara/i)).toBeInTheDocument();
+    expect(screen.getByText(/clara cerdà de palou/i)).toBeInTheDocument();
   });
 
   it('renders the OfflinePage when hash is #offline', () => {
