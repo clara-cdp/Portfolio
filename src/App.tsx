@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import LandingPage from './pages/LandingPage'
 import OfflinePage from './pages/OfflinePage'
 import OfflineProjectDetailPage from './components/OfflineSections/OfflineProjectDetailPage'
+import OfflineEditorialPage from './components/OfflineSections/OfflineEditorialPage'
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.hash)
@@ -20,7 +21,11 @@ function App() {
     return <OfflineProjectDetailPage projectId={projectId} />
   }
 
-  const offlineHashes = ['#offline', '#identity', '#journey', '#projects', '#contact'];
+  if (currentPath === '#offline/editorial') {
+    return <OfflineEditorialPage />
+  }
+
+  const offlineHashes = ['#offline', '#identity', '#journey', '#projects', '#bonus', '#contact'];
   if (offlineHashes.includes(currentPath) || currentPath.startsWith('#offline')) {
     return <OfflinePage />
   }
