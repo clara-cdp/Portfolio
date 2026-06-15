@@ -88,26 +88,33 @@ describe('OfflineProjectDetailPage Component', () => {
   });
 
   it('renders custom details.hero as the hero image source when present, falling back to cardHero', () => {
-    const projectWithoutHero = offLineProjects[0]; // komo-1
-    const { rerender } = render(<OfflineProjectDetailPage projectId={projectWithoutHero.id} />);
+    const project = offLineProjects[1]; // Spotlight
+    const originalDetails = project.details;
+
+    // Temporarily remove details.hero to test fallback
+    project.details = {
+      ...originalDetails,
+      hero: undefined
+    };
+
+    const { rerender } = render(<OfflineProjectDetailPage projectId={project.id} />);
     const imgElements = screen.getAllByRole('img');
-    const heroImgFallback = imgElements.find(img => img.getAttribute('alt') === projectWithoutHero.title);
-    expect(heroImgFallback).toHaveAttribute('src', projectWithoutHero.cardHero);
+    const heroImgFallback = imgElements.find(img => img.getAttribute('alt') === project.title);
+    expect(heroImgFallback).toHaveAttribute('src', project.cardHero);
 
     // Temporarily set a custom hero image
-    const originalDetails = offLineProjects[0].details;
-    offLineProjects[0].details = {
+    project.details = {
       ...originalDetails,
       hero: 'mock-hero-image.jpg'
     };
 
-    rerender(<OfflineProjectDetailPage projectId={projectWithoutHero.id} />);
+    rerender(<OfflineProjectDetailPage projectId={project.id} />);
     const imgElementsUpdated = screen.getAllByRole('img');
-    const heroImgCustom = imgElementsUpdated.find(img => img.getAttribute('alt') === projectWithoutHero.title);
+    const heroImgCustom = imgElementsUpdated.find(img => img.getAttribute('alt') === project.title);
     expect(heroImgCustom).toHaveAttribute('src', 'mock-hero-image.jpg');
 
     // Restore original details
-    offLineProjects[0].details = originalDetails;
+    project.details = originalDetails;
   });
 
   it('renders an error message and back navigation link if project ID is not found', () => {
