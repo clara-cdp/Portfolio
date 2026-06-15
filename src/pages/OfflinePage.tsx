@@ -4,13 +4,14 @@ import IdentitySection from '../components/OfflineSections/IdentitySection';
 import JourneySection from '../components/OfflineSections/JourneySection';
 import ProjectsSection from '../components/OfflineSections/ProjectsSection';
 import ContactSection from '../components/OfflineSections/ContactSection';
+import BonusSection from '../components/OfflineSections/BonusSection';
 
 export default function OfflinePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkBg, setIsDarkBg] = useState(false);
 
   useEffect(() => {
-    const sections = ['hero', 'identity', 'journey', 'projects', 'contact'];
+    const sections = ['hero', 'identity', 'journey', 'projects', 'bonus', 'contact'];
     
     const observers = sections.map(id => {
       const el = document.getElementById(id);
@@ -70,6 +71,7 @@ export default function OfflinePage() {
             <a href="#identity" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Identity</a>
             <a href="#journey" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Journey</a>
             <a href="#projects" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Projects</a>
+            <a href="#bonus" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Bonus Track</a>
             <a href="#contact" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Contact</a>
           </nav>
 
@@ -113,6 +115,7 @@ export default function OfflinePage() {
             <a href="#identity" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Identity</a>
             <a href="#journey" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Journey</a>
             <a href="#projects" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Projects</a>
+            <a href="#bonus" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Bonus Track</a>
             <a href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Contact</a>
           </nav>
         </div>
@@ -130,7 +133,10 @@ export default function OfflinePage() {
       {/* Section 03 -- PROJECTS */}
       <ProjectsSection />
 
-      {/* Section 04 -- CONTACT */}
+      {/* Section 04 -- BONUS TRACK */}
+      <BonusSection />
+
+      {/* Section 05 -- CONTACT */}
       <ContactSection />
     </div>
   );
