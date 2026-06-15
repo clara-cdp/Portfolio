@@ -24,7 +24,7 @@ describe('ProjectsSection Component', () => {
       });
       
       expect(imgElement).toBeDefined();
-      expect(imgElement).toHaveAttribute('src', proj.image);
+      expect(imgElement).toHaveAttribute('src', proj.cardHero);
       
       const cardRoot = imgElement!.parentElement!.parentElement;
       expect(cardRoot).toBeInTheDocument();
