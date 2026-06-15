@@ -86,8 +86,8 @@ describe('OfflinePage Component', () => {
     const detailLinks = screen.getAllByText(/see details/i);
     expect(detailLinks).toHaveLength(4);
 
-    // Check Section 04 - Contact elements
-    expect(screen.getByText('04 - CONTACT')).toBeInTheDocument();
+    // Check Section 05 - Contact elements
+    expect(screen.getByText('05 - CONTACT')).toBeInTheDocument();
     expect(screen.getByText(/Let's work/i)).toBeInTheDocument();
     expect(screen.getByText(/together/i)).toBeInTheDocument();
 
@@ -179,7 +179,7 @@ describe('OfflinePage Component', () => {
     
     // Click dropdown link to close
     const dropdownLinks = dropdownPanel?.querySelectorAll('a');
-    expect(dropdownLinks).toHaveLength(4);
+    expect(dropdownLinks).toHaveLength(5);
     expect(dropdownLinks?.[0]).toHaveTextContent('Identity');
     
     act(() => {
