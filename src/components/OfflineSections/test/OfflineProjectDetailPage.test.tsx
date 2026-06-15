@@ -119,4 +119,36 @@ describe('OfflineProjectDetailPage Component', () => {
     expect(backBtn).toBeInTheDocument();
     expect(backBtn).toHaveAttribute('href', '#offline');
   });
+
+  it('applies the correct responsive grid layout and button styles', () => {
+    const project = offLineProjects[0]; // komo-1 (has PDF link)
+    const { container } = render(<OfflineProjectDetailPage projectId={project.id} />);
+
+    // Check grid layout classes
+    const leftColumn = container.querySelector('.col-span-12.lg\\:col-span-4');
+    const rightColumn = container.querySelector('.col-span-12.lg\\:col-span-8');
+    expect(leftColumn).toBeInTheDocument();
+    expect(rightColumn).toBeInTheDocument();
+
+    // Check button classes
+    const pdfLink = screen.getByRole('link', { name: /view full brand book/i });
+    expect(pdfLink).toHaveClass('w-full');
+    expect(pdfLink).toHaveClass('sm:w-fit');
+    expect(pdfLink).toHaveClass('lg:w-full');
+    expect(pdfLink).toHaveClass('xl:w-fit');
+    expect(pdfLink).toHaveClass('whitespace-normal');
+  });
+
+  it('applies the correct responsive classes to the Figma link if present', () => {
+    const project = offLineProjects[2]; // temari-no-ouchi (has figma)
+    render(<OfflineProjectDetailPage projectId={project.id} />);
+
+    const figmaLink = screen.getByRole('link', { name: /view figma design/i });
+    expect(figmaLink).toHaveClass('w-full');
+    expect(figmaLink).toHaveClass('sm:w-fit');
+    expect(figmaLink).toHaveClass('lg:w-full');
+    expect(figmaLink).toHaveClass('xl:w-fit');
+    expect(figmaLink).toHaveClass('whitespace-normal');
+  });
 });
+
