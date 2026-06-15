@@ -67,7 +67,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Project Image */}
       <div className="w-full md:w-1/2 overflow-hidden bg-brand-dark/5 rounded-sm shadow-sm group">
         <img
-          src={project.image}
+          src={project.cardHero}
           alt={project.title}
           className={imgClasses}
         />
