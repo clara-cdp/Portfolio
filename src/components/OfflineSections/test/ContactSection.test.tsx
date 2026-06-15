@@ -15,7 +15,7 @@ describe('ContactSection Component', () => {
   it('renders eyebrow and main title', () => {
     render(<ContactSection />);
     
-    expect(screen.getByText('04 - CONTACT')).toBeInTheDocument();
+    expect(screen.getByText('05 - CONTACT')).toBeInTheDocument();
     expect(screen.getByText(/Let's work/i)).toBeInTheDocument();
     expect(screen.getByText(/together/i)).toBeInTheDocument();
   });
