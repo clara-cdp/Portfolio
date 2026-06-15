@@ -59,7 +59,8 @@ export default function OfflinePage() {
             useLightText ? 'text-brand-cream/80' : 'text-brand-dark/70'
           }`}
         >
-          CLARA<span className="hidden md:inline"> CDP</span>
+          <span className="md:hidden">CLAR CDP</span>
+          <span className="hidden md:inline">CLARA CERDÀ DE PALOU</span>
         </div>
 
         {/* Navigation Actions */}

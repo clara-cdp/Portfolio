@@ -45,7 +45,8 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
           href="#"
           className="font-sans text-[10px] tracking-[0.25em] font-bold text-brand-dark/70 uppercase select-none cursor-pointer hover:text-brand-dark transition-colors duration-200"
         >
-          CLARA<span className="hidden md:inline"> CDP</span>
+          <span className="md:hidden">CLAR CDP</span>
+          <span className="hidden md:inline">CLARA CERDÀ DE PALOU</span>
         </a>
 
         {/* Back Link */}
