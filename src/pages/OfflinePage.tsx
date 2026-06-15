@@ -93,18 +93,6 @@ export default function OfflinePage() {
               </svg>
             )}
           </button>
-
-          {/* Outlined Button */}
-          <a
-            href="#online"
-            className={`border px-4 py-1.5 rounded-sm font-sans text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 cursor-pointer ${
-              useLightText 
-                ? 'border-brand-cream/30 hover:border-brand-cream text-brand-cream hover:bg-brand-cream hover:text-brand-dark' 
-                : 'border-brand-dark/25 hover:border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-brand-cyan'
-            }`}
-          >
-            &rarr; Online
-          </a>
         </div>
 
         {/* Mobile Dropdown Menu Panel */}
