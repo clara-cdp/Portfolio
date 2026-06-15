@@ -75,11 +75,11 @@ describe('OfflinePage Component', () => {
     // Check project cards rendering
     expect(screen.getByText('KOMO')).toBeInTheDocument();
     expect(screen.getByText('SPOTLIGHT')).toBeInTheDocument();
-    expect(screen.getByText('KOMO Brand System')).toBeInTheDocument();
+    expect(screen.getByText('TEMARI NO OUCHI')).toBeInTheDocument();
 
     expect(screen.getByText('COFFEE HUSK PACKAGING CONCEPT')).toBeInTheDocument();
     expect(screen.getByText('THEATRE TECHNOLOGY FESTIVAL IDENTITY')).toBeInTheDocument();
-    expect(screen.getByText('BRAND IDENTITY - 2026')).toBeInTheDocument();
+    expect(screen.getByText('BRANDING & DIGITAL EXPERIENCE')).toBeInTheDocument();
 
     const detailLinks = screen.getAllByText(/see details/i);
     expect(detailLinks).toHaveLength(3);

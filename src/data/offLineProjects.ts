@@ -18,6 +18,15 @@ import spotlightTote from '../assets/SPOTLIGHT/toteBag.png';
 import spotlightPosters from '../assets/SPOTLIGHT/dual-poster-mockup-8bit-freebie.jpg';
 import spotlightBracelet from '../assets/SPOTLIGHT/two thin bracelet.jpg';
 
+// Import TEMARI assets
+import temariHero from '../assets/Temari/hero.jpg';
+import temariLogo from '../assets/Temari/LOGO.png';
+import temariStyles from '../assets/Temari/styles.jpg';
+import temariStyles2 from '../assets/Temari/styles2.jpg';
+import temariCatCard from '../assets/Temari/Cat card-2.png';
+import temariMobileCatCard from '../assets/Temari/temari_Mobile cat card.png';
+import temariPdf from '../assets/Temari/temariNoOuchi.pdf';
+
 export interface ProjectDetail {
   client?: string;
   role?: string;
@@ -26,6 +35,7 @@ export interface ProjectDetail {
   gallery?: string[];
   pdfUrl?: string;
   videoUrl?: string;
+  figmaUrl?: string;
 }
 
 export interface Project {
@@ -110,22 +120,38 @@ export const offLineProjects: Project[] = [
     }
   },
   {
-    id: "komo-3",
-    title: "KOMO Brand System",
-    tagline: "BRAND IDENTITY - 2026",
-    description: "A complete visual identity for a sustainable architecture collective — logo system, typographic framework, material specifications, and brand guidelines across digital and print.",
-    image: coffeeMockup,
-    tags: ["Branding", "Identity", "Strategy"],
-    link: "#offline/projects/komo-3",
+    id: "temari-no-ouchi",
+    title: "TEMARI NO OUCHI",
+    tagline: "BRANDING & DIGITAL EXPERIENCE",
+    description: "A branding and website design project for a cat café and adoption centre heavily inspired by Japanese kawaii culture, combining a playful themed atmosphere with a streamlined adoption process.",
+    image: temariHero,
+    tags: ["Branding", "UI/UX", "Identity"],
+    link: "#offline/projects/temari-no-ouchi",
     variant: 'outlined',
     details: {
-      client: "KOMO Collective",
-      role: "Design Lead",
-      deliverables: ["Strategy", "Visual System", "Material Guidelines"],
+      client: "Temari No Ouchi",
+      role: "Lead UI/UX & Brand Designer",
+      deliverables: ["Visual Identity", "Logo Design", "UI/UX Design", "Digital Strategy"],
       longDescription: [
-        "This case study details the brand strategy, editorial guidelines, and corporate messaging frameworks developed to align KOMO's external communication style with their circular practices."
+        "## Concept",
+        "Temari No Ouchi is a branding and website project for a cat café and adoption centre heavily inspired by Japanese kawaii culture.",
+        "The project combines the playful, colourful atmosphere of a themed café with the practical goal of promoting cat adoption. The identity aims to create an inviting digital experience that encourages visitors to discover the cats, learn their stories, and ultimately find a new companion.",
+        "## Challenge",
+        "Create a visual identity and website that balances two objectives:",
+        "*Communicate the warmth and personality of a kawaii cat café.*",
+        "*Support the adoption process through clear information and user-friendly navigation.*",
+        "The challenge was to create something playful and memorable without becoming visually overwhelming or losing focus on the animals themselves.",
+        "## Design System",
+        "The identity is built around softness, friendliness, and character.",
+        "Key elements include a kawaii-inspired visual language using rounded shapes, playful illustrations, and expressive details, set in a soft pastel colour palette. Clean, friendly typography supports cat-centred storytelling, allowing each cat to become part of the brand experience through adoption features and profiles.",
+        "The result is a warm and approachable system designed to make visitors smile while creating an emotional connection with the animals.",
+        "## Applications",
+        "The project includes both branding and digital design: Visual identity, Logo design, Colour palette and typography system, Website design, Cat adoption profiles, Menu and café information pages, Contact and booking experience, and Social media assets.",
+        "Together, these elements create a cohesive brand experience that supports both the café and its adoption mission."
       ],
-      gallery: [coffeeMockup]
+      pdfUrl: temariPdf,
+      figmaUrl: "https://www.figma.com/design/ZJZjH1sPflhnioSijMncYL/Untitled?node-id=0-1&p=f&t=OPMcwCEb29J0HJKj-0",
+      gallery: [temariLogo, temariStyles, temariStyles2, temariCatCard, temariMobileCatCard]
     }
   }
 ];

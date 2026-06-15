@@ -78,7 +78,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
             {/* Hero Showcase Image */}
             <div className="w-full overflow-hidden bg-brand-dark/5 rounded-sm shadow-md">
               <img
-                src={project.image}
+                src={details?.hero || project.cardHero}
                 alt={project.title}
                 className="w-full h-auto object-cover"
               />
@@ -137,6 +137,22 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
                       >
                         View full brand book (PDF) &rarr;
                       </a>
+                    </div>
+                  )}
+
+                  {details?.figmaUrl && (
+                    <div className="pt-4 border-t border-brand-cream/10">
+                      <a
+                        href={details.figmaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 text-[10px] tracking-[0.25em] font-bold uppercase text-brand-cream border border-brand-cream/25 px-4 py-2.5 rounded-sm hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 cursor-pointer w-full text-center sm:w-auto"
+                      >
+                        View Figma Design &rarr;
+                      </a>
+                      <p className="text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-brand-light/70 italic mt-2 block">
+                        * Web under construction
+                      </p>
                     </div>
                   )}
                 </RevealWrapper>
