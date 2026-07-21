@@ -1,5 +1,3 @@
-import coffeeMockup from '../assets/KOMO/cupwithlogo.png';
-
 // Import KOMO assets
 import komoHero from '../assets/KOMO/hero.png';
 import komoDisplay from '../assets/KOMO/display.png';
@@ -9,11 +7,9 @@ import komoPdf from '../assets/KOMO/Komo_making_off.pdf';
 import komoVideo from '../assets/KOMO/vid1_2.mp4';
 import komoCup from '../assets/KOMO/cupwithlogo.png';
 import komoLogotype from '../assets/KOMO/logotype.png';
-import komoLogprod from '../assets/KOMO/logprod.png';
 
 // Import SPOTLIGHT assets
 import spotlightHero from '../assets/SPOTLIGHT/spotlight.jpg';
-import spotlightBag from '../assets/SPOTLIGHT/spotBag.jpg';
 import spotlightTote from '../assets/SPOTLIGHT/toteBag.png';
 import spotlightPosters from '../assets/SPOTLIGHT/dual-poster-mockup-8bit-freebie.jpg';
 import spotlightBracelet from '../assets/SPOTLIGHT/two thin bracelet.jpg';
