@@ -2,7 +2,7 @@ import RevealWrapper from '../RevealWrapper/RevealWrapper';
 
 export default function OnlineHeroSection() {
   return (
-    <section id="hero" className="max-w-7xl mx-auto w-full min-h-screen px-6 sm:px-8 md:px-16 lg:px-24 pt-28 sm:pt-32 pb-16 flex flex-col justify-between relative">
+    <section id="hero" className="max-w-7xl mx-auto w-full min-h-screen px-6 sm:px-8 md:px-16 lg:px-24 pt-28 sm:pt-32 pb-16 flex flex-col justify-between relative overflow-hidden">
       <RevealWrapper>
         <div className="flex flex-col items-start max-w-5xl mt-4 sm:mt-8 md:mt-12">
           {/* Eyebrow */}
@@ -10,11 +10,11 @@ export default function OnlineHeroSection() {
             ONLINE — DEVELOPEMENT PORTFOLIO
           </p>
 
-          {/* Headline (No underlines) */}
-          <h1 className="font-mono font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.15] md:leading-[1.1] mb-10 sm:mb-14 text-white select-none">
+          {/* Headline with 3 unbroken lines */}
+          <h1 className="font-mono font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-[1.15] sm:leading-[1.1] mb-10 sm:mb-14 text-white select-none">
             <span className="block">Building</span>
             <span className="block text-brand-orange my-1 sm:my-2">digital products</span>
-            <span className="block">from the inside out.</span>
+            <span className="block whitespace-nowrap">from the inside out.</span>
           </h1>
 
           {/* Description Paragraphs in Cyan Text */}
