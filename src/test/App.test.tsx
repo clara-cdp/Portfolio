@@ -40,4 +40,11 @@ describe('App Router', () => {
     render(<App />);
     expect(screen.getByRole('heading', { name: /small editorial/i })).toBeInTheDocument();
   });
+
+  it('renders the OnlinePage when hash is #online', () => {
+    window.location.hash = '#online';
+    render(<App />);
+    expect(screen.getByText(/online — developement portfolio/i)).toBeInTheDocument();
+  });
 });
+
