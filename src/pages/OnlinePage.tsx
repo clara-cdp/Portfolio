@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import OnlineHeroSection from '../components/OnlineSections/OnlineHeroSection';
+import StackSection from '../components/OnlineSections/StackSection';
 import { OnlineButton } from '../components/Button/Button';
 import Footer from '../components/Footer/Footer';
 
@@ -135,6 +136,7 @@ export default function OnlinePage() {
       {/* Main Content Sections */}
       <main className="flex-grow">
         <OnlineHeroSection />
+        <StackSection />
       </main>
 
       {/* Reused Footer Component */}
@@ -142,3 +144,4 @@ export default function OnlinePage() {
     </div>
   );
 }
+

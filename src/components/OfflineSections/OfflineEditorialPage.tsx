@@ -18,7 +18,6 @@ import met4 from '../../assets/editorial/Met_5c.jpg';
 import frightFest from '../../assets/editorial/frightfest_mockup.png';
 import japanBook1 from '../../assets/editorial/JB_.png';
 import japanBook2 from '../../assets/editorial/JB_covers.png';
-import comic1 from '../../assets/editorial/CMMockup2.png';
 import comic2 from '../../assets/editorial/CM2.png';
 import inventorPoster1 from '../../assets/editorial/invento-deco-bus-stop.jpg';
 import inventorPoster2 from '../../assets/editorial/inventor-modern-2colored-posters.jpg';
