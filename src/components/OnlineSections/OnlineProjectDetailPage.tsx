@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { onlineProjects } from '../../data/onlineProjects';
 import RevealWrapper from '../RevealWrapper/RevealWrapper';
 import Footer from '../Footer/Footer';
+import apitLogo from '../../assets/APIT-MVC/APIT_logico.png';
 
 interface OnlineProjectDetailPageProps {
   projectId: string;
@@ -75,12 +76,22 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
           
           {/* 1. Title & Header Intro Section */}
           <div className="max-w-4xl mt-6 sm:mt-10 mb-10 sm:mb-14">
-            <span className="text-brand-cyan font-mono text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase mb-3 block">
+            <span className="text-brand-cyan font-mono text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase mb-5 block">
               03 - CASE STUDY &gt; {project.statusText}
             </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-white tracking-tight leading-[1.1] mb-6">
-              {project.title}
-            </h1>
+            {project.id === 'a-paws-in-time' ? (
+              <div className="mb-6 max-w-sm sm:max-w-md">
+                <img
+                  src={apitLogo}
+                  alt={project.title}
+                  className="w-full h-auto object-contain max-h-24 sm:max-h-32 select-none"
+                />
+              </div>
+            ) : (
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-white tracking-tight leading-[1.1] mb-6">
+                {project.title}
+              </h1>
+            )}
             <p className="font-sans text-brand-cream/80 text-base sm:text-lg leading-relaxed max-w-3xl">
               {project.description}
             </p>
@@ -103,13 +114,13 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
               <RevealWrapper className="flex flex-col gap-6">
                 
                 {/* Meta details card */}
-                <div className="border border-white/10 bg-[#0A0E1A]/60 p-5 sm:p-6 rounded-md flex flex-col gap-5">
+                <div className="border border-brand-cyan/30 bg-[#0A0E1A]/95 p-5 sm:p-6 rounded-sm flex flex-col gap-5 transition-all duration-300 hover:border-brand-cyan/50 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
                   {details?.client && (
                     <div>
                       <span className="text-brand-cyan font-bold tracking-[0.2em] text-[10px] uppercase block mb-1">
                         Project Type
                       </span>
-                      <span className="text-white font-medium">{details.client}</span>
+                      <span className="text-brand-cream font-normal">{details.client}</span>
                     </div>
                   )}
 
@@ -118,7 +129,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                       <span className="text-brand-cyan font-bold tracking-[0.2em] text-[10px] uppercase block mb-1">
                         Role
                       </span>
-                      <span className="text-white font-medium">{details.role}</span>
+                      <span className="text-brand-cream font-normal">{details.role}</span>
                     </div>
                   )}
 
@@ -127,7 +138,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                       <span className="text-brand-cyan font-bold tracking-[0.2em] text-[10px] uppercase block mb-2">
                         Deliverables
                       </span>
-                      <ul className="flex flex-col gap-2 text-white font-sans text-xs sm:text-sm">
+                      <ul className="flex flex-col gap-2 text-brand-cream/85 font-sans font-normal text-xs sm:text-sm">
                         {details.deliverables.map((del, idx) => (
                           <li key={idx} className="flex items-start gap-2.5">
                             <span className="w-1.5 h-1.5 bg-brand-orange rounded-full mt-1.5 flex-shrink-0" />
@@ -140,7 +151,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                 </div>
 
                 {/* Tech Badges List */}
-                <div className="border border-white/10 bg-[#0A0E1A]/60 p-5 sm:p-6 rounded-md">
+                <div className="border border-brand-cyan/30 bg-[#0A0E1A]/95 p-5 sm:p-6 rounded-sm transition-all duration-300 hover:border-brand-cyan/50 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
                   <span className="text-brand-cyan font-bold tracking-[0.2em] text-[10px] uppercase block mb-3">
                     Technologies Used
                   </span>
@@ -163,7 +174,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                       href={details.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-center gap-2 text-xs tracking-[0.2em] font-bold uppercase text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan hover:text-brand-dark px-5 py-3 rounded-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(23,208,208,0.3)] hover:scale-102 cursor-pointer w-full text-center"
+                      className="group flex items-center justify-center gap-2.5 text-xs tracking-[0.25em] font-bold uppercase text-brand-dark bg-brand-cyan border-2 border-brand-cyan hover:bg-transparent hover:text-brand-cyan px-5 py-3.5 rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(23,208,208,0.35)] hover:shadow-[0_0_30px_rgba(23,208,208,0.7)] hover:scale-[1.03] active:scale-[0.98] cursor-pointer w-full text-center animate-pulse"
                     >
                       VIEW REPOSITORY &rarr;
                     </a>
@@ -180,8 +191,9 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                   if (item.startsWith('## ')) {
                     return (
                       <RevealWrapper key={index}>
-                        <h3 className="font-mono text-base sm:text-lg font-bold text-white tracking-widest uppercase mb-3 mt-4 border-b border-white/5 pb-2">
-                          &gt; {item.replace('## ', '')}
+                        <h3 className="font-mono text-base sm:text-lg font-bold text-brand-cyan tracking-widest uppercase mb-4 mt-6 border-b border-brand-cyan/20 pb-2 flex items-center gap-2 drop-shadow-[0_0_4px_rgba(23,208,208,0.25)] transition-all duration-300 hover:drop-shadow-[0_0_10px_rgba(23,208,208,0.55)]">
+                          <span className="text-brand-orange animate-pulse">&rsaquo;</span>
+                          {item.replace('## ', '')}
                         </h3>
                       </RevealWrapper>
                     );
@@ -203,7 +215,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
           {details?.gallery && details.gallery.length > 0 && (
             <div className="border-t border-white/5 pt-16 sm:pt-20 select-none">
               <RevealWrapper>
-                <div className="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-[0.2em] mb-10 sm:mb-12">
+                <div className="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-[0.2em] mb-10 sm:mb-12 drop-shadow-[0_0_4px_rgba(23,208,208,0.25)]">
                   <span className="text-brand-cyan font-bold uppercase">
                     SHOWCASE GALLERY &gt;
                   </span>
@@ -215,11 +227,11 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {details.gallery.map((imgUrl, idx) => (
-                  <RevealWrapper key={idx} className="group overflow-hidden rounded-sm border border-white/10 bg-[#0A0E1A]/40 transition-all duration-300 hover:border-brand-cyan/40 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
+                  <RevealWrapper key={idx} className="group h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden rounded-sm border border-white/10 bg-[#0A0E1A]/80 flex items-center justify-center p-3 transition-all duration-300 hover:border-brand-cyan/40 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
                     <img
                       src={imgUrl}
                       alt={`Showcase frame ${idx + 1}`}
-                      className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-102"
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-102"
                     />
                   </RevealWrapper>
                 ))}

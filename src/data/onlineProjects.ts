@@ -1,10 +1,15 @@
-import apitHero from '../assets/APIT-MVC/Screenshot (882).png';
-import apit1 from '../assets/APIT-MVC/Screenshot (881).png';
-import apit2 from '../assets/APIT-MVC/Screenshot (883).png';
-import apit3 from '../assets/APIT-MVC/Screenshot (884).png';
-import apit4 from '../assets/APIT-MVC/Screenshot (885).png';
-import apit5 from '../assets/APIT-MVC/Screenshot (880).png';
-import apit6 from '../assets/APIT-MVC/Screenshot 2026-05-20 121808.png';
+import cardHero from '../assets/APIT-MVC/Card_hero.png';
+import destopLanding from '../assets/APIT-MVC/destop_landing.png';
+import selectGame from '../assets/APIT-MVC/select_game.png';
+import login1 from '../assets/APIT-MVC/login1.png';
+import login2 from '../assets/APIT-MVC/login2.png';
+import garden1 from '../assets/APIT-MVC/garden1.png';
+import garden2 from '../assets/APIT-MVC/garden2.png';
+import oldLibrary from '../assets/APIT-MVC/oldLibrary.png';
+import oldLibrary2 from '../assets/APIT-MVC/old_library2.png';
+import initSplasscreenMbl from '../assets/APIT-MVC/init_splasscreen_mbl.png';
+import apitMbl2 from '../assets/APIT-MVC/apit_mbl2.png';
+import notfound404 from '../assets/APIT-MVC/404_notfound.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -36,7 +41,7 @@ export const onlineProjects: OnlineProject[] = [
     statusDetail: "2026 Active",
     description: `Retro-style point-and-click adventure game built with Laravel (MVC), Livewire, Tailwind CSS, SQLite, and JSON. 
     Created and integrated interactive SVG assets using AI, Adobe Illustrator, and Photoshop`,
-    heroImage: apitHero,
+    heroImage: cardHero,
     tags: ["PHP", "LARAVEL", "LIVEWIRE", "JAVASCRIPT", "SQLITE"],
     githubUrl: "https://github.com/clara-cdp/A-Paws-In-Time",
     details: {
@@ -59,13 +64,17 @@ export const onlineProjects: OnlineProject[] = [
         "Inspired by classic point-and-click adventures and 8-bit pixel art, the game combines handcrafted retro aesthetics with modern web technologies. Each environment is built as an interactive SVG scene where individual objects become puzzle elements. Artwork was initially generated with AI before being extensively refined in Adobe Illustrator and Photoshop, creating responsive environments that integrate seamlessly with Livewire's reactive game mechanics."
       ],
       gallery: [
-        apitHero,
-        apit1,
-        apit2,
-        apit3,
-        apit4,
-        apit5,
-        apit6
+        destopLanding,
+        selectGame,
+        login1,
+        login2,
+        garden1,
+        garden2,
+        oldLibrary,
+        oldLibrary2,
+        initSplasscreenMbl,
+        apitMbl2,
+        notfound404
       ],
       githubUrl: "https://github.com/clara-cdp/A-Paws-In-Time",
       liveUrl: "https://github.com/clara-cdp/A-Paws-In-Time"
