@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage'
 import OfflinePage from './pages/OfflinePage'
 import OnlinePage from './pages/OnlinePage'
 import OfflineProjectDetailPage from './components/OfflineSections/OfflineProjectDetailPage'
+import OnlineProjectDetailPage from './components/OnlineSections/OnlineProjectDetailPage'
 import OfflineEditorialPage from './components/OfflineSections/OfflineEditorialPage'
 
 function App() {
@@ -22,9 +23,15 @@ function App() {
     return <OfflineProjectDetailPage projectId={projectId} />
   }
 
+  if (currentPath.startsWith('#online/projects/')) {
+    const projectId = currentPath.replace('#online/projects/', '')
+    return <OnlineProjectDetailPage projectId={projectId} />
+  }
+
   if (currentPath === '#offline/editorial') {
     return <OfflineEditorialPage />
   }
+
 
   const onlineHashes = ['#online'];
   if (onlineHashes.includes(currentPath) || currentPath.startsWith('#online')) {
