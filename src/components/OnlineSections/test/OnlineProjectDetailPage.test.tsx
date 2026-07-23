@@ -19,7 +19,7 @@ describe('OnlineProjectDetailPage Component', () => {
     render(<OnlineProjectDetailPage projectId="a-paws-in-time" />);
 
     expect(screen.getByText(/03 - CASE STUDY >/i)).toBeInTheDocument();
-    expect(screen.getByText('A PAWS IN TIME')).toBeInTheDocument();
+    expect(screen.getAllByAltText('A PAWS IN TIME').length).toBeGreaterThan(0);
     expect(
       screen.getByText(/Retro-style point-and-click adventure game built with Laravel/i)
     ).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('OnlineProjectDetailPage Component', () => {
     render(<OnlineProjectDetailPage projectId="a-paws-in-time" />);
 
     expect(
-      screen.getByText(/A Paws in Time is a retro point-and-click adventure game/i)
+      screen.getByText(/A Paws in Time begins in a world where reality has glitched/i)
     ).toBeInTheDocument();
   });
 
