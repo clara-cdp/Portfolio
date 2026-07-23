@@ -8,7 +8,6 @@ import oldLibrary from '../assets/APIT-MVC/oldLibrary.png';
 import initSplasscreenMbl from '../assets/APIT-MVC/init_splasscreen_mbl.png';
 import apitMbl2 from '../assets/APIT-MVC/apit_mbl2.png';
 import notfound404 from '../assets/APIT-MVC/404_notfound.png';
-import magnet from '../assets/APIT-MVC/magnet.gif';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -67,7 +66,6 @@ export const onlineProjects: OnlineProject[] = [
         selectGame,
         login1,
         login2,
-        magnet,
         garden2,
         oldLibrary,
         initSplasscreenMbl,
