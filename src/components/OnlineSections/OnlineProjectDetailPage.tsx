@@ -3,6 +3,7 @@ import { onlineProjects } from '../../data/onlineProjects';
 import RevealWrapper from '../RevealWrapper/RevealWrapper';
 import Footer from '../Footer/Footer';
 import apitLogo from '../../assets/APIT-MVC/APIT_logico.png';
+import ShowcaseGallery from '../ShowcaseGallery/ShowcaseGallery';
 
 interface OnlineProjectDetailPageProps {
   projectId: string;
@@ -225,17 +226,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                 </div>
               </RevealWrapper>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {details.gallery.map((imgUrl, idx) => (
-                  <RevealWrapper key={idx} className="group h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden rounded-sm border border-white/10 bg-[#0A0E1A]/80 flex items-center justify-center p-3 transition-all duration-300 hover:border-brand-cyan/40 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
-                    <img
-                      src={imgUrl}
-                      alt={`Showcase frame ${idx + 1}`}
-                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-102"
-                    />
-                  </RevealWrapper>
-                ))}
-              </div>
+              <ShowcaseGallery images={details.gallery} />
             </div>
           )}
 

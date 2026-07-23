@@ -3,13 +3,12 @@ import destopLanding from '../assets/APIT-MVC/destop_landing.png';
 import selectGame from '../assets/APIT-MVC/select_game.png';
 import login1 from '../assets/APIT-MVC/login1.png';
 import login2 from '../assets/APIT-MVC/login2.png';
-import garden1 from '../assets/APIT-MVC/garden1.png';
 import garden2 from '../assets/APIT-MVC/garden2.png';
 import oldLibrary from '../assets/APIT-MVC/oldLibrary.png';
-import oldLibrary2 from '../assets/APIT-MVC/old_library2.png';
 import initSplasscreenMbl from '../assets/APIT-MVC/init_splasscreen_mbl.png';
 import apitMbl2 from '../assets/APIT-MVC/apit_mbl2.png';
 import notfound404 from '../assets/APIT-MVC/404_notfound.png';
+import magnet from '../assets/APIT-MVC/magnet.gif';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -24,8 +23,8 @@ export interface OnlineProjectDetail {
 export interface OnlineProject {
   id: string;
   title: string;
-  statusText: string; // e.g. "LIVE"
-  statusDetail: string; // e.g. "2026 Active"
+  statusText: string;
+  statusDetail: string;
   description: string;
   heroImage: string;
   tags: string[];
@@ -68,10 +67,9 @@ export const onlineProjects: OnlineProject[] = [
         selectGame,
         login1,
         login2,
-        garden1,
+        magnet,
         garden2,
         oldLibrary,
-        oldLibrary2,
         initSplasscreenMbl,
         apitMbl2,
         notfound404
