@@ -1,3 +1,81 @@
+import { useState, useEffect, useRef } from 'react';
+
+interface ScrambleLinkProps {
+  href: string;
+  text: string;
+  target?: string;
+  rel?: string;
+}
+
+function ScrambleLink({ href, text, target, rel }: ScrambleLinkProps) {
+  const [displayText, setDisplayText] = useState(text);
+  const intervalRef = useRef<number | null>(null);
+  const chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefghijkmnopqrstwxyz23456789@./#%&*+-';
+
+  const handleMouseEnter = () => {
+    let iteration = 0;
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current);
+    }
+
+    intervalRef.current = window.setInterval(() => {
+      setDisplayText(
+        text
+          .split('')
+          .map((char, index) => {
+            if (char === ' ') return ' ';
+            if (index < iteration) {
+              return text[index];
+            }
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('')
+      );
+
+      if (iteration >= text.length) {
+        if (intervalRef.current !== null) {
+          window.clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
+      }
+
+      iteration += 1 / 3;
+    }, 25);
+  };
+
+  const handleMouseLeave = () => {
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setDisplayText(text);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="flex items-center justify-center border border-brand-cyan/20 hover:border-brand-cyan bg-[#0A0E1A]/60 hover:bg-brand-cyan/5 text-brand-cyan py-4 px-6 rounded-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(23,208,208,0.15)] text-center cursor-pointer relative overflow-hidden group font-mono font-bold"
+    >
+      {/* Laser sweeping beam line overlay on hover */}
+      <span className="absolute top-0 left-0 w-[20%] h-full bg-gradient-to-r from-transparent via-brand-cyan/20 to-transparent -translate-x-full group-hover:translate-x-[500%] transition-transform duration-1000 ease-out pointer-events-none" />
+      
+      <span className="relative z-10">{displayText}</span>
+    </a>
+  );
+}
+
 interface FooterProps {
   variant?: 'full-bleed' | 'nested' | 'online';
 }
@@ -49,28 +127,9 @@ export default function Footer({ variant = 'full-bleed' }: FooterProps) {
 
           {/* Links Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-24 font-mono text-xs sm:text-sm">
-            <a
-              href="mailto:clarianne.cdp@gmail.com"
-              className="flex items-center justify-center border border-brand-cyan/20 hover:border-brand-cyan bg-[#0A0E1A]/60 hover:bg-brand-cyan/5 text-brand-cyan py-4 px-6 rounded-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(23,208,208,0.15)] text-center cursor-pointer"
-            >
-              clarianne.cdp@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/clara-cdp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center border border-brand-cyan/20 hover:border-brand-cyan bg-[#0A0E1A]/60 hover:bg-brand-cyan/5 text-brand-cyan py-4 px-6 rounded-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(23,208,208,0.15)] text-center cursor-pointer"
-            >
-              linkedin.com/in/clara-cdp
-            </a>
-            <a
-              href="https://github.com/clara-cdp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center border border-brand-cyan/20 hover:border-brand-cyan bg-[#0A0E1A]/60 hover:bg-brand-cyan/5 text-brand-cyan py-4 px-6 rounded-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(23,208,208,0.15)] text-center cursor-pointer"
-            >
-              github.com/clara-cdp
-            </a>
+            <ScrambleLink href="mailto:clarianne.cdp@gmail.com" text="clarianne.cdp@gmail.com" />
+            <ScrambleLink href="https://linkedin.com/in/clara-cdp" text="linkedin.com/in/clara-cdp" target="_blank" rel="noopener noreferrer" />
+            <ScrambleLink href="https://github.com/clara-cdp" text="github.com/clara-cdp" target="_blank" rel="noopener noreferrer" />
           </div>
 
           {/* Copyright Metadata */}
