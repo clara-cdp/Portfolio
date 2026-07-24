@@ -68,6 +68,12 @@ export default function OnlinePage() {
             >
               JOURNEY
             </a>
+            <a
+              href="#contact"
+              className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
+            >
+              CONTACT
+            </a>
           </nav>
 
           {/* Reused OnlineButton Component */}
@@ -127,9 +133,16 @@ export default function OnlinePage() {
             <a
               href="#journey"
               onClick={() => setIsMenuOpen(false)}
-              className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
+              className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10"
             >
               JOURNEY
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
+            >
+              CONTACT
             </a>
           </nav>
         </div>
@@ -143,8 +156,8 @@ export default function OnlinePage() {
         <OnlineProjectsSection />
       </main>
 
-      {/* Reused Footer Component */}
-      <Footer variant="full-bleed" />
+      {/* Custom Online Footer Component */}
+      <Footer variant="online" />
     </div>
   );
 }
