@@ -3,6 +3,7 @@ import OnlineHeroSection from '../components/OnlineSections/OnlineHeroSection';
 import StackSection from '../components/OnlineSections/StackSection';
 import OnlineIdentitySection from '../components/OnlineSections/OnlineIdentitySection';
 import OnlineProjectsSection from '../components/OnlineSections/OnlineProjectsSection';
+import OnlineJourneySection from '../components/OnlineSections/OnlineJourneySection';
 import { OnlineButton } from '../components/Button/Button';
 import Footer from '../components/Footer/Footer';
 
@@ -154,6 +155,7 @@ export default function OnlinePage() {
         <StackSection />
         <OnlineIdentitySection />
         <OnlineProjectsSection />
+        <OnlineJourneySection />
       </main>
 
       {/* Custom Online Footer Component */}

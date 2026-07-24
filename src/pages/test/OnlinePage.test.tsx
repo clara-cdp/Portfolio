@@ -33,6 +33,9 @@ describe('OnlinePage Component', () => {
     const journeyLinks = screen.getAllByText('JOURNEY');
     expect(journeyLinks.length).toBeGreaterThanOrEqual(1);
 
+    const contactLinks = screen.getAllByText('CONTACT');
+    expect(contactLinks.length).toBeGreaterThanOrEqual(1);
+
     // Check Offline switch button (reused OnlineButton)
     const offlineBtn = screen.getByRole('button', { name: /offline/i });
     expect(offlineBtn).toBeInTheDocument();
