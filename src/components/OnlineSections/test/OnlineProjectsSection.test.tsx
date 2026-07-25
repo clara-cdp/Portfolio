@@ -74,11 +74,10 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('OAUTH2')).toBeInTheDocument();
     expect(screen.getByText('SPATIE')).toBeInTheDocument();
 
-    // Verify CASE STUDY button is NOT rendered for this project card
-    const caseStudyLinks = screen.queryAllByRole('link', { name: 'CASE STUDY' });
-    caseStudyLinks.forEach((link) => {
-      expect(link).not.toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
-    });
+    // Verify CASE STUDY button is rendered for this project card
+    const caseStudyLink = screen.getAllByRole('link', { name: 'CASE STUDY' })[1];
+    expect(caseStudyLink).toBeInTheDocument();
+    expect(caseStudyLink).toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
 
     // Check both GITHUB repos exist
     const apiLink = screen.getByRole('link', { name: 'GITHUB (API)' });

@@ -181,6 +181,18 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                     </a>
                   </div>
                 )}
+                {details?.githubUrls && details.githubUrls.map((repo, idx) => (
+                  <div key={idx} className="pt-2">
+                    <a
+                      href={repo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center gap-2.5 text-xs tracking-[0.25em] font-bold uppercase text-brand-dark bg-brand-cyan border-2 border-brand-cyan hover:bg-transparent hover:text-brand-cyan px-5 py-3.5 rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(23,208,208,0.35)] hover:shadow-[0_0_30px_rgba(23,208,208,0.7)] hover:scale-[1.03] active:scale-[0.98] cursor-pointer w-full text-center"
+                    >
+                      {repo.label} &rarr;
+                    </a>
+                  </div>
+                ))}
 
               </RevealWrapper>
             </div>
