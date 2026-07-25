@@ -19,6 +19,7 @@ import frontend3 from '../assets/APIT-API/APIT-frontend3.png';
 import frontend4 from '../assets/APIT-API/APIT-frontend4.png';
 import test1 from '../assets/APIT-API/APIT-test1.png';
 import test2 from '../assets/APIT-API/APIT-test2.png';
+import journeyPdf from '../assets/APIT-API/A Front End Journey.pdf';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -29,6 +30,8 @@ export interface OnlineProjectDetail {
   githubUrl?: string;
   githubUrls?: { label: string; url: string }[];
   liveUrl?: string;
+  pdfUrl?: string;
+  pdfLabel?: string;
 }
 
 export interface OnlineProject {
@@ -137,7 +140,9 @@ export const onlineProjects: OnlineProject[] = [
       githubUrls: [
         { label: "GITHUB (API)", url: "https://github.com/clara-cdp/A-Paws-In-Time-API" },
         { label: "GITHUB (FE)", url: "https://github.com/clara-cdp/A-Paws-In-Time-frontend" }
-      ]
+      ],
+      pdfUrl: journeyPdf,
+      pdfLabel: "EXPLORE FRONT END JOURNAL"
     }
   }
 ];

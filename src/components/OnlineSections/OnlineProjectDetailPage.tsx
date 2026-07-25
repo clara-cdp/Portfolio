@@ -88,6 +88,15 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                   className="w-full h-auto object-contain max-h-24 sm:max-h-32 select-none"
                 />
               </div>
+            ) : project.id === 'a-paws-in-time-api' ? (
+              <div className="mb-6">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-brand-orange tracking-tight leading-[1.1] uppercase">
+                  A PAWS IN TIME
+                </h1>
+                <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-brand-cream/90 tracking-wider block mt-2">
+                  (API & REACT)
+                </span>
+              </div>
             ) : (
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-white tracking-tight leading-[1.1] mb-6">
                 {project.title}
@@ -193,6 +202,18 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                     </a>
                   </div>
                 ))}
+                {details?.pdfUrl && (
+                  <div className="pt-2">
+                    <a
+                      href={details.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center gap-2.5 text-xs tracking-[0.25em] font-bold uppercase text-brand-cream bg-brand-teal border-2 border-brand-teal hover:bg-transparent hover:text-brand-teal px-5 py-3.5 rounded-sm transition-all duration-300 shadow-[0_0_20px_rgba(14,143,143,0.35)] hover:shadow-[0_0_30px_rgba(14,143,143,0.7)] hover:scale-[1.03] active:scale-[0.98] cursor-pointer w-full text-center animate-pulse"
+                    >
+                      {details.pdfLabel || 'VIEW DOCUMENT'} &rarr;
+                    </a>
+                  </div>
+                )}
 
               </RevealWrapper>
             </div>

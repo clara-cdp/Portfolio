@@ -62,7 +62,8 @@ describe('OnlineProjectDetailPage Component', () => {
     render(<OnlineProjectDetailPage projectId="a-paws-in-time-api" />);
 
     expect(screen.getByText(/03 - CASE STUDY >/i)).toBeInTheDocument();
-    expect(screen.getByText('A PAWS IN TIME (API & REACT)')).toBeInTheDocument();
+    expect(screen.getByText('A PAWS IN TIME')).toBeInTheDocument();
+    expect(screen.getByText('(API & REACT)')).toBeInTheDocument();
     expect(
       screen.getByText(/Decoupled full-stack rebuild of the adventure game/i)
     ).toBeInTheDocument();
@@ -90,6 +91,11 @@ describe('OnlineProjectDetailPage Component', () => {
     const feLink = screen.getByRole('link', { name: /GITHUB \(FE\) →/i });
     expect(feLink).toBeInTheDocument();
     expect(feLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time-frontend');
+
+    // Check PDF link button
+    const pdfLink = screen.getByRole('link', { name: /EXPLORE FRONT END JOURNAL →/i });
+    expect(pdfLink).toBeInTheDocument();
+    expect(pdfLink).toHaveAttribute('href');
   });
 
   it('renders narrative and gallery for decoupled API & React project', () => {
