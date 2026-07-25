@@ -53,6 +53,43 @@ describe('OnlineProjectsSection Component', () => {
     expect(image).toBeInTheDocument();
   });
 
+  it('renders decoupled api & react project details inside project card', () => {
+    render(<OnlineProjectsSection />);
+
+    // Check project title
+    expect(screen.getByText('A PAWS IN TIME (API & REACT)')).toBeInTheDocument();
+
+    // Check project status details
+    expect(screen.getByText('COMPLETED')).toBeInTheDocument();
+    expect(screen.getByText('Decoupled Architecture')).toBeInTheDocument();
+
+    // Check description text
+    expect(
+      screen.getByText(/Decoupled full-stack rebuild of the adventure game/i)
+    ).toBeInTheDocument();
+
+    // Check specific new tech tag badges
+    expect(screen.getByText('TYPESCRIPT')).toBeInTheDocument();
+    expect(screen.getByText('REST API')).toBeInTheDocument();
+    expect(screen.getByText('OAUTH2')).toBeInTheDocument();
+    expect(screen.getByText('SPATIE')).toBeInTheDocument();
+
+    // Verify CASE STUDY button is NOT rendered for this project card
+    const caseStudyLinks = screen.queryAllByRole('link', { name: 'CASE STUDY' });
+    caseStudyLinks.forEach((link) => {
+      expect(link).not.toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
+    });
+
+    // Check both GITHUB repos exist
+    const apiLink = screen.getByRole('link', { name: 'GITHUB (API)' });
+    expect(apiLink).toBeInTheDocument();
+    expect(apiLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time-API');
+
+    const feLink = screen.getByRole('link', { name: 'GITHUB (FE)' });
+    expect(feLink).toBeInTheDocument();
+    expect(feLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time-frontend');
+  });
+
   it('ensures tech badges have correct transition and hover classes', () => {
     render(<OnlineProjectsSection />);
 
