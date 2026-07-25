@@ -24,6 +24,11 @@ import inventorPoster2 from '../../assets/editorial/inventor-modern-2colored-pos
 import inventorRecord1 from '../../assets/editorial/inventorDecoRecordMockUp.png';
 import inventorRecord2 from '../../assets/editorial/InventorRecordModMockUp.png';
 import inventorRecord3 from '../../assets/editorial/z_CDinsert.png';
+import journeyPdf from '../../assets/APIT-API/A Front End Journey.pdf';
+import journeyPage01 from '../../assets/APIT-API/A Front End Journey_Page_01.png';
+import journeyPage11 from '../../assets/APIT-API/A Front End Journey_Page_11.png';
+import journeyPage16 from '../../assets/APIT-API/A Front End Journey_Page_16.png';
+import journeyPage25 from '../../assets/APIT-API/A Front End Journey_Page_25.png';
 
 // Import traditional art assets
 import artMelon from '../../assets/ART/melon.png';
@@ -90,11 +95,12 @@ export default function OfflineEditorialPage() {
         'okinawa',
         'fright-fest',
         'inventor',
+        'journey-in-time',
         'cm',
         'dragon',
         'slideshow'
       ];
-      const darkSections = ['alice', 'japan-book', 'fright-fest', 'dragon'];
+      const darkSections = ['alice', 'japan-book', 'journey-in-time', 'fright-fest', 'dragon'];
       let currentDark = false;
 
       for (const id of sections) {
@@ -484,6 +490,76 @@ export default function OfflineEditorialPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* A Journey in Time (Dark background) */}
+        <section id="journey-in-time" className="w-full bg-brand-dark text-brand-cream py-20 md:py-28 border-b border-brand-cream/5">
+          <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
+            <div className="grid grid-cols-12 gap-8 lg:gap-16 items-center">
+              
+              {/* Left Column: Text & CTA */}
+              <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 justify-center">
+                <RevealWrapper>
+                  <span className="text-brand-gold text-[10px] tracking-[0.25em] font-mono font-semibold uppercase block mb-1">
+                    A FRONT END JOURNEY
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-serif text-brand-gold mb-3">
+                    A PAWS IN TIME
+                  </h2>
+                  <p className="text-brand-light text-sm leading-relaxed tracking-wide font-sans mb-6">
+                    This editorial publication documents the creation of the React frontend for the API version of A Paws in Time. Following an earlier MVC implementation, the project was rebuilt as a decoupled frontend and backend application. This booklet focuses exclusively on the frontend journey, exploring interface design, AI-assisted development, visual experimentation, SVG scene mapping and the implementation process that transformed the game's user experience.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="text-[9px] tracking-wider uppercase font-semibold text-brand-cream/60 border border-brand-cream/20 px-2.5 py-1 rounded-sm">Print Booklet</span>
+                    <span className="text-[9px] tracking-wider uppercase font-semibold text-brand-cream/60 border border-brand-cream/20 px-2.5 py-1 rounded-sm">AI Generation</span>
+                    <span className="text-[9px] tracking-wider uppercase font-semibold text-brand-cream/60 border border-brand-cream/20 px-2.5 py-1 rounded-sm">Layout Design</span>
+                  </div>
+
+                  <div className="pt-2 flex flex-col gap-3">
+                    <a
+                      href={journeyPdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link font-sans text-[10px] tracking-[0.25em] font-bold uppercase text-brand-gold hover:text-brand-cream transition-colors duration-300 inline-flex items-center gap-1.5 cursor-pointer"
+                    >
+                      explore the booklet
+                      <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">
+                        &rarr;
+                      </span>
+                    </a>
+                    <a
+                      href="#online/projects/a-paws-in-time-api"
+                      className="group/link font-sans text-[10px] tracking-[0.25em] font-bold uppercase text-brand-gold hover:text-brand-cream transition-colors duration-300 inline-flex items-center gap-1.5 cursor-pointer"
+                    >
+                      See related project
+                      <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">
+                        &rarr;
+                      </span>
+                    </a>
+                  </div>
+                </RevealWrapper>
+              </div>
+
+              {/* Right Column: 2x2 Grid of 4 Pictures */}
+              <div className="col-span-12 lg:col-span-8 grid grid-cols-2 gap-4">
+                {[
+                  { img: journeyPage01, alt: "A Journey in Time Cover Page" },
+                  { img: journeyPage11, alt: "A Journey in Time Architecture Spread" },
+                  { img: journeyPage16, alt: "A Journey in Time Frontend Interface Spread" },
+                  { img: journeyPage25, alt: "A Journey in Time AI Experimentation Spread" }
+                ].map((item, idx) => (
+                  <div key={idx} className="overflow-hidden bg-brand-cream/5 rounded-sm border border-brand-cream/10 shadow-sm transition-all duration-500 hover:scale-[1.025] hover:border-brand-gold/30">
+                    <img
+                      src={item.img}
+                      alt={item.alt}
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+
             </div>
           </div>
         </section>

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import OfflineEditorialPage from '../components/OfflineSections/OfflineEditorialPage';
+import OfflineEditorialPage from '../OfflineEditorialPage';
 
 describe('OfflineEditorialPage Component', () => {
   beforeEach(() => {
@@ -17,10 +17,10 @@ describe('OfflineEditorialPage Component', () => {
 
   it('renders section headers and subsection headers', () => {
     render(<OfflineEditorialPage />);
-    
+
     // Main Title
     expect(screen.getByRole('heading', { name: /small editorial/i })).toBeInTheDocument();
-    
+
     // Subsection Header
     expect(screen.getByRole('heading', { name: /some art for/i })).toBeInTheDocument();
   });
@@ -54,6 +54,20 @@ describe('OfflineEditorialPage Component', () => {
 
     // Dragon
     expect(screen.getByRole('heading', { name: /^dragon$/i })).toBeInTheDocument();
+
+    // A Paws in Time — A Front End Journey
+    expect(screen.getByRole('heading', { name: /a paws in time/i })).toBeInTheDocument();
+    expect(screen.getByText(/a front end journey/i)).toBeInTheDocument();
+
+    const exploreLink = screen.getByRole('link', { name: /explore the booklet/i });
+    expect(exploreLink).toBeInTheDocument();
+
+    const relatedLink = screen.getByRole('link', { name: /see related project/i });
+    expect(relatedLink).toBeInTheDocument();
+    expect(relatedLink).toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
+
+    const bookletImages = screen.getAllByAltText(/a journey in time/i);
+    expect(bookletImages.length).toBe(4);
   });
 
   it('manages the traditional art slideshow correctly via controls', () => {

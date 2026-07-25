@@ -47,20 +47,35 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
 
           {/* Action CTAs */}
           <div className="flex flex-wrap gap-4 mb-2">
-            <a
-              href={`#online/projects/${project.id}`}
-              className="inline-flex items-center justify-center border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(23,208,208,0.35)] hover:scale-103 cursor-pointer uppercase"
-            >
-              CASE STUDY
-            </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center border border-white/20 text-white/70 hover:border-white/40 hover:text-white px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:scale-103 cursor-pointer uppercase"
-            >
-              GITHUB
-            </a>
+            {project.details && (
+              <a
+                href={`#online/projects/${project.id}`}
+                className="inline-flex items-center justify-center border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(23,208,208,0.35)] hover:scale-103 cursor-pointer uppercase"
+              >
+                CASE STUDY
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center border border-brand-orange/40 text-brand-orange hover:bg-brand-orange hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,197,86,0.35)] hover:scale-103 cursor-pointer uppercase"
+              >
+                GITHUB
+              </a>
+            )}
+            {project.githubUrls && project.githubUrls.map((repo, idx) => (
+              <a
+                key={idx}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center border border-brand-orange/40 text-brand-orange hover:bg-brand-orange hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,197,86,0.35)] hover:scale-103 cursor-pointer uppercase"
+              >
+                {repo.label}
+              </a>
+            ))}
           </div>
         </div>
 
