@@ -36,7 +36,7 @@ describe('OfflineProjectDetailPage Component', () => {
     // Check Back button
     const backBtn = screen.getByRole('link', { name: /back to portfolio/i });
     expect(backBtn).toBeInTheDocument();
-    expect(backBtn).toHaveAttribute('href', '#projects');
+    expect(backBtn).toHaveAttribute('href', '#offline/projects');
   });
 
   it('renders process book PDF link and video showcase dynamically if present', () => {

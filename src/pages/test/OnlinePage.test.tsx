@@ -78,7 +78,7 @@ describe('OnlinePage Component', () => {
     expect(dropdownPanel).toHaveClass('visible');
 
     // Click a dropdown link to close
-    const mobileStack = dropdownPanel?.querySelector('a[href="#stack"]');
+    const mobileStack = dropdownPanel?.querySelector('a[href="#online/stack"]');
     expect(mobileStack).toBeInTheDocument();
 
     act(() => {
