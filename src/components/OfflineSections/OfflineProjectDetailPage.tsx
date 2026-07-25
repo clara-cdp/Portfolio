@@ -81,7 +81,7 @@ export default function OfflineProjectDetailPage({ projectId }: OfflineProjectDe
 
         {/* Back Link */}
         <a
-          href="#projects"
+          href="#offline/projects"
           className={`font-sans text-[10px] tracking-[0.25em] font-bold uppercase transition-colors duration-300 cursor-pointer inline-flex items-center gap-1.5 ${
             useLightText ? 'text-brand-cream/80 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'
           }`}
