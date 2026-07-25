@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import OnlineHeroSection from '../components/OnlineSections/OnlineHeroSection';
 import StackSection from '../components/OnlineSections/StackSection';
 import OnlineIdentitySection from '../components/OnlineSections/OnlineIdentitySection';
@@ -9,6 +9,28 @@ import Footer from '../components/Footer/Footer';
 
 export default function OnlinePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#online/')) {
+        const sectionId = hash.replace('#online/', '');
+        const element = document.getElementById(sectionId);
+        if (element && typeof element.scrollIntoView === 'function') {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (hash === '#online' || hash === '') {
+        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+          window.scrollTo(0, 0);
+        }
+      }
+    };
+
+    handleScrollToHash();
+
+    window.addEventListener('hashchange', handleScrollToHash);
+    return () => window.removeEventListener('hashchange', handleScrollToHash);
+  }, []);
 
   const navigateToLanding = () => {
     window.location.hash = '';
@@ -46,31 +68,31 @@ export default function OnlinePage() {
           {/* Desktop Nav Links: STACK, IDENTITY, PROJECTS, JOURNEY */}
           <nav className="hidden md:flex items-center gap-8 font-mono text-[11px] lg:text-xs tracking-[0.2em] font-semibold">
             <a
-              href="#stack"
+              href="#online/stack"
               className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
             >
               STACK
             </a>
             <a
-              href="#identity"
+              href="#online/identity"
               className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
             >
               IDENTITY
             </a>
             <a
-              href="#projects"
+              href="#online/projects"
               className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
             >
               PROJECTS
             </a>
             <a
-              href="#journey"
+              href="#online/journey"
               className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
             >
               JOURNEY
             </a>
             <a
-              href="#contact"
+              href="#online/contact"
               className="text-brand-cream/70 hover:text-brand-cyan transition-colors duration-200 uppercase"
             >
               CONTACT
@@ -111,35 +133,35 @@ export default function OnlinePage() {
         >
           <nav className="flex flex-col py-6 px-8 gap-4 font-mono text-xs tracking-[0.2em] font-semibold text-brand-cream/70">
             <a
-              href="#stack"
+              href="#online/stack"
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
             >
               STACK
             </a>
             <a
-              href="#identity"
+              href="#online/identity"
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
             >
               IDENTITY
             </a>
             <a
-              href="#projects"
+              href="#online/projects"
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
             >
               PROJECTS
             </a>
             <a
-              href="#journey"
+              href="#online/journey"
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10"
             >
               JOURNEY
             </a>
             <a
-              href="#contact"
+              href="#online/contact"
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-brand-cyan transition-colors duration-200 uppercase py-2 border-b border-brand-cyan/10 last:border-b-0"
             >

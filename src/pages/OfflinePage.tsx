@@ -11,6 +11,28 @@ export default function OfflinePage() {
   const [isDarkBg, setIsDarkBg] = useState(false);
 
   useEffect(() => {
+    const handleScrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#offline/')) {
+        const sectionId = hash.replace('#offline/', '');
+        const element = document.getElementById(sectionId);
+        if (element && typeof element.scrollIntoView === 'function') {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (hash === '#offline' || hash === '') {
+        if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+          window.scrollTo(0, 0);
+        }
+      }
+    };
+
+    handleScrollToHash();
+
+    window.addEventListener('hashchange', handleScrollToHash);
+    return () => window.removeEventListener('hashchange', handleScrollToHash);
+  }, []);
+
+  useEffect(() => {
     const sections = ['hero', 'identity', 'journey', 'projects', 'bonus', 'contact'];
     
     const observers = sections.map(id => {
@@ -68,11 +90,11 @@ export default function OfflinePage() {
         <div className="flex items-center gap-4 md:gap-8">
           {/* Desktop Nav Items */}
           <nav className="hidden md:flex items-center gap-8 font-sans text-[10px] tracking-[0.25em] font-bold">
-            <a href="#identity" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Identity</a>
-            <a href="#journey" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Journey</a>
-            <a href="#projects" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Projects</a>
-            <a href="#bonus" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Bonus Track</a>
-            <a href="#contact" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Contact</a>
+            <a href="#offline/identity" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Identity</a>
+            <a href="#offline/journey" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Journey</a>
+            <a href="#offline/projects" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Projects</a>
+            <a href="#offline/bonus" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Bonus Track</a>
+            <a href="#offline/contact" className={`transition-colors duration-300 uppercase ${useLightText ? 'text-brand-cream/70 hover:text-brand-cream' : 'text-brand-dark/70 hover:text-brand-dark'}`}>Contact</a>
           </nav>
 
           {/* Mobile nav button */}
@@ -112,11 +134,11 @@ export default function OfflinePage() {
           isMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'
         }`}>
           <nav className="flex flex-col py-6 px-8 gap-4 font-sans text-xs tracking-[0.25em] font-bold text-brand-dark/70">
-            <a href="#identity" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Identity</a>
-            <a href="#journey" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Journey</a>
-            <a href="#projects" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Projects</a>
-            <a href="#bonus" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Bonus Track</a>
-            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Contact</a>
+            <a href="#offline/identity" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Identity</a>
+            <a href="#offline/journey" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Journey</a>
+            <a href="#offline/projects" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Projects</a>
+            <a href="#offline/bonus" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Bonus Track</a>
+            <a href="#offline/contact" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-dark transition-colors duration-200 uppercase py-2 border-b border-brand-dark/5 last:border-b-0">Contact</a>
           </nav>
         </div>
       </header>

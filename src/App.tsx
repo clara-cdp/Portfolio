@@ -33,13 +33,12 @@ function App() {
   }
 
 
-  const onlineHashes = ['#online'];
-  if (onlineHashes.includes(currentPath) || currentPath.startsWith('#online')) {
+  if (currentPath.startsWith('#online')) {
     return <OnlinePage />
   }
 
-  const offlineHashes = ['#offline', '#identity', '#journey', '#projects', '#bonus', '#contact'];
-  if (offlineHashes.includes(currentPath) || currentPath.startsWith('#offline')) {
+  const legacyOfflineHashes = ['#offline', '#identity', '#journey', '#projects', '#bonus', '#contact'];
+  if (currentPath.startsWith('#offline') || legacyOfflineHashes.includes(currentPath)) {
     return <OfflinePage />
   }
 
