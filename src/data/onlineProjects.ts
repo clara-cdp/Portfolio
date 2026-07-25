@@ -85,7 +85,7 @@ export const onlineProjects: OnlineProject[] = [
     statusDetail: "Decoupled Architecture",
     description: `Decoupled full-stack rebuild of the adventure game, separating the system into a standalone React frontend and a robust Laravel REST API. Features secure OAuth2 authentication via Laravel Passport, Spatie role-based access control, persistent save files, and Scribe API documentation.`,
     heroImage: backendHero,
-    tags: ["REACT", "JAVASCRIPT", "TYPESCRIPT", "PHP", "LARAVEL", "REST API", "OAUTH2", "SPATIE", "PEST"],
+    tags: ["REACT", "JAVASCRIPT", "TYPESCRIPT", "PHP", "LARAVEL", "REST API", "OAUTH2", "SPATIE", "PEST", "POSTGRESQL"],
     githubUrls: [
       { label: "GITHUB (API)", url: "https://github.com/clara-cdp/A-Paws-In-Time-API" },
       { label: "GITHUB (FE)", url: "https://github.com/clara-cdp/A-Paws-In-Time-frontend" }

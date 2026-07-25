@@ -60,7 +60,7 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border border-white/20 text-white/70 hover:border-white/40 hover:text-white px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:scale-103 cursor-pointer uppercase"
+                className="inline-flex items-center justify-center border border-brand-orange/40 text-brand-orange hover:bg-brand-orange hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,197,86,0.35)] hover:scale-103 cursor-pointer uppercase"
               >
                 GITHUB
               </a>
@@ -71,7 +71,7 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
                 href={repo.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border border-white/20 text-white/70 hover:border-white/40 hover:text-white px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:scale-103 cursor-pointer uppercase"
+                className="inline-flex items-center justify-center border border-brand-orange/40 text-brand-orange hover:bg-brand-orange hover:text-brand-dark px-6 py-2.5 rounded-sm font-mono text-xs font-bold tracking-[0.25em] transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,197,86,0.35)] hover:scale-103 cursor-pointer uppercase"
               >
                 {repo.label}
               </a>
