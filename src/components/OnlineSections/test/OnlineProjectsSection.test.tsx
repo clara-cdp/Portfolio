@@ -36,14 +36,14 @@ describe('OnlineProjectsSection Component', () => {
     ).toBeInTheDocument();
 
     // Check tech tag badges
-    expect(screen.getByText('PHP')).toBeInTheDocument();
-    expect(screen.getByText('LARAVEL')).toBeInTheDocument();
-    expect(screen.getByText('LIVEWIRE')).toBeInTheDocument();
-    expect(screen.getByText('JAVASCRIPT')).toBeInTheDocument();
-    expect(screen.getByText('SQLITE')).toBeInTheDocument();
+    expect(screen.getAllByText('PHP')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('LARAVEL')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('LIVEWIRE')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('JAVASCRIPT')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('SQLITE')[0]).toBeInTheDocument();
 
     // Check Github anchor button
-    const githubLink = screen.getByRole('link', { name: /GITHUB/i });
+    const githubLink = screen.getByRole('link', { name: 'GITHUB' });
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time');
     expect(githubLink).toHaveAttribute('target', '_blank');
@@ -56,7 +56,7 @@ describe('OnlineProjectsSection Component', () => {
   it('ensures tech badges have correct transition and hover classes', () => {
     render(<OnlineProjectsSection />);
 
-    const badge = screen.getByText('PHP');
+    const badge = screen.getAllByText('PHP')[0];
     expect(badge).toHaveClass(
       'transition-all',
       'duration-200',

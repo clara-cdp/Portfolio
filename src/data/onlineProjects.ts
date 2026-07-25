@@ -8,6 +8,7 @@ import oldLibrary from '../assets/APIT-MVC/oldLibrary.png';
 import initSplasscreenMbl from '../assets/APIT-MVC/init_splasscreen_mbl.png';
 import apitMbl2 from '../assets/APIT-MVC/apit_mbl2.png';
 import notfound404 from '../assets/APIT-MVC/404_notfound.png';
+import backendHero from '../assets/APIT-API/APIT-backend-code-HERO.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -27,7 +28,8 @@ export interface OnlineProject {
   description: string;
   heroImage: string;
   tags: string[];
-  githubUrl: string;
+  githubUrl?: string;
+  githubUrls?: { label: string; url: string }[];
   details?: OnlineProjectDetail;
 }
 
@@ -75,5 +77,18 @@ export const onlineProjects: OnlineProject[] = [
       githubUrl: "https://github.com/clara-cdp/A-Paws-In-Time",
       liveUrl: "https://github.com/clara-cdp/A-Paws-In-Time"
     }
+  },
+  {
+    id: "a-paws-in-time-api",
+    title: "A PAWS IN TIME (API & REACT)",
+    statusText: "COMPLETED",
+    statusDetail: "Decoupled Architecture",
+    description: `Decoupled full-stack rebuild of the adventure game, separating the system into a standalone React frontend and a robust Laravel REST API. Features secure OAuth2 authentication via Laravel Passport, Spatie role-based access control, persistent save files, and Scribe API documentation.`,
+    heroImage: backendHero,
+    tags: ["REACT", "JAVASCRIPT", "TYPESCRIPT", "PHP", "LARAVEL", "REST API", "OAUTH2", "SPATIE", "PEST"],
+    githubUrls: [
+      { label: "GITHUB (API)", url: "https://github.com/clara-cdp/A-Paws-In-Time-API" },
+      { label: "GITHUB (FE)", url: "https://github.com/clara-cdp/A-Paws-In-Time-frontend" }
+    ]
   }
 ];
