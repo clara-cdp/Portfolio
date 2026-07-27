@@ -138,4 +138,24 @@ describe('OnlineProjectDetailPage Component', () => {
     expect(screen.getByText(/Match Up! is a memory card game built in pure Vanilla Javascript/i)).toBeInTheDocument();
     expect(screen.getByText(/The game supports three unique theme configurations/i)).toBeInTheDocument();
   });
+
+  it('renders case study for TASKOMANIA project with logo as title and orange subtitle', () => {
+    render(<OnlineProjectDetailPage projectId="taskomania" />);
+
+    // Check that logo image is rendered with correct alt text
+    const logoImg = screen.getAllByAltText('TASKOMANIA')[0];
+    expect(logoImg).toBeInTheDocument();
+    expect(logoImg.getAttribute('src')).toContain('taskomania.png');
+
+    // Check that orange subtitle renders
+    expect(screen.getByText('TASK MANAGER')).toBeInTheDocument();
+
+    // Check updated role and type details
+    expect(screen.getByText('UI/UX Designer & Front/Back Developer')).toBeInTheDocument();
+    expect(screen.getByText('Bootcamp Team Project')).toBeInTheDocument();
+
+    // Check custom details hero image Screenshot 2026-07-27 165548.png
+    const heroImage = screen.getAllByRole('img').find(img => img.getAttribute('src')?.includes('165548'));
+    expect(heroImage).toBeInTheDocument();
+  });
 });
