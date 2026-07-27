@@ -28,6 +28,7 @@ import muScreenshot4 from '../assets/match-up/Screenshot 2026-07-27 120532.png';
 import muScreenshot5 from '../assets/match-up/Screenshot 2026-07-27 120651.png';
 import muScreenshot6 from '../assets/match-up/Screenshot 2026-07-27 120826.png';
 import projectDetailHero from '../assets/match-up/projectDetail-HERO.png';
+import taskomaniaHero from '../assets/TASKOMANIA/Screenshot 2026-07-27 165526.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -154,6 +155,16 @@ export const onlineProjects: OnlineProject[] = [
       pdfUrl: journeyPdf,
       pdfLabel: "EXPLORE FRONT END JOURNAL"
     }
+  },
+  {
+    id: "taskomania",
+    title: "TASKOMANIA",
+    statusText: "COMPLETED",
+    statusDetail: "Custom MVC Framework",
+    description: "Task management application built using a custom PHP MVC Framework. Features advanced front-controller routing, query search filtering, task status toggles, and dual-persistence support for both JSON file storage and relational MySQL databases.",
+    heroImage: taskomaniaHero,
+    tags: ["PHP", "MVC", "TAILWIND CSS", "MYSQL", "JSON"],
+    githubUrl: "https://github.com/clara-cdp/Task-O-mania"
   },
   {
     id: "match-up-game",
