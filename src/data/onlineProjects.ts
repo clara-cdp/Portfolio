@@ -21,6 +21,13 @@ import test1 from '../assets/APIT-API/APIT-test1.png';
 import test2 from '../assets/APIT-API/APIT-test2.png';
 import journeyPdf from '../assets/APIT-API/A Front End Journey.pdf';
 import matchUpHero from '../assets/match-up/match_up_card_HERO.png';
+import muScreenshot1 from '../assets/match-up/Screenshot 2026-07-27 115331.png';
+import muScreenshot2 from '../assets/match-up/Screenshot 2026-07-27 115446.png';
+import muScreenshot3 from '../assets/match-up/Screenshot 2026-07-27 120408.png';
+import muScreenshot4 from '../assets/match-up/Screenshot 2026-07-27 120532.png';
+import muScreenshot5 from '../assets/match-up/Screenshot 2026-07-27 120651.png';
+import muScreenshot6 from '../assets/match-up/Screenshot 2026-07-27 120826.png';
+import projectDetailHero from '../assets/match-up/projectDetail-HERO.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -33,6 +40,7 @@ export interface OnlineProjectDetail {
   liveUrl?: string;
   pdfUrl?: string;
   pdfLabel?: string;
+  hero?: string;
 }
 
 export interface OnlineProject {
@@ -156,6 +164,32 @@ export const onlineProjects: OnlineProject[] = [
     heroImage: matchUpHero,
     tags: ["HTML5", "CSS", "TAILWIND CSS", "JAVASCRIPT"],
     githubUrl: "https://github.com/clara-cdp/MATCH-UP-GAME",
-    isSmall: true
+    isSmall: true,
+    details: {
+      client: "Personal Project",
+      role: "Frontend Developer & Designer",
+      hero: projectDetailHero,
+      deliverables: [
+        "Responsive HTML5/CSS3 card layout and dynamic grids",
+        "State management for card flipping and match verification",
+        "Speed-based score multiplier tracking loop",
+        "Dynamic theme settings (Japan, Mosaics, Dogs) switching assets on the fly"
+      ],
+      longDescription: [
+        "## Core Gameplay Loop",
+        "Match Up! is a memory card game built in pure Vanilla Javascript. The player's objective is to reveal pairs of matching cards within a grid. Card flip states are handled cleanly with CSS transition classes, resetting mismatching cards or freezing correct pairs depending on matching status.",
+        "## Custom Themes & Styles",
+        "The game supports three unique theme configurations (Japan, Mosaics, and Dogs) that inject specific asset packs and CSS styling. This shifts background gradients, card designs, and card backs seamlessly, creating a responsive and interactive frontend experience."
+      ],
+      gallery: [
+        muScreenshot1,
+        muScreenshot2,
+        muScreenshot3,
+        muScreenshot4,
+        muScreenshot5,
+        muScreenshot6
+      ],
+      githubUrl: "https://github.com/clara-cdp/MATCH-UP-GAME"
+    }
   }
 ];
