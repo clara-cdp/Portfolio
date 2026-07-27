@@ -20,6 +20,7 @@ import frontend4 from '../assets/APIT-API/APIT-frontend4.png';
 import test1 from '../assets/APIT-API/APIT-test1.png';
 import test2 from '../assets/APIT-API/APIT-test2.png';
 import journeyPdf from '../assets/APIT-API/A Front End Journey.pdf';
+import matchUpHero from '../assets/match-up/match_up_card_HERO.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -45,6 +46,7 @@ export interface OnlineProject {
   githubUrl?: string;
   githubUrls?: { label: string; url: string }[];
   details?: OnlineProjectDetail;
+  isSmall?: boolean;
 }
 
 export const onlineProjects: OnlineProject[] = [
@@ -144,5 +146,16 @@ export const onlineProjects: OnlineProject[] = [
       pdfUrl: journeyPdf,
       pdfLabel: "EXPLORE FRONT END JOURNAL"
     }
+  },
+  {
+    id: "match-up-game",
+    title: "MATCH UP!",
+    statusText: "COMPLETED",
+    statusDetail: "Vanilla JS & CSS",
+    description: "Classic card matching memory game with dynamic theme decks (Japan, Mosaics, Dogs), customizable backdrops, responsive grid layouts, and a reactive speed-based scoring loop.",
+    heroImage: matchUpHero,
+    tags: ["HTML5", "CSS", "TAILWIND CSS", "JAVASCRIPT"],
+    githubUrl: "https://github.com/clara-cdp/MATCH-UP-GAME",
+    isSmall: true
   }
 ];
