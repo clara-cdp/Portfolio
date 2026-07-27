@@ -267,7 +267,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
                 <RevealWrapper>
                   <span className="text-brand-light text-[10px] tracking-[0.25em] font-mono font-semibold uppercase">
-                    04 / CD INSERT LAYOUT FOR MUSICAL SOUNDTRACK
+                    03 / CD INSERT LAYOUT FOR MUSICAL SOUNDTRACK
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-dark mt-1 mb-2">
                     Company
@@ -322,7 +322,7 @@ export default function OfflineEditorialPage() {
 
                 <RevealWrapper>
                   <span className="text-brand-gold text-[10px] tracking-[0.25em] font-mono font-semibold uppercase block mb-1">
-                    05 / CRAFT & PRINT EDITORIAL
+                    04 / CRAFT & PRINT EDITORIAL
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-gold mb-3">
                     Japan Book Layout
@@ -352,7 +352,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-5 flex flex-col justify-center gap-4 order-last lg:order-first">
                 <RevealWrapper>
                   <span className="text-brand-light text-[10px] tracking-[0.25em] font-mono font-semibold uppercase">
-                    06 / PHOTO EDITING & POSTER DESIGN
+                    05 / PHOTO EDITING & POSTER DESIGN
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-dark mt-1 mb-2">
                     Okinawa Spreads & Posters
@@ -404,7 +404,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
                 <RevealWrapper>
                   <span className="text-brand-gold text-[10px] tracking-[0.25em] font-mono font-semibold uppercase">
-                    07 / IDENTITY & POSTER
+                    06 / IDENTITY & POSTER
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-gold mt-1 mb-2">
                     Fright Fest Posters
@@ -436,7 +436,7 @@ export default function OfflineEditorialPage() {
             <div className="flex flex-col gap-8">
               <RevealWrapper>
                 <span className="text-brand-light text-[10px] tracking-[0.25em] font-mono font-semibold uppercase block text-center lg:text-left border-b border-brand-dark/10 pb-4">
-                  03 / DIGITAL ILLUSTRATION: MOVIE POSTERS & VINYL COVER SLEEVES.
+                  07 / DIGITAL ILLUSTRATION: MOVIE POSTERS & VINYL COVER SLEEVES.
                 </span>
               </RevealWrapper>
               <div className="grid grid-cols-12 gap-6 items-stretch">
@@ -503,7 +503,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 justify-center">
                 <RevealWrapper>
                   <span className="text-brand-gold text-[10px] tracking-[0.25em] font-mono font-semibold uppercase block mb-1">
-                    A FRONT END JOURNEY
+                    08 / A FRONT END JOURNEY
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-gold mb-3">
                     A PAWS IN TIME
@@ -571,7 +571,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-7 flex flex-col gap-4 justify-center">
                 <RevealWrapper>
                   <span className="text-brand-light text-[10px] tracking-[0.25em] font-mono font-semibold uppercase">
-                    08 / ILLUSTRATIVE EDITORIAL
+                    09 / ILLUSTRATIVE EDITORIAL
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-dark mt-1 mb-2">
                     CM
@@ -617,7 +617,7 @@ export default function OfflineEditorialPage() {
               <div className="col-span-12 lg:col-span-7 flex flex-col gap-4 justify-center">
                 <RevealWrapper>
                   <span className="text-brand-gold text-[10px] tracking-[0.25em] font-mono font-semibold uppercase">
-                    09 / DIGITAL ART
+                    10 / DIGITAL ART
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-serif text-brand-gold mt-1 mb-2">
                     Dragon
