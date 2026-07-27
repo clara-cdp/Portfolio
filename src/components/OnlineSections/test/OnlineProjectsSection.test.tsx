@@ -89,6 +89,34 @@ describe('OnlineProjectsSection Component', () => {
     expect(feLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time-frontend');
   });
 
+  it('renders taskomania project details inside project card', () => {
+    render(<OnlineProjectsSection />);
+
+    // Check project title
+    expect(screen.getByText('TASKOMANIA')).toBeInTheDocument();
+
+    // Check project completed badge details
+    expect(screen.getAllByText('COMPLETED')[1]).toBeInTheDocument();
+    expect(screen.getByText('Custom MVC Framework')).toBeInTheDocument();
+
+    // Check description text
+    expect(
+      screen.getByText(/Task management application built using a custom PHP MVC Framework/i)
+    ).toBeInTheDocument();
+
+    // Check tech tag badges
+    expect(screen.getAllByText('PHP')[2]).toBeInTheDocument();
+    expect(screen.getByText('MVC')).toBeInTheDocument();
+    expect(screen.getAllByText('TAILWIND CSS')[0]).toBeInTheDocument();
+    expect(screen.getByText('MYSQL')).toBeInTheDocument();
+    expect(screen.getByText('JSON')).toBeInTheDocument();
+
+    // Check Github anchor button
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[1];
+    expect(githubLink).toBeInTheDocument();
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Task-O-mania');
+  });
+
   it('ensures tech badges have correct transition and hover classes', () => {
     render(<OnlineProjectsSection />);
 
