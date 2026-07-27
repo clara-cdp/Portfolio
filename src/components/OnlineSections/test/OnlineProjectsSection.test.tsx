@@ -43,7 +43,7 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getAllByText('SQLITE')[0]).toBeInTheDocument();
 
     // Check Github anchor button
-    const githubLink = screen.getByRole('link', { name: 'GITHUB' });
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[0];
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time');
     expect(githubLink).toHaveAttribute('target', '_blank');
@@ -60,7 +60,7 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('A PAWS IN TIME (API & REACT)')).toBeInTheDocument();
 
     // Check project status details
-    expect(screen.getByText('COMPLETED')).toBeInTheDocument();
+    expect(screen.getAllByText('COMPLETED')[0]).toBeInTheDocument();
     expect(screen.getByText('Decoupled Architecture')).toBeInTheDocument();
 
     // Check description text
