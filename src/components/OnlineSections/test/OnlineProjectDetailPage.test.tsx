@@ -118,4 +118,24 @@ describe('OnlineProjectDetailPage Component', () => {
     expect(backBtn).toBeInTheDocument();
     expect(backBtn).toHaveAttribute('href', '#online');
   });
+
+  it('renders custom details.hero as the hero image source when present, falling back to heroImage', () => {
+    render(<OnlineProjectDetailPage projectId="match-up-game" />);
+
+    // Check that hero image is rendered with custom details.hero
+    const heroImage = screen.getAllByRole('img')[0];
+    expect(heroImage).toBeInTheDocument();
+    expect(heroImage.getAttribute('src')).toContain('projectDetail-HERO');
+  });
+
+  it('renders case study for MATCH UP! project including dynamic theme and core loop descriptions', () => {
+    render(<OnlineProjectDetailPage projectId="match-up-game" />);
+
+    expect(screen.getByText('MATCH UP!')).toBeInTheDocument();
+    expect(screen.getByText('Frontend Developer & Designer')).toBeInTheDocument();
+    expect(screen.getByText('Personal Project')).toBeInTheDocument();
+    expect(screen.getByText(/Responsive HTML5\/CSS3 card layout and dynamic grids/i)).toBeInTheDocument();
+    expect(screen.getByText(/Match Up! is a memory card game built in pure Vanilla Javascript/i)).toBeInTheDocument();
+    expect(screen.getByText(/The game supports three unique theme configurations/i)).toBeInTheDocument();
+  });
 });

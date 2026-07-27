@@ -8,10 +8,10 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
   return (
     <div className="w-full bg-[#0A0E1A]/95 border-2 border-brand-cyan/90 rounded-sm p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(23,208,208,0.15)] select-none">
       {/* 2-Column Responsive Layout: Vertical on Mobile/Tablet, Horizontal on Desktop */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-between">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch justify-between">
         
         {/* Left Side: Content Details */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left order-1">
+        <div className={`w-full ${project.isSmall ? 'lg:w-[60%]' : 'lg:w-1/2'} flex flex-col items-start text-left order-1`}>
           {/* Status Badge */}
           <div className="flex items-center gap-2.5 font-mono text-[11px] sm:text-xs tracking-wider mb-4 sm:mb-6">
             <span className="relative flex h-2 w-2">
@@ -80,12 +80,12 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
         </div>
 
         {/* Right Side: Image Showcase */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center order-2">
-          <div className="relative w-full max-w-md lg:max-w-none border border-brand-cyan/30 rounded-sm overflow-hidden bg-brand-dark/40 shadow-inner group">
+        <div className={`w-full ${project.isSmall ? 'lg:w-[35%]' : 'lg:w-1/2'} flex items-center justify-center order-2 relative min-h-[220px] sm:min-h-[280px] lg:min-h-0`}>
+          <div className={`relative lg:absolute lg:inset-0 w-full h-full ${project.isSmall ? 'max-w-[280px] lg:max-w-xs lg:left-1/2 lg:-translate-x-1/2' : 'max-w-md lg:max-w-none'} mx-auto border border-brand-cyan/30 rounded-sm overflow-hidden bg-brand-dark/40 shadow-inner group`}>
             <img
               src={project.heroImage}
               alt={project.title}
-              className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
             {/* Subtle Cyan Border Overlay */}
             <div className="absolute inset-0 border border-brand-cyan/10 pointer-events-none group-hover:border-brand-cyan/30 transition-all duration-300" />

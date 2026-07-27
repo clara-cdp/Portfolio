@@ -110,7 +110,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
           {/* 2. Hero Image Banner with Double Cyan Border */}
           <div className="w-full border-2 border-brand-cyan/80 bg-[#0A0E1A]/80 rounded-sm overflow-hidden mb-12 sm:mb-16 select-none shadow-[0_0_35px_rgba(23,208,208,0.1)]">
             <img
-              src={project.heroImage}
+              src={details?.hero || project.heroImage}
               alt={project.title}
               className="w-full h-auto object-cover"
             />
