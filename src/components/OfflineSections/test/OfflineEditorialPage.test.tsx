@@ -31,8 +31,17 @@ describe('OfflineEditorialPage Component', () => {
     // MET Leaflets Design
     expect(screen.getByRole('heading', { name: /met leaflets design/i })).toBeInTheDocument();
 
-    // Alice in Wonderland
+    // Project sequence numbering verification
+    expect(screen.getByText(/01 \/ RAPID COMPETITION ENTRY/i)).toBeInTheDocument();
     expect(screen.getByText(/02 \/ BOOK COVER SYSTEM: ALICE IN WONDERLAND/i)).toBeInTheDocument();
+    expect(screen.getByText(/03 \/ CD INSERT LAYOUT FOR MUSICAL SOUNDTRACK/i)).toBeInTheDocument();
+    expect(screen.getByText(/04 \/ CRAFT & PRINT EDITORIAL/i)).toBeInTheDocument();
+    expect(screen.getByText(/05 \/ PHOTO EDITING & POSTER DESIGN/i)).toBeInTheDocument();
+    expect(screen.getByText(/06 \/ IDENTITY & POSTER/i)).toBeInTheDocument();
+    expect(screen.getByText(/07 \/ DIGITAL ILLUSTRATION: MOVIE POSTERS & VINYL COVER SLEEVES\./i)).toBeInTheDocument();
+    expect(screen.getByText(/08 \/ A FRONT END JOURNEY/i)).toBeInTheDocument();
+    expect(screen.getByText(/09 \/ ILLUSTRATIVE EDITORIAL/i)).toBeInTheDocument();
+    expect(screen.getByText(/10 \/ DIGITAL ART/i)).toBeInTheDocument();
 
     // The Inventor
     expect(screen.getByRole('heading', { name: /the inventor/i })).toBeInTheDocument();
