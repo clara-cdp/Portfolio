@@ -3,6 +3,7 @@ import { onlineProjects } from '../../data/onlineProjects';
 import RevealWrapper from '../RevealWrapper/RevealWrapper';
 import Footer from '../Footer/Footer';
 import apitLogo from '../../assets/APIT-MVC/APIT_logico.png';
+import taskomaniaLogo from '../../assets/TASKOMANIA/taskomania.png';
 import ShowcaseGallery from '../ShowcaseGallery/ShowcaseGallery';
 
 interface OnlineProjectDetailPageProps {
@@ -95,6 +96,19 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                 </h1>
                 <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-brand-cream/90 tracking-wider block mt-2">
                   (API & REACT)
+                </span>
+              </div>
+            ) : project.id === 'taskomania' ? (
+              <div className="mb-6">
+                <div className="max-w-xs sm:max-w-sm md:max-w-md">
+                  <img
+                    src={taskomaniaLogo}
+                    alt={project.title}
+                    className="w-full h-auto object-contain max-h-16 sm:max-h-24 select-none"
+                  />
+                </div>
+                <span className="text-lg sm:text-xl font-mono font-bold text-brand-orange tracking-[0.2em] block uppercase mt-3">
+                  TASK MANAGER
                 </span>
               </div>
             ) : (

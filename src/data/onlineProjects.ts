@@ -29,6 +29,13 @@ import muScreenshot5 from '../assets/match-up/Screenshot 2026-07-27 120651.png';
 import muScreenshot6 from '../assets/match-up/Screenshot 2026-07-27 120826.png';
 import projectDetailHero from '../assets/match-up/projectDetail-HERO.png';
 import taskomaniaHero from '../assets/TASKOMANIA/Screenshot 2026-07-27 165526.png';
+import toScreenshot2 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165548.png';
+import toScreenshot3 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165631.png';
+import toScreenshot4 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165725.png';
+import toScreenshot5 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165748.png';
+import toScreenshot6 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165907.png';
+import toScreenshot7 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165919.png';
+import toDetailHero from '../assets/TASKOMANIA/taskomania.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -164,7 +171,36 @@ export const onlineProjects: OnlineProject[] = [
     description: "Task management application built using a custom PHP MVC Framework. Features advanced front-controller routing, query search filtering, task status toggles, and dual-persistence support for both JSON file storage and relational MySQL databases.",
     heroImage: taskomaniaHero,
     tags: ["PHP", "MVC", "TAILWIND CSS", "MYSQL", "JSON"],
-    githubUrl: "https://github.com/clara-cdp/Task-O-mania"
+    githubUrl: "https://github.com/clara-cdp/Task-O-mania",
+    details: {
+      client: "Bootcamp Team Project",
+      role: "UI/UX Designer & Front/Back Developer",
+      hero: toScreenshot2,
+      deliverables: [
+        "Custom PHP MVC routing engine with a Front Controller",
+        "Unified Controller base class managing HTTP requests and views",
+        "Task status tracking with start/finish state triggers",
+        "Hybrid data persistence layer supporting both JSON files and MySQL"
+      ],
+      longDescription: [
+        "## Custom MVC Architecture",
+        "Taskomania was built as a core project to master the inner workings of the MVC architectural pattern. Instead of using a pre-existing framework, the application utilizes a custom-built routing engine that directs traffic through a Front Controller, mapping request paths to corresponding controller actions dynamically.",
+        "## Advanced Routing & Controller Logic",
+        "The custom framework implements controller abstractions to handle request payloads, input sanitization, and view rendering. Developers can switch persistence modes seamlessly without modifying the business logic, demonstrating high modularity and clean separation of concerns.",
+        "## Flexible Persistence",
+        "To support lightweight local environments as well as production systems, the application includes a dual-persistence strategy. Standard configurations load task states from JSON file structures, while the develop environment integrates with a relational MySQL database schema."
+      ],
+      gallery: [
+        taskomaniaHero,
+        toScreenshot2,
+        toScreenshot3,
+        toScreenshot4,
+        toScreenshot5,
+        toScreenshot6,
+        toScreenshot7
+      ],
+      githubUrl: "https://github.com/clara-cdp/Task-O-mania"
+    }
   },
   {
     id: "match-up-game",
