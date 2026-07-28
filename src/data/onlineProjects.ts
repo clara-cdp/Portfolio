@@ -36,6 +36,7 @@ import toScreenshot5 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165748.png
 import toScreenshot6 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165907.png';
 import toScreenshot7 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165919.png';
 import toDetailHero from '../assets/TASKOMANIA/taskomania.png';
+import reactivityHero from '../assets/REACTIVITY/reactivity1.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -162,6 +163,16 @@ export const onlineProjects: OnlineProject[] = [
       pdfUrl: journeyPdf,
       pdfLabel: "EXPLORE FRONT END JOURNAL"
     }
+  },
+  {
+    id: "reactivity",
+    title: "REACTIVITY",
+    statusText: "COMPLETED",
+    statusDetail: "React & TypeScript",
+    description: "A handmade habit tracker built with React, TypeScript, and Vite. Designed to make daily habit tracking effortless, Reactivity helps users build consistency, calculate streaks, and visualize progress across a weekly navigation cycle.",
+    heroImage: reactivityHero,
+    tags: ["REACT", "TYPESCRIPT", "TAILWIND CSS", "VITE"],
+    githubUrl: "https://github.com/clara-cdp/Reactivity"
   },
   {
     id: "taskomania",
