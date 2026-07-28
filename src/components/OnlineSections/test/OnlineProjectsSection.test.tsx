@@ -26,9 +26,9 @@ describe('OnlineProjectsSection Component', () => {
     // Check project title
     expect(screen.getByText('A PAWS IN TIME')).toBeInTheDocument();
 
-    // Check project live badge details
-    expect(screen.getByText('LIVE')).toBeInTheDocument();
-    expect(screen.getByText('2026 Active')).toBeInTheDocument();
+    // Check project completed badge details
+    expect(screen.getAllByText('COMPLETED')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('MVC')[0]).toBeInTheDocument();
 
     // Check description text
     expect(
@@ -60,7 +60,7 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('A PAWS IN TIME (API & REACT)')).toBeInTheDocument();
 
     // Check project status details
-    expect(screen.getAllByText('COMPLETED')[0]).toBeInTheDocument();
+    expect(screen.getByText('LIVE')).toBeInTheDocument();
     expect(screen.getByText('Decoupled Architecture')).toBeInTheDocument();
 
     // Check description text
@@ -69,7 +69,7 @@ describe('OnlineProjectsSection Component', () => {
     ).toBeInTheDocument();
 
     // Check specific new tech tag badges
-    expect(screen.getByText('TYPESCRIPT')).toBeInTheDocument();
+    expect(screen.getAllByText('TYPESCRIPT')[0]).toBeInTheDocument();
     expect(screen.getByText('REST API')).toBeInTheDocument();
     expect(screen.getByText('OAUTH2')).toBeInTheDocument();
     expect(screen.getByText('SPATIE')).toBeInTheDocument();
@@ -89,6 +89,33 @@ describe('OnlineProjectsSection Component', () => {
     expect(feLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time-frontend');
   });
 
+  it('renders reactivity project details inside project card', () => {
+    render(<OnlineProjectsSection />);
+
+    // Check project title
+    expect(screen.getByText('REACTIVITY')).toBeInTheDocument();
+
+    // Check project in progress badge details
+    expect(screen.getByText('IN PROGRESS')).toBeInTheDocument();
+    expect(screen.getByText('React & TypeScript')).toBeInTheDocument();
+
+    // Check description text
+    expect(
+      screen.getByText(/A handmade habit tracker built with React, TypeScript, and Vite/i)
+    ).toBeInTheDocument();
+
+    // Check tech tag badges
+    expect(screen.getAllByText('REACT')[1]).toBeInTheDocument();
+    expect(screen.getAllByText('TYPESCRIPT')[1]).toBeInTheDocument();
+    expect(screen.getAllByText('TAILWIND CSS')[0]).toBeInTheDocument();
+    expect(screen.getByText('VITE')).toBeInTheDocument();
+
+    // Check Github anchor button
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[1];
+    expect(githubLink).toBeInTheDocument();
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Reactivity');
+  });
+
   it('renders taskomania project details inside project card', () => {
     render(<OnlineProjectsSection />);
 
@@ -106,13 +133,13 @@ describe('OnlineProjectsSection Component', () => {
 
     // Check tech tag badges
     expect(screen.getAllByText('PHP')[2]).toBeInTheDocument();
-    expect(screen.getByText('MVC')).toBeInTheDocument();
-    expect(screen.getAllByText('TAILWIND CSS')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('MVC')[1]).toBeInTheDocument();
+    expect(screen.getAllByText('TAILWIND CSS')[1]).toBeInTheDocument();
     expect(screen.getByText('MYSQL')).toBeInTheDocument();
     expect(screen.getByText('JSON')).toBeInTheDocument();
 
     // Check Github anchor button
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[1];
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[2];
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Task-O-mania');
   });

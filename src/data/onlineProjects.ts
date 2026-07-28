@@ -36,6 +36,9 @@ import toScreenshot5 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165748.png
 import toScreenshot6 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165907.png';
 import toScreenshot7 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165919.png';
 import toDetailHero from '../assets/TASKOMANIA/taskomania.png';
+import reactivityHero from '../assets/REACTIVITY/reactivity1.png';
+import reactivity2 from '../assets/REACTIVITY/reactivity2.png';
+import reactivity3 from '../assets/REACTIVITY/reacitvity3.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -69,8 +72,8 @@ export const onlineProjects: OnlineProject[] = [
   {
     id: "a-paws-in-time",
     title: "A PAWS IN TIME",
-    statusText: "LIVE",
-    statusDetail: "2026 Active",
+    statusText: "COMPLETED",
+    statusDetail: "MVC",
     description: `Retro-style point-and-click adventure game built with Laravel (MVC), Livewire, Tailwind CSS, SQLite, and JSON. 
     Created and integrated interactive SVG assets using AI, Adobe Illustrator, and Photoshop`,
     heroImage: cardHero,
@@ -113,7 +116,7 @@ export const onlineProjects: OnlineProject[] = [
   {
     id: "a-paws-in-time-api",
     title: "A PAWS IN TIME (API & REACT)",
-    statusText: "COMPLETED",
+    statusText: "LIVE",
     statusDetail: "Decoupled Architecture",
     description: `Decoupled full-stack rebuild of the adventure game, separating the system into a standalone React frontend and a robust Laravel REST API. Features secure OAuth2 authentication via Laravel Passport, Spatie role-based access control, persistent save files, and Scribe API documentation.`,
     heroImage: backendHero,
@@ -161,6 +164,39 @@ export const onlineProjects: OnlineProject[] = [
       ],
       pdfUrl: journeyPdf,
       pdfLabel: "EXPLORE FRONT END JOURNAL"
+    }
+  },
+  {
+    id: "reactivity",
+    title: "REACTIVITY",
+    statusText: "IN PROGRESS",
+    statusDetail: "React & TypeScript",
+    description: "A handmade habit tracker built with React, TypeScript, and Vite. Designed to make daily habit tracking effortless, Reactivity helps users build consistency, calculate streaks, and visualize progress across a weekly navigation cycle.",
+    heroImage: reactivityHero,
+    tags: ["REACT", "TYPESCRIPT", "TAILWIND CSS", "VITE"],
+    githubUrl: "https://github.com/clara-cdp/Reactivity",
+    details: {
+      client: "Personal Project",
+      role: "Frontend Developer & Designer",
+      hero: reactivity2,
+      deliverables: [
+        "Interactive habit tracking dashboard with weekly navigation",
+        "Habit creation, deletion, and local storage state persistence",
+        "Dynamic streak calculation engine based on consecutive daily completions",
+        "Real-time daily progress percentage indicator"
+      ],
+      longDescription: [
+        "## Habit Management & Streak Mechanics",
+        "Reactivity is designed to help users build consistency through daily tracking. The application calculates current streaks dynamically based on consecutive completions across different weeks. Users can create, toggle, and delete habits with instant local storage state synchronization to ensure data persists between sessions.",
+        "## Upcoming Features (Next to Come)",
+        "A major part of the project roadmap involves expanding its tracking and analytical capabilities. Planned additions include a Monthly calendar view, Habit categories (Health, Work, Learning...), Browser notifications, Outlook Calendar integration (Microsoft Graph API), skip-day options, milestone celebration animations, a GitHub-style yearly heatmap, and daily motivational quotes."
+      ],
+      gallery: [
+        reactivityHero,
+        reactivity2,
+        reactivity3
+      ],
+      githubUrl: "https://github.com/clara-cdp/Reactivity"
     }
   },
   {
