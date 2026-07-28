@@ -158,4 +158,20 @@ describe('OnlineProjectDetailPage Component', () => {
     const heroImage = screen.getAllByRole('img').find(img => img.getAttribute('src')?.includes('165548'));
     expect(heroImage).toBeInTheDocument();
   });
+
+  it('renders case study for REACTIVITY project including habit management and upcoming roadmap descriptions', () => {
+    render(<OnlineProjectDetailPage projectId="reactivity" />);
+
+    expect(screen.getByText('REACTIVITY')).toBeInTheDocument();
+    expect(screen.getByText('Frontend Developer & Designer')).toBeInTheDocument();
+    expect(screen.getByText('Personal Project')).toBeInTheDocument();
+    expect(screen.getByText(/Interactive habit tracking dashboard with weekly navigation/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reactivity is designed to help users build consistency through daily tracking/i)).toBeInTheDocument();
+    expect(screen.getByText(/Upcoming Features \(Next to Come\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Monthly calendar view, Habit categories/i)).toBeInTheDocument();
+
+    // Check custom details hero image reactivity2.png
+    const heroImage = screen.getAllByRole('img').find(img => img.getAttribute('src')?.includes('reactivity2'));
+    expect(heroImage).toBeInTheDocument();
+  });
 });
