@@ -162,7 +162,11 @@ describe('OnlineProjectDetailPage Component', () => {
   it('renders case study for REACTIVITY project including habit management and upcoming roadmap descriptions', () => {
     render(<OnlineProjectDetailPage projectId="reactivity" />);
 
-    expect(screen.getByText('REACTIVITY')).toBeInTheDocument();
+    // Check that logo image is rendered with correct alt text
+    const logoImg = screen.getAllByAltText('REACTIVITY')[0];
+    expect(logoImg).toBeInTheDocument();
+    expect(logoImg.getAttribute('src')).toBeTruthy();
+
     expect(screen.getByText('Frontend Developer & Designer')).toBeInTheDocument();
     expect(screen.getByText('Personal Project')).toBeInTheDocument();
     expect(screen.getByText(/Interactive habit tracking dashboard with weekly navigation/i)).toBeInTheDocument();

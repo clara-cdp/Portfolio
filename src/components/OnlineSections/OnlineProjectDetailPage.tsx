@@ -4,6 +4,7 @@ import RevealWrapper from '../RevealWrapper/RevealWrapper';
 import Footer from '../Footer/Footer';
 import apitLogo from '../../assets/APIT-MVC/APIT_logico.png';
 import taskomaniaLogo from '../../assets/TASKOMANIA/taskomania.png';
+import reactivityLogo from '../../assets/REACTIVITY/reactivity_logo.svg';
 import ShowcaseGallery from '../ShowcaseGallery/ShowcaseGallery';
 
 interface OnlineProjectDetailPageProps {
@@ -110,6 +111,14 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                 <span className="text-lg sm:text-xl font-mono font-bold text-brand-orange tracking-[0.2em] block uppercase mt-3">
                   TASK MANAGER
                 </span>
+              </div>
+            ) : project.id === 'reactivity' ? (
+              <div className="mb-6 max-w-sm sm:max-w-md">
+                <img
+                  src={reactivityLogo}
+                  alt={project.title}
+                  className="w-full h-auto object-contain max-h-24 sm:max-h-32 select-none filter drop-shadow-[0_0_15px_rgba(251,113,133,0.35)]"
+                />
               </div>
             ) : (
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-white tracking-tight leading-[1.1] mb-6">

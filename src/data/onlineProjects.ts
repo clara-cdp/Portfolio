@@ -39,6 +39,8 @@ import toDetailHero from '../assets/TASKOMANIA/taskomania.png';
 import reactivityHero from '../assets/REACTIVITY/reactivity1.png';
 import reactivity2 from '../assets/REACTIVITY/reactivity2.png';
 import reactivity3 from '../assets/REACTIVITY/reacitvity3.png';
+import reactivity4 from '../assets/REACTIVITY/reactivity4.png';
+import reactivity5 from '../assets/REACTIVITY/reactivity5.png';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -194,7 +196,9 @@ export const onlineProjects: OnlineProject[] = [
       gallery: [
         reactivityHero,
         reactivity2,
-        reactivity3
+        reactivity3,
+        reactivity4,
+        reactivity5
       ],
       githubUrl: "https://github.com/clara-cdp/Reactivity"
     }
