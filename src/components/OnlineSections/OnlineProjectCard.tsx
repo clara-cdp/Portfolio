@@ -9,16 +9,16 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
     <div className="w-full bg-[#0A0E1A]/95 border-2 border-brand-cyan/90 rounded-sm p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(23,208,208,0.15)] select-none">
       {/* 2-Column Responsive Layout: Vertical on Mobile/Tablet, Horizontal on Desktop */}
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch justify-between">
-        
+
         {/* Left Side: Content Details */}
         <div className={`w-full ${project.isSmall ? 'lg:w-[60%]' : 'lg:w-1/2'} flex flex-col items-start text-left order-1`}>
           {/* Status Badge */}
           <div className="flex items-center gap-2.5 font-mono text-[11px] sm:text-xs tracking-wider mb-4 sm:mb-6">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan" />
+              <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${project.statusText === 'IN PROGRESS' ? 'bg-rose-400' : 'bg-brand-cyan'} opacity-75`} />
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${project.statusText === 'IN PROGRESS' ? 'bg-rose-400' : 'bg-brand-cyan'}`} />
             </span>
-            <span className="text-brand-cyan font-bold uppercase">{project.statusText}</span>
+            <span className={`${project.statusText === 'IN PROGRESS' ? 'text-rose-400' : 'text-brand-cyan'} font-bold uppercase`}>{project.statusText}</span>
             <span className="text-brand-cream/30">&rsaquo;</span>
             <span className="text-brand-cream/60">{project.statusDetail}</span>
           </div>

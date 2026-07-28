@@ -70,8 +70,8 @@ export const onlineProjects: OnlineProject[] = [
   {
     id: "a-paws-in-time",
     title: "A PAWS IN TIME",
-    statusText: "LIVE",
-    statusDetail: "2026 Active",
+    statusText: "COMPLETED",
+    statusDetail: "MVC",
     description: `Retro-style point-and-click adventure game built with Laravel (MVC), Livewire, Tailwind CSS, SQLite, and JSON. 
     Created and integrated interactive SVG assets using AI, Adobe Illustrator, and Photoshop`,
     heroImage: cardHero,
@@ -114,7 +114,7 @@ export const onlineProjects: OnlineProject[] = [
   {
     id: "a-paws-in-time-api",
     title: "A PAWS IN TIME (API & REACT)",
-    statusText: "COMPLETED",
+    statusText: "LIVE",
     statusDetail: "Decoupled Architecture",
     description: `Decoupled full-stack rebuild of the adventure game, separating the system into a standalone React frontend and a robust Laravel REST API. Features secure OAuth2 authentication via Laravel Passport, Spatie role-based access control, persistent save files, and Scribe API documentation.`,
     heroImage: backendHero,
@@ -167,7 +167,7 @@ export const onlineProjects: OnlineProject[] = [
   {
     id: "reactivity",
     title: "REACTIVITY",
-    statusText: "COMPLETED",
+    statusText: "IN PROGRESS",
     statusDetail: "React & TypeScript",
     description: "A handmade habit tracker built with React, TypeScript, and Vite. Designed to make daily habit tracking effortless, Reactivity helps users build consistency, calculate streaks, and visualize progress across a weekly navigation cycle.",
     heroImage: reactivityHero,
