@@ -20,8 +20,8 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * 3; // Max 3 degrees rotation
-    const rotateY = -((x - centerX) / centerX) * 3; // Max 3 degrees rotation
+    const rotateX = centerY === 0 ? 0 : ((y - centerY) / centerY) * 3; // Max 3 degrees rotation
+    const rotateY = centerX === 0 ? 0 : -((x - centerX) / centerX) * 3; // Max 3 degrees rotation
 
     setTiltStyle({
       transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
