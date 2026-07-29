@@ -29,17 +29,16 @@ export default function OnlineIdentitySection() {
           </div>
 
           {/* Right Column: Paragraph Content */}
-          <div className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 text-brand-cyan text-sm sm:text-base leading-relaxed tracking-wide font-sans lg:pt-2">
+          <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-6 text-brand-cyan text-sm sm:text-base leading-relaxed tracking-wide font-sans lg:pt-2">
             <p>
               My career began in visual communication, designing systems that help people understand information clearly.
             </p>
 
             <p>
-              Learning software development gave me the ability to build those systems myself. Today I think beyond interfaces, considering architecture, behaviour, accessibility, and long-term maintainability from the start.
+              Learning software development gave me the ability to build those systems myself.
             </p>
-
             <p>
-              This combination allows me to bridge design and development, creating products that are both thoughtful to use and solid to build.
+              Today I think beyond interfaces, considering architecture, behaviour, accessibility, and long-term maintainability from the start.
             </p>
 
             <div className="pt-2 space-y-1.5 text-brand-cyan font-medium">

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import OnlineProjectsSection from '../OnlineProjectsSection';
 
@@ -155,5 +155,74 @@ describe('OnlineProjectsSection Component', () => {
       'hover:text-brand-orange',
       'hover:bg-brand-orange/10'
     );
+  });
+
+  it('renders match up project details inside project card with portrait styling bounds', () => {
+    render(<OnlineProjectsSection />);
+
+    // Check project title
+    expect(screen.getByText('MATCH UP!')).toBeInTheDocument();
+
+    // Check project completed badge details
+    expect(screen.getAllByText('COMPLETED')[2]).toBeInTheDocument();
+    expect(screen.getByText('Vanilla JS & CSS')).toBeInTheDocument();
+
+    // Check description text
+    expect(
+      screen.getByText(/Classic card matching memory game with dynamic theme decks/i)
+    ).toBeInTheDocument();
+
+    // Check tech tag badges
+    expect(screen.getByText('HTML5')).toBeInTheDocument();
+    expect(screen.getAllByText('CSS')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('TAILWIND CSS')[2]).toBeInTheDocument();
+    expect(screen.getAllByText('JAVASCRIPT')[2]).toBeInTheDocument();
+
+    // Check GITHUB link
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[3];
+    expect(githubLink).toBeInTheDocument();
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/MATCH-UP-GAME');
+
+    // Check portrait display height constraints
+    const image = screen.getByRole('img', { name: 'MATCH UP!' });
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveClass('lg:max-h-[260px]');
+  });
+
+  it('applies 3D tilt and spotlight glow style updates on mouse move and reset on leave', () => {
+    render(<OnlineProjectsSection />);
+
+    const projectTitle = screen.getByText('A PAWS IN TIME');
+    const cardContainer = projectTitle.closest('.relative.w-full');
+    expect(cardContainer).toBeInTheDocument();
+
+    // Mock bounding client rect for JSDOM
+    cardContainer!.getBoundingClientRect = vi.fn().mockReturnValue({
+      width: 400,
+      height: 300,
+      left: 0,
+      top: 0,
+      right: 400,
+      bottom: 300,
+    });
+
+    // Trigger mouseMove with coordinate changes (offset from center)
+    fireEvent.mouseMove(cardContainer!, {
+      clientX: 300,
+      clientY: 200,
+    });
+
+    // Check dynamic tilt transform is generated
+    expect(cardContainer).toHaveStyle({
+      transform: 'perspective(1000px) rotateX(1deg) rotateY(-1.5deg)',
+    });
+
+    // Trigger mouseLeave
+    fireEvent.mouseLeave(cardContainer!);
+
+    // Check dynamic tilt transform resets
+    expect(cardContainer).toHaveStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
+    });
   });
 });

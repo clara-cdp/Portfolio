@@ -48,7 +48,7 @@ describe('OnlineIdentitySection Component', () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText(/This combination allows me to bridge design and development/i)
+      screen.getByText(/Today I think beyond interfaces, considering architecture/i)
     ).toBeInTheDocument();
 
     expect(screen.getByText('Design gives products direction.')).toBeInTheDocument();

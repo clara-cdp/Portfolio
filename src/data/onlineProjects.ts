@@ -35,7 +35,6 @@ import toScreenshot4 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165725.png
 import toScreenshot5 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165748.png';
 import toScreenshot6 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165907.png';
 import toScreenshot7 from '../assets/TASKOMANIA/Screenshot 2026-07-27 165919.png';
-import toDetailHero from '../assets/TASKOMANIA/taskomania.png';
 import reactivityHero from '../assets/REACTIVITY/reactivity1.png';
 import reactivity2 from '../assets/REACTIVITY/reactivity2.png';
 import reactivity3 from '../assets/REACTIVITY/reacitvity3.png';
