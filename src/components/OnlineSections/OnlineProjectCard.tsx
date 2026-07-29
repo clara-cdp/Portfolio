@@ -142,16 +142,12 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
         </div>
 
         {/* Right Side: Image Showcase */}
-        <div className={`w-full ${project.isSmall ? 'lg:w-[35%]' : 'lg:w-1/2'} flex items-center justify-center order-2 relative min-h-[220px] sm:min-h-[280px] lg:min-h-0`}>
-          <div className={`relative lg:absolute lg:inset-0 w-full h-full ${project.isSmall ? 'max-w-[280px] lg:max-w-xs lg:left-1/2 lg:-translate-x-1/2' : 'max-w-md lg:max-w-none'} mx-auto border border-brand-cyan/30 rounded-sm overflow-hidden bg-brand-dark/40 shadow-inner group`}>
-            <img
-              src={project.heroImage}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            {/* Subtle Cyan Border Overlay */}
-            <div className="absolute inset-0 border border-brand-cyan/10 pointer-events-none group-hover:border-brand-cyan/30 transition-all duration-300" />
-          </div>
+        <div className={`w-full ${project.isSmall ? 'lg:w-[35%]' : 'lg:w-1/2'} flex items-center justify-center order-2 relative py-4 lg:py-0`}>
+          <img
+            src={project.heroImage}
+            alt={project.title}
+            className={`max-w-full ${project.isSmall ? 'max-h-[200px] sm:max-h-[240px] lg:max-h-[260px]' : 'max-h-[280px] sm:max-h-[340px] lg:max-h-[380px]'} object-contain rounded-sm transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-[0_4px_20px_rgba(8,11,20,0.6)] group-hover:drop-shadow-[0_8px_30px_rgba(23,208,208,0.25)]`}
+          />
         </div>
 
       </div>
