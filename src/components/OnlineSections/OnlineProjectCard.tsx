@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import type { OnlineProject } from '../../data/onlineProjects';
 
 interface OnlineProjectCardProps {
@@ -5,10 +6,71 @@ interface OnlineProjectCardProps {
 }
 
 export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
+  const [glowStyle, setGlowStyle] = useState<React.CSSProperties>({ opacity: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * 3; // Max 3 degrees rotation
+    const rotateY = -((x - centerX) / centerX) * 3; // Max 3 degrees rotation
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+      transition: 'transform 0.05s ease-out',
+    });
+
+    setGlowStyle({
+      opacity: 1,
+      background: `radial-gradient(circle 200px at ${x}px ${y}px, rgba(23, 208, 208, 0.15), transparent 80%)`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
+      transition: 'transform 0.5s ease-out',
+    });
+    setGlowStyle({
+      opacity: 0,
+      transition: 'opacity 0.5s ease-out',
+    });
+  };
+
   return (
-    <div className="w-full bg-[#0A0E1A]/95 border-2 border-brand-cyan/90 rounded-sm p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(23,208,208,0.15)] select-none">
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={tiltStyle}
+      className="relative w-full bg-[#0A0E1A]/95 border-2 border-brand-cyan/90 rounded-sm p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-[0_0_30px_rgba(23,208,208,0.15)] group select-none"
+    >
+      {/* HUD Corner Brackets */}
+      <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-brand-cyan/30 transition-all duration-300 group-hover:border-brand-orange group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 group-hover:drop-shadow-[0_0_3px_#FFC556] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-brand-cyan/30 transition-all duration-300 group-hover:border-brand-orange group-hover:translate-x-1.5 group-hover:-translate-y-1.5 group-hover:drop-shadow-[0_0_3px_#FFC556] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b-2 border-l-2 border-brand-cyan/30 transition-all duration-300 group-hover:border-brand-orange group-hover:-translate-x-1.5 group-hover:translate-y-1.5 group-hover:drop-shadow-[0_0_3px_#FFC556] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-brand-cyan/30 transition-all duration-300 group-hover:border-brand-orange group-hover:translate-x-1.5 group-hover:translate-y-1.5 group-hover:drop-shadow-[0_0_3px_#FFC556] pointer-events-none" />
+
+      {/* Inner HUD Overlay (clipped grid and scanline) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-sm">
+        {/* Grid background */}
+        <div className="absolute inset-0 hud-grid-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* Cursor tracking spotlight glow */}
+        <div className="absolute inset-0 transition-opacity duration-300" style={glowStyle} />
+        {/* Sweeping scanline */}
+        <div className="hud-scanline" />
+      </div>
+
       {/* 2-Column Responsive Layout: Vertical on Mobile/Tablet, Horizontal on Desktop */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch justify-between">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch justify-between relative z-10">
 
         {/* Left Side: Content Details */}
         <div className={`w-full ${project.isSmall ? 'lg:w-[60%]' : 'lg:w-1/2'} flex flex-col items-start text-left order-1`}>
