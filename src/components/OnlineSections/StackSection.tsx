@@ -444,15 +444,15 @@ export default function StackSection() {
       <div className="flex flex-col gap-4 mb-10 sm:mb-12">
         {/* Main Title Line */}
         <div className="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-[0.2em]">
-          <span className="text-brand-cyan font-bold uppercase animate-pulse">
+          <span className="text-brand-cyan font-bold uppercase flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan/70 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan" />
+            </span>
             01 - STACK &gt;
           </span>
-          <span className="text-brand-cream/90 font-medium flex items-center gap-2">
+          <span className="text-brand-cream/90 font-medium">
             All Systems Operational
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
           </span>
         </div>
 
