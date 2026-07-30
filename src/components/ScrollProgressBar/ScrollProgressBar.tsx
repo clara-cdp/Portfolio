@@ -11,7 +11,7 @@ export default function ScrollProgressBar() {
         const scrolled = window.scrollY;
         const currentProgress = (scrolled / totalHeight) * 100;
         setProgress(currentProgress);
-        
+
         // Show progress bar only when scrolled down a bit
         setIsVisible(scrolled > 10);
       }
@@ -26,16 +26,15 @@ export default function ScrollProgressBar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-[3px] bg-brand-dark/40 z-[100] transition-opacity duration-300 pointer-events-none ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`fixed top-0 right-0 h-full w-[3px] bg-brand-dark/40 z-[100] transition-opacity duration-300 pointer-events-none ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
     >
       <div
-        className="h-full transition-all duration-75 ease-out"
-        style={{ 
-          width: `${progress}%`,
+        className="w-full transition-all duration-75 ease-out"
+        style={{
+          height: `${progress}%`,
           backgroundColor: 'var(--online-scrollbar-color, #FFC556)',
-          boxShadow: '0 0 10px var(--online-scrollbar-color, #FFC556), 0 0 5px var(--online-scrollbar-color, #FFC556)'
+          boxShadow: '-1px 0 5px var(--online-scrollbar-color, #FFC556), -2px 0 2px var(--online-scrollbar-color, #FFC556)'
         }}
       />
     </div>
