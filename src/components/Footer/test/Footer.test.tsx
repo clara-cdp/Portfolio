@@ -27,7 +27,7 @@ describe('Footer Component', () => {
   it('renders online variant with eyebrow, title, and contact links', () => {
     render(<Footer variant="online" />);
     expect(screen.getByText('05 - CONTACT ›')).toBeInTheDocument();
-    expect(screen.getByText('status Active')).toBeInTheDocument();
+    expect(screen.getByText('status live')).toBeInTheDocument();
     expect(screen.getByText(/Let's/i)).toBeInTheDocument();
     expect(screen.getByText(/build/i)).toBeInTheDocument();
     
