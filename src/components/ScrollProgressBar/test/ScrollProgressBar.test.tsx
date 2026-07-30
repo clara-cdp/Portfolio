@@ -50,6 +50,6 @@ describe('ScrollProgressBar Component', () => {
     // The progress bar div is the nested child
     const innerBar = container.firstChild?.firstChild as HTMLElement;
     expect(innerBar).toBeInTheDocument();
-    expect(innerBar.style.width).toBe('50%');
+    expect(innerBar.style.height).toBe('50%');
   });
 });
