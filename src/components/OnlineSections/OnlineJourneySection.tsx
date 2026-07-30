@@ -232,11 +232,10 @@ function TimelineItem({
       ) : (
         <div className="absolute left-0 top-[6px] w-[11px] h-[11px] sm:w-[15px] sm:h-[15px] flex items-center justify-center z-10">
           <div
-            className={`w-[7px] h-[7px] sm:w-[9px] sm:h-[9px] rounded-full transition-all duration-500 ${
-              isDotActive
+            className={`w-[7px] h-[7px] sm:w-[9px] sm:h-[9px] rounded-full transition-all duration-500 ${isDotActive
                 ? 'bg-brand-cyan shadow-[0_0_8px_#17d0d0] scale-110'
                 : 'bg-brand-cyan/20 border border-brand-cyan/10 scale-90'
-            } group-hover:bg-brand-cyan group-hover:shadow-[0_0_8px_#17d0d0] group-hover:scale-125`}
+              } group-hover:bg-brand-cyan group-hover:shadow-[0_0_8px_#17d0d0] group-hover:scale-125`}
           />
         </div>
       )}
@@ -254,9 +253,8 @@ function TimelineItem({
             as="span"
           />{' '}
           <span
-            className={`text-brand-orange/80 tracking-[0.2em] select-none transition-opacity duration-300 ${
-              phase !== 'idle' && phase !== 'hash' ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`text-brand-orange/80 tracking-[0.2em] select-none transition-opacity duration-300 ${phase !== 'idle' && phase !== 'hash' ? 'opacity-100' : 'opacity-0'
+              }`}
           >
             &gt;
           </span>{' '}
@@ -270,7 +268,7 @@ function TimelineItem({
             as="span"
           />
         </h3>
-        
+
         <TypewriterText
           text={commit.description}
           started={phase === 'desc' || phase === 'done'}
@@ -374,7 +372,7 @@ export default function OnlineJourneySection() {
       <div className="absolute inset-0 bg-[radial-gradient(#17d0d0_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.015] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-24">
-        
+
         {/* Section Header */}
         <div className="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-[0.2em] mb-8 sm:mb-12">
           <span className="text-brand-cyan font-bold uppercase flex items-center gap-2">
@@ -384,7 +382,7 @@ export default function OnlineJourneySection() {
             </span>
             04 - JOURNEY &rsaquo;
           </span>
-          <span className="text-brand-cream/60 font-medium uppercase">Version history</span>
+          <span className="text-brand-cream/60 font-medium">Version history</span>
         </div>
 
         {/* Section Heading */}
@@ -397,13 +395,13 @@ export default function OnlineJourneySection() {
         {/* Timeline Container */}
         <div ref={containerRef} className="relative max-w-3xl">
           {/* Vertical line running down through all items (Background Track) */}
-          <div 
-            className="absolute left-[5px] sm:left-[7px] top-2 w-[1px] bg-brand-cyan/10" 
+          <div
+            className="absolute left-[5px] sm:left-[7px] top-2 w-[1px] bg-brand-cyan/10"
             style={{ height: maxLineHeight > 0 ? `${maxLineHeight - 8}px` : '100%' }}
           />
 
           {/* Active progress line */}
-          <div 
+          <div
             className="absolute left-[5px] sm:left-[7px] top-2 w-[1px] bg-brand-cyan shadow-[0_0_8px_#17d0d0] transition-all duration-75 ease-out origin-top"
             style={{ height: `${activeLineHeight}px` }}
           />
@@ -416,10 +414,10 @@ export default function OnlineJourneySection() {
               const isPrevDone = prevId ? itemPhases[prevId] === 'done' : true;
 
               return (
-                <TimelineItem 
-                  key={commit.id} 
-                  commit={commit} 
-                  isHead={isHead} 
+                <TimelineItem
+                  key={commit.id}
+                  commit={commit}
+                  isHead={isHead}
                   activeLineHeight={activeLineHeight}
                   isPrevDone={isPrevDone}
                   onPhaseChange={(phase) => setItemPhases((prev) => {
