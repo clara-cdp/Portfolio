@@ -88,4 +88,13 @@ describe('StackSection Component', () => {
     expect(screen.getByText('FRONTEND')).toBeInTheDocument();
     expect(screen.getByText('DESIGN')).toBeInTheDocument();
   });
+
+  it('renders a glowing teal dot before the section title number', () => {
+    render(<StackSection />);
+    const titleElement = screen.getByText(/01 - STACK/i);
+    const dot = titleElement.querySelector('.relative.flex');
+    expect(dot).toBeInTheDocument();
+    expect(dot?.querySelector('.animate-ping')).toHaveClass('bg-brand-cyan/70');
+    expect(dot?.querySelector('.relative.inline-flex')).toHaveClass('bg-brand-cyan');
+  });
 });

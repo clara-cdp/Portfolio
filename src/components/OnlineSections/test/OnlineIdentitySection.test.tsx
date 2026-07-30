@@ -54,4 +54,13 @@ describe('OnlineIdentitySection Component', () => {
     expect(screen.getByText('Design gives products direction.')).toBeInTheDocument();
     expect(screen.getByText('Development gives them capability.')).toBeInTheDocument();
   });
+
+  it('renders a glowing teal dot before the section title number', () => {
+    render(<OnlineIdentitySection />);
+    const titleElement = screen.getByText(/02 - IDENTITY/i);
+    const dot = titleElement.querySelector('.relative.flex');
+    expect(dot).toBeInTheDocument();
+    expect(dot?.querySelector('.animate-ping')).toHaveClass('bg-brand-cyan/70');
+    expect(dot?.querySelector('.relative.inline-flex')).toHaveClass('bg-brand-cyan');
+  });
 });

@@ -70,7 +70,7 @@ function ScrambleLink({ href, text, target, rel }: ScrambleLinkProps) {
     >
       {/* Laser sweeping beam line overlay on hover */}
       <span className="absolute top-0 left-0 w-[20%] h-full bg-gradient-to-r from-transparent via-brand-cyan/20 to-transparent -translate-x-full group-hover:translate-x-[500%] transition-transform duration-1000 ease-out pointer-events-none" />
-      
+
       <span className="relative z-10">{displayText}</span>
     </a>
   );
@@ -107,15 +107,19 @@ export default function Footer({ variant = 'full-bleed' }: FooterProps) {
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-16 lg:px-24 flex flex-col justify-between min-h-[50vh] relative z-10">
           <div className="max-w-4xl w-full flex flex-col justify-between min-h-[50vh] flex-grow">
-            
+
             {/* Eyebrow & Headline block */}
             <div className="mb-12 sm:mb-16">
               <div className="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-[0.2em] mb-8 sm:mb-12">
-                <span className="text-brand-cyan font-bold uppercase">
+                <span className="text-brand-cyan font-bold uppercase flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan/70 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan" />
+                  </span>
                   05 - CONTACT &rsaquo;
                 </span>
                 <span className="text-brand-cream/90 font-medium">
-                  status Active
+                  status live
                 </span>
               </div>
 

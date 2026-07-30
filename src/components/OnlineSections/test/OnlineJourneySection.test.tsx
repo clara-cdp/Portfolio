@@ -61,4 +61,13 @@ describe('OnlineJourneySection Component', () => {
       screen.getByText('Building digital products where design and engineering work together.')
     ).toBeInTheDocument();
   });
+
+  it('renders a glowing teal dot before the section title number', () => {
+    render(<OnlineJourneySection />);
+    const titleElement = screen.getByText(/04 - JOURNEY/i);
+    const dot = titleElement.querySelector('.relative.flex');
+    expect(dot).toBeInTheDocument();
+    expect(dot?.querySelector('.animate-ping')).toHaveClass('bg-brand-cyan/70');
+    expect(dot?.querySelector('.relative.inline-flex')).toHaveClass('bg-brand-cyan');
+  });
 });
