@@ -6,6 +6,7 @@ import OnlineProjectsSection from '../components/OnlineSections/OnlineProjectsSe
 import OnlineJourneySection from '../components/OnlineSections/OnlineJourneySection';
 import { OnlineButton } from '../components/Button/Button';
 import Footer from '../components/Footer/Footer';
+import ScrollProgressBar from '../components/ScrollProgressBar/ScrollProgressBar';
 
 export default function OnlinePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,6 +43,7 @@ export default function OnlinePage() {
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-sans relative flex flex-col justify-between selection:bg-brand-cyan selection:text-brand-dark">
+      <ScrollProgressBar />
       {/* Navigation Header */}
       <header
         className={`w-full flex justify-between items-center py-6 px-6 sm:px-8 md:px-16 lg:px-24 fixed top-0 left-0 z-50 transition-all duration-300 ${

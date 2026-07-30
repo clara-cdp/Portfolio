@@ -6,6 +6,7 @@ import apitLogo from '../../assets/APIT-MVC/APIT_logico.png';
 import taskomaniaLogo from '../../assets/TASKOMANIA/taskomania.png';
 import reactivityLogo from '../../assets/REACTIVITY/reactivity_logo.svg';
 import ShowcaseGallery from '../ShowcaseGallery/ShowcaseGallery';
+import ScrollProgressBar from '../ScrollProgressBar/ScrollProgressBar';
 
 interface OnlineProjectDetailPageProps {
   projectId: string;
@@ -48,6 +49,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-sans relative overflow-x-hidden flex flex-col justify-between selection:bg-brand-cyan selection:text-brand-dark">
+      <ScrollProgressBar />
       {/* Background Grid Accent */}
       <div className="absolute inset-0 bg-[radial-gradient(#17d0d0_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.03] pointer-events-none" />
 

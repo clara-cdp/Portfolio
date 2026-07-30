@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import App from '../App';
 
@@ -45,6 +45,46 @@ describe('App Router', () => {
     window.location.hash = '#online';
     render(<App />);
     expect(screen.getByText(/online — developement portfolio/i)).toBeInTheDocument();
+  });
+
+  it('toggles online-mode class on document.documentElement and updates scroll property based on scroll events', () => {
+    // Mock scroll metrics
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      value: 1000,
+      writable: true,
+      configurable: true,
+    });
+    Object.defineProperty(window, 'innerHeight', {
+      value: 500,
+      writable: true,
+      configurable: true,
+    });
+    Object.defineProperty(window, 'scrollY', {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
+
+    // Mount App while hash is empty
+    const { unmount } = render(<App />);
+    expect(document.documentElement.classList.contains('online-mode')).toBe(false);
+    expect(document.documentElement.style.getPropertyValue('--online-scrollbar-color')).toBe('');
+
+    unmount();
+
+    // Set hash to online and mount again
+    window.location.hash = '#online';
+    render(<App />);
+    expect(document.documentElement.classList.contains('online-mode')).toBe(true);
+    expect(document.documentElement.style.getPropertyValue('--online-scrollbar-color')).not.toBe('');
+
+    // Simulate scrolling and verify dynamic color variable changes
+    Object.defineProperty(window, 'scrollY', { value: 500, configurable: true });
+    fireEvent.scroll(window);
+    
+    const colorMid = document.documentElement.style.getPropertyValue('--online-scrollbar-color');
+    expect(colorMid).toBeDefined();
+    expect(colorMid).toContain('rgb');
   });
 });
 
