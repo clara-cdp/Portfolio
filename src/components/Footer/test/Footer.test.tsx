@@ -80,4 +80,13 @@ describe('Footer Component', () => {
     });
     expect(emailLink.textContent).toBe('clarianne.cdp@gmail.com');
   });
+
+  it('renders a glowing teal dot before the section title number in online variant', () => {
+    render(<Footer variant="online" />);
+    const titleElement = screen.getByText(/05 - CONTACT/i);
+    const dot = titleElement.querySelector('.relative.flex');
+    expect(dot).toBeInTheDocument();
+    expect(dot?.querySelector('.animate-ping')).toHaveClass('bg-brand-cyan/70');
+    expect(dot?.querySelector('.relative.inline-flex')).toHaveClass('bg-brand-cyan');
+  });
 });

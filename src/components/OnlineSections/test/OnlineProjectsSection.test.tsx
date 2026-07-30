@@ -225,4 +225,13 @@ describe('OnlineProjectsSection Component', () => {
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
     });
   });
+
+  it('renders a glowing teal dot before the section title number', () => {
+    render(<OnlineProjectsSection />);
+    const titleElement = screen.getByText(/03 - PROJECTS/i);
+    const dot = titleElement.querySelector('.relative.flex');
+    expect(dot).toBeInTheDocument();
+    expect(dot?.querySelector('.animate-ping')).toHaveClass('bg-brand-cyan/70');
+    expect(dot?.querySelector('.relative.inline-flex')).toHaveClass('bg-brand-cyan');
+  });
 });
