@@ -116,33 +116,6 @@ describe('OnlineProjectsSection Component', () => {
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Reactivity');
   });
 
-  it('renders taskomania project details inside project card', () => {
-    render(<OnlineProjectsSection />);
-
-    // Check project title
-    expect(screen.getByText('TASKOMANIA')).toBeInTheDocument();
-
-    // Check project completed badge details
-    expect(screen.getAllByText('COMPLETED')[1]).toBeInTheDocument();
-    expect(screen.getByText('Custom MVC Framework')).toBeInTheDocument();
-
-    // Check description text
-    expect(
-      screen.getByText(/Task management application built using a custom PHP MVC Framework/i)
-    ).toBeInTheDocument();
-
-    // Check tech tag badges
-    expect(screen.getAllByText('PHP')[2]).toBeInTheDocument();
-    expect(screen.getAllByText('MVC')[1]).toBeInTheDocument();
-    expect(screen.getAllByText('TAILWIND CSS')[1]).toBeInTheDocument();
-    expect(screen.getByText('MYSQL')).toBeInTheDocument();
-    expect(screen.getByText('JSON')).toBeInTheDocument();
-
-    // Check Github anchor button
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[2];
-    expect(githubLink).toBeInTheDocument();
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Task-O-mania');
-  });
 
   it('ensures tech badges have correct transition and hover classes', () => {
     render(<OnlineProjectsSection />);
@@ -164,7 +137,7 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('MATCH UP!')).toBeInTheDocument();
 
     // Check project completed badge details
-    expect(screen.getAllByText('COMPLETED')[2]).toBeInTheDocument();
+    expect(screen.getAllByText('COMPLETED')[1]).toBeInTheDocument();
     expect(screen.getByText('Vanilla JS & CSS')).toBeInTheDocument();
 
     // Check description text
@@ -175,11 +148,11 @@ describe('OnlineProjectsSection Component', () => {
     // Check tech tag badges
     expect(screen.getByText('HTML5')).toBeInTheDocument();
     expect(screen.getAllByText('CSS')[0]).toBeInTheDocument();
-    expect(screen.getAllByText('TAILWIND CSS')[2]).toBeInTheDocument();
+    expect(screen.getAllByText('TAILWIND CSS')[1]).toBeInTheDocument();
     expect(screen.getAllByText('JAVASCRIPT')[2]).toBeInTheDocument();
 
     // Check GITHUB link
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[3];
+    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[2];
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/MATCH-UP-GAME');
 
