@@ -14,6 +14,13 @@ Instead of splitting my work across different websites, I wanted to create a sin
 The result is a dual-mode portfolio where visitors can switch between my developer projects (**Online**) and my design work (**Offline**), each with its own visual language while sharing the same foundation.
 
 ---
+## 🚀 Deployment
+
+The portfolio is live on **Render**.
+
+🔗 https://clara-cdp-portfolio.onrender.com
+
+---
 
 ## 📚 Table of Contents
 
@@ -49,19 +56,9 @@ It also allowed me to experiment with theme architecture, reusable React compone
 
 ## 🔄 The Dual-Mode Concept
 
-```
-                      ┌──────────────────────┐
-                      │  Split Landing Page  │
-                      │  Hover split portal  │
-                      └──────────┬───────────┘
-                                 │
-                 ┌───────────────┴───────────────┐
-                 ▼                               ▼
-       ┌──────────────────┐             ┌──────────────────┐
-       │     ONLINE       │             │     OFFLINE      │
-       │   Developer      │             │    Designer      │
-       └──────────────────┘             └──────────────────┘
-```
+<img width="1867" height="1494" alt="image" src="https://github.com/user-attachments/assets/194a5284-b91f-4313-85c5-b72776dd8ef7" />
+**initial figma design**
+
 
 ### 💻 Online
 
@@ -74,7 +71,6 @@ Current featured projects include:
 - **A Paws in Time (MVC)**
 - **A Paws in Time (API & React)**
 - **Reactivity**
-- **Task-O-Mania**
 - **Match Up!**
 
 ---
@@ -139,21 +135,12 @@ Portfolio/
 ```
 
 ---
+## 🤫sneak peek 
 
-## 🚀 Deployment
+<img width="3829" height="1847" alt="Screenshot 2026-09-23 232047" src="https://github.com/user-attachments/assets/59add3c2-c7c8-4f77-96c9-72e49a69b478" />
+<img width="3813" height="1840" alt="Screenshot 2026-09-23 232141" src="https://github.com/user-attachments/assets/e40887df-2b53-4034-ba4c-0498df68b511" />
+<img width="3802" height="1840" alt="Screenshot 2026-09-23 232208" src="https://github.com/user-attachments/assets/4b892e4e-4ddb-4061-86cd-99230b3c0b27" />
+<img width="3816" height="1854" alt="Screenshot 2026-09-23 232343" src="https://github.com/user-attachments/assets/9f399e18-17e8-4b4d-9a05-a68b0e848cbb" />
+<img width="3811" height="1854" alt="Screenshot 2026-09-23 232527" src="https://github.com/user-attachments/assets/f571d06c-a234-48e3-8d53-1da2609850f2" />
 
-The portfolio is live on **Render**.
 
-🔗 https://clara-cdp-portfolio.onrender.com
-
-Built with production-optimised assets using React, Vite and Tailwind CSS.
-
-## 🚧 Future Improvements
-
-This portfolio is an ongoing project. Planned additions include:
-
-- CMS-backed project content
-- Interactive case studies
-- Light/Dark mode persistence
-- Performance and accessibility audits
-- Motion refinements and micro-interactions
