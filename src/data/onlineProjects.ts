@@ -35,6 +35,8 @@ import reactivity3 from '../assets/REACTIVITY/reacitvity3.png';
 import reactivity4 from '../assets/REACTIVITY/reactivity4.png';
 import reactivity5 from '../assets/REACTIVITY/reactivity5.png';
 
+import sitgesHero from '../assets/Sitges-App/Sitges-app-1.png';
+
 export interface OnlineProjectDetail {
   client?: string;
   role?: string;
@@ -61,9 +63,21 @@ export interface OnlineProject {
   githubUrls?: { label: string; url: string }[];
   details?: OnlineProjectDetail;
   isSmall?: boolean;
+  disclaimer?: string;
 }
 
 export const onlineProjects: OnlineProject[] = [
+  {
+    id: "sitges-app",
+    title: "SITGES 2026",
+    statusText: "COMPLETED",
+    statusDetail: "Companion PWA",
+    description: "Mobile-first Progressive Web App (PWA) companion tailored for Sitges Film Festival attendees. Features an offline-ready curated film programme, automated schedule intermission calculations, AES-256-GCM client-side encrypted ticket storage, festival journal notes, and time-locked screening ratings.",
+    heroImage: sitgesHero,
+    tags: ["REACT 19", "TYPESCRIPT", "TAILWIND CSS", "VITE", "PWA", "WEB CRYPTO API", "VITEST"],
+    githubUrl: "https://github.com/clara-cdp/6sitgesApp",
+    disclaimer: "Independent personal project. Not affiliated with or endorsed by the Sitges Film Festival. Festival imagery, posters, film information, and trademarks remain the property of their respective owners."
+  },
   {
     id: "a-paws-in-time",
     title: "A PAWS IN TIME",
@@ -195,7 +209,6 @@ export const onlineProjects: OnlineProject[] = [
       ],
       githubUrl: "https://github.com/clara-cdp/Reactivity"
     }
-
   },
   {
     id: "match-up-game",
