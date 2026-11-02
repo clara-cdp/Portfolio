@@ -36,6 +36,12 @@ import reactivity4 from '../assets/REACTIVITY/reactivity4.png';
 import reactivity5 from '../assets/REACTIVITY/reactivity5.png';
 
 import sitgesHero from '../assets/Sitges-App/Sitges-app-1.png';
+import sitgesHero2 from '../assets/Sitges-App/sitges-app-2.png';
+import sitgesApp3 from '../assets/Sitges-App/Sitges-app-3.png';
+import sitgesApp4 from '../assets/Sitges-App/Sitges-app-4.png';
+import sitgesFigma from '../assets/Sitges-App/figma.png';
+import filmDetail from '../assets/Sitges-App/film_detail.jpeg';
+import marathonDetail from '../assets/Sitges-App/marathon_detail.jpeg';
 
 export interface OnlineProjectDetail {
   client?: string;
@@ -49,6 +55,7 @@ export interface OnlineProjectDetail {
   pdfUrl?: string;
   pdfLabel?: string;
   hero?: string;
+  disclaimer?: string;
 }
 
 export interface OnlineProject {
@@ -76,7 +83,38 @@ export const onlineProjects: OnlineProject[] = [
     heroImage: sitgesHero,
     tags: ["REACT 19", "TYPESCRIPT", "TAILWIND CSS", "VITE", "PWA", "WEB CRYPTO API", "VITEST"],
     githubUrl: "https://github.com/clara-cdp/6sitgesApp",
-    disclaimer: "Independent personal project. Not affiliated with or endorsed by the Sitges Film Festival. Festival imagery, posters, film information, and trademarks remain the property of their respective owners."
+    disclaimer: "Independent personal project. Not affiliated with or endorsed by the Sitges Film Festival. Festival imagery, posters, film information, and trademarks remain the property of their respective owners.",
+    details: {
+      client: "Personal Project / Festival Companion",
+      role: "Frontend Developer & UI/UX Designer",
+      hero: sitgesHero2,
+      disclaimer: "Independent personal project. Not affiliated with or endorsed by the Sitges Film Festival. Festival imagery, posters, film information, and trademarks remain the property of their respective owners.",
+      deliverables: [
+        "Mobile-first offline PWA with service worker caching",
+        "Client-side encrypted ticket vault (AES-256-GCM & PBKDF2)",
+        "Timetable with automated intermission gap calculations (\"Pausas\")",
+        "Curated festival programme with cast/crew dossiers and trailers",
+        "Screening-locked ratings and local journal notes (\"Apunts\")"
+      ],
+      longDescription: [
+        "## Overview & Purpose",
+        "As a Sitges Film Festival regular and graphic designer, I previously designed a printed personal guide booklet each year. For 2026, I built an independent, mobile-first companion web application to replace the booklet with a reactive, offline-first digital companion tailored specifically for our booked screenings and festival run.",
+        "## PWA & Client-Side Encryption",
+        "Built with React 19, TypeScript, Vite, and Tailwind CSS v4, the app operates completely client-side with zero backend or external database. Service worker precaching allows the full guide, timetable, and notes to function reliably in subterranean theaters with zero connectivity. Private PDF tickets are encrypted locally with AES-256-GCM and PBKDF2 (600,000 iterations), decrypting entirely in-memory with a passphrase to generate temporary Blob URLs.",
+        "## Timetable & Automated Intermissions",
+        "A day-by-day accordion schedule highlights venues and start/end times. To streamline navigation across Sitges between consecutive screenings, the app automatically calculates interval gaps (\"Pausas\") between sessions, making venue transfers and meals effortless."
+      ],
+      gallery: [
+        sitgesHero,
+        sitgesHero2,
+        sitgesApp3,
+        sitgesApp4,
+        sitgesFigma,
+        filmDetail,
+        marathonDetail
+      ],
+      githubUrl: "https://github.com/clara-cdp/6sitgesApp"
+    }
   },
   {
     id: "a-paws-in-time",
