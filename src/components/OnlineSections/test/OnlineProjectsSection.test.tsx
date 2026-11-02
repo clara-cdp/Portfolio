@@ -102,7 +102,8 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('SPATIE')).toBeInTheDocument();
 
     // Verify CASE STUDY button is rendered for this project card
-    const caseStudyLink = screen.getAllByRole('link', { name: 'CASE STUDY' })[1];
+    const caseStudyLinks = screen.getAllByRole('link', { name: 'CASE STUDY' });
+    const caseStudyLink = caseStudyLinks.find((link) => link.getAttribute('href') === '#online/projects/a-paws-in-time-api');
     expect(caseStudyLink).toBeInTheDocument();
     expect(caseStudyLink).toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
 
