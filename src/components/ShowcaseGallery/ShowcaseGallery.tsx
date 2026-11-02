@@ -12,13 +12,56 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
   const [zoomScale, setZoomScale] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [aspectRatios, setAspectRatios] = useState<Record<number, number>>({});
+  const [lightboxMode, setLightboxMode] = useState<'scroll' | 'fit'>('scroll');
   const dragStart = useRef({ x: 0, y: 0 });
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   
   // Touch/Swipe tracking for the main carousel
   const touchStart = useRef<number | null>(null);
   const touchEnd = useRef<number | null>(null);
 
   const total = images.length;
+
+  // Pre-load natural dimensions to detect narrow / full-page vertical captures
+  useEffect(() => {
+    images.forEach((src, idx) => {
+      const img = new Image();
+      img.onload = () => {
+        if (img.naturalWidth && img.naturalHeight) {
+          setAspectRatios((prev) => ({
+            ...prev,
+            [idx]: img.naturalWidth / img.naturalHeight,
+          }));
+        }
+      };
+      img.src = src;
+    });
+  }, [images]);
+
+  const handleImageLoad = (idx: number, e: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth, naturalHeight } = e.currentTarget;
+    if (naturalWidth && naturalHeight) {
+      setAspectRatios((prev) => ({
+        ...prev,
+        [idx]: naturalWidth / naturalHeight,
+      }));
+    }
+  };
+
+  const isNarrowSlide = (idx: number) => {
+    const ratio = aspectRatios[idx];
+    return typeof ratio === 'number' && ratio < 0.6;
+  };
+
+  const isCurrentNarrow = isNarrowSlide(activeIndex);
+
+  // Reset vertical scroll position of narrow images on slide change
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [activeIndex]);
 
   // Handle slide change with wrapping
   const handlePrev = () => {
@@ -88,15 +131,13 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
       diff += total;
     }
 
-
-
     // Active Center Slide
     if (diff === 0) {
       return {
         transform: 'translateX(0) scale(1) translateZ(50px) rotateY(0deg)',
         zIndex: 20,
         opacity: 1,
-        cursor: 'zoom-in',
+        cursor: isCurrentNarrow ? 'default' : 'pointer',
       };
     }
 
@@ -151,6 +192,7 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
   const openLightbox = () => {
     setZoomScale(1);
     setPanOffset({ x: 0, y: 0 });
+    setLightboxMode('scroll');
     setIsLightboxOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -164,6 +206,7 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
     setActiveIndex((prev) => (prev + direction + total) % total);
     setZoomScale(1);
     setPanOffset({ x: 0, y: 0 });
+    setLightboxMode('scroll');
   };
 
   const handleZoomIn = () => {
@@ -227,6 +270,7 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
             <img
               src={image}
               alt={`Showcase frame ${idx + 1}`}
+              onLoad={(e) => handleImageLoad(idx, e)}
               className="w-full h-auto block select-none pointer-events-none"
             />
           </div>
@@ -250,13 +294,16 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
             {images.map((image, idx) => {
               const isCenter = idx === activeIndex;
               const style = getSlideStyles(idx);
+              const isNarrow = isNarrowSlide(idx);
               
               return (
                 <div
                   key={idx}
                   onClick={() => {
                     if (isCenter) {
-                      openLightbox();
+                      if (!isNarrow) {
+                        openLightbox();
+                      }
                     } else {
                       setActiveIndex(idx);
                     }
@@ -266,23 +313,56 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
                     ...style,
                     boxShadow: isCenter ? '0 0 35px rgba(23, 208, 208, 0.25)' : 'none',
                     borderColor: isCenter ? 'var(--color-brand-cyan)' : 'rgba(23, 208, 208, 0.15)',
+                    cursor: isCenter ? (isNarrow ? 'default' : 'pointer') : 'pointer',
                   }}
                 >
                   {/* Visual grid accent inside slide background */}
                   <div className="absolute inset-0 bg-[radial-gradient(#17d0d0_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02] pointer-events-none" />
                   
-                  <img
-                    src={image}
-                    alt={`Showcase frame ${idx + 1}`}
-                    className="max-w-full max-h-full object-contain rounded-md select-none transition-transform duration-500 pointer-events-none"
-                  />
-
-                  {/* Cyberpunk Glitchy Maximize Button Overlay on Active Card */}
-                  {isCenter && (
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
-                      <div className="bg-brand-dark/80 backdrop-blur-md border border-brand-cyan p-2 rounded-sm text-brand-cyan shadow-[0_0_10px_rgba(23,208,208,0.2)]">
-                        <Maximize2 className="w-4 h-4 animate-pulse" />
+                  {isCenter && isNarrow ? (
+                    <div className="relative h-full w-full overflow-hidden flex items-center justify-center">
+                      {/* Scrollable container approximately half the width of the frame */}
+                      <div
+                        ref={scrollContainerRef}
+                        className="w-[55%] sm:w-[50%] md:w-[48%] h-full overflow-y-auto overflow-x-hidden rounded-md border border-brand-cyan/30 shadow-[0_0_20px_rgba(23,208,208,0.15)] scrollbar-thin scrollbar-thumb-brand-cyan/60 hover:scrollbar-thumb-brand-cyan scrollbar-track-brand-dark/80"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <img
+                          src={image}
+                          alt={`Showcase frame ${idx + 1}`}
+                          onLoad={(e) => handleImageLoad(idx, e)}
+                          className="w-full h-auto block select-none"
+                        />
                       </div>
+
+                      {/* HUD Scroll Helper Pill */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-brand-dark/90 backdrop-blur-md border border-brand-cyan/60 px-4 py-1.5 rounded-full text-xs font-mono text-brand-cyan tracking-wider pointer-events-none shadow-[0_0_20px_rgba(23,208,208,0.4)] select-none whitespace-nowrap z-20">
+                        <span className="animate-bounce font-bold text-brand-orange text-sm">↓</span>
+                        <span className="font-bold tracking-widest uppercase">SCROLL DOWN</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={image}
+                      alt={`Showcase frame ${idx + 1}`}
+                      onLoad={(e) => handleImageLoad(idx, e)}
+                      className="max-w-full max-h-full object-contain rounded-md select-none transition-transform duration-500 pointer-events-none"
+                    />
+                  )}
+
+                  {/* Cyberpunk Glitchy Maximize Button Overlay on Active Card (for wide slides) */}
+                  {isCenter && !isNarrow && (
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openLightbox();
+                        }}
+                        className="bg-brand-dark/80 backdrop-blur-md border border-brand-cyan p-2 rounded-sm text-brand-cyan hover:bg-brand-cyan hover:text-brand-dark transition-colors shadow-[0_0_10px_rgba(23,208,208,0.2)] cursor-pointer"
+                        title="Expand Image"
+                      >
+                        <Maximize2 className="w-4 h-4 animate-pulse" />
+                      </button>
                     </div>
                   )}
                   
@@ -350,39 +430,53 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
 
             {/* Toolbar Buttons */}
             <div className="flex items-center gap-3">
-              <button
-                onClick={handleZoomOut}
-                disabled={zoomScale <= 1}
-                className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan disabled:opacity-30 disabled:pointer-events-none rounded-sm transition-colors cursor-pointer"
-                title="Zoom Out"
-              >
-                <ZoomOut className="w-4.5 h-4.5" />
-              </button>
-
-              <span className="text-xs text-brand-cream/60 min-w-[40px] text-center">
-                {Math.round(zoomScale * 100)}%
-              </span>
-
-              <button
-                onClick={handleZoomIn}
-                disabled={zoomScale >= 4}
-                className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan disabled:opacity-30 disabled:pointer-events-none rounded-sm transition-colors cursor-pointer"
-                title="Zoom In"
-              >
-                <ZoomIn className="w-4.5 h-4.5" />
-              </button>
-
-              {zoomScale > 1 && (
+              {isCurrentNarrow && (
                 <button
-                  onClick={handleResetZoom}
-                  className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan rounded-sm transition-colors cursor-pointer"
-                  title="Reset Zoom"
+                  onClick={() => setLightboxMode((prev) => (prev === 'scroll' ? 'fit' : 'scroll'))}
+                  className="px-2.5 py-1.5 border border-brand-cyan/40 bg-brand-cyan/10 hover:bg-brand-cyan/25 text-brand-cyan rounded-sm text-xs font-mono font-bold tracking-wider transition-all duration-200 cursor-pointer shadow-[0_0_10px_rgba(23,208,208,0.15)] mr-1"
+                  title={lightboxMode === 'scroll' ? 'Fit to Screen' : 'Scroll View'}
                 >
-                  <RefreshCw className="w-4.5 h-4.5" />
+                  {lightboxMode === 'scroll' ? '⛶ FIT VIEW' : '↕ SCROLL VIEW'}
                 </button>
               )}
 
-              <div className="h-6 w-[1px] bg-white/10 mx-2" />
+              {!isCurrentNarrow && (
+                <>
+                  <button
+                    onClick={handleZoomOut}
+                    disabled={zoomScale <= 1}
+                    className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan disabled:opacity-30 disabled:pointer-events-none rounded-sm transition-colors cursor-pointer"
+                    title="Zoom Out"
+                  >
+                    <ZoomOut className="w-4.5 h-4.5" />
+                  </button>
+
+                  <span className="text-xs text-brand-cream/60 min-w-[40px] text-center">
+                    {Math.round(zoomScale * 100)}%
+                  </span>
+
+                  <button
+                    onClick={handleZoomIn}
+                    disabled={zoomScale >= 4}
+                    className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan disabled:opacity-30 disabled:pointer-events-none rounded-sm transition-colors cursor-pointer"
+                    title="Zoom In"
+                  >
+                    <ZoomIn className="w-4.5 h-4.5" />
+                  </button>
+
+                  {zoomScale > 1 && (
+                    <button
+                      onClick={handleResetZoom}
+                      className="p-2 border border-white/10 hover:border-brand-cyan/50 text-brand-cream/80 hover:text-brand-cyan rounded-sm transition-colors cursor-pointer"
+                      title="Reset Zoom"
+                    >
+                      <RefreshCw className="w-4.5 h-4.5" />
+                    </button>
+                  )}
+
+                  <div className="h-6 w-[1px] bg-white/10 mx-2" />
+                </>
+              )}
 
               <button
                 onClick={closeLightbox}
@@ -416,14 +510,27 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
             >
-              <img
-                src={images[activeIndex]}
-                alt={`Expanded screenshot ${activeIndex + 1}`}
-                className="max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain transition-transform duration-200 select-none pointer-events-none rounded-md border border-white/10"
-                style={{
-                  transform: `scale(${zoomScale}) translate(${panOffset.x / zoomScale}px, ${panOffset.y / zoomScale}px)`,
-                }}
-              />
+              {isCurrentNarrow && lightboxMode === 'scroll' ? (
+                <div
+                  className="relative w-full max-w-2xl h-[68vh] sm:h-[75vh] overflow-y-auto overflow-x-hidden rounded-md border-2 border-brand-cyan/40 bg-brand-dark/95 shadow-[0_0_35px_rgba(23,208,208,0.3)] p-2 scrollbar-thin scrollbar-thumb-brand-cyan/50 hover:scrollbar-thumb-brand-cyan scrollbar-track-brand-dark"
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  <img
+                    src={images[activeIndex]}
+                    alt={`Expanded screenshot ${activeIndex + 1}`}
+                    className="w-full h-auto block select-none rounded-sm"
+                  />
+                </div>
+              ) : (
+                <img
+                  src={images[activeIndex]}
+                  alt={`Expanded screenshot ${activeIndex + 1}`}
+                  className="max-w-full max-h-[70vh] sm:max-h-[75vh] object-contain transition-transform duration-200 select-none pointer-events-none rounded-md border border-white/10"
+                  style={{
+                    transform: `scale(${zoomScale}) translate(${panOffset.x / zoomScale}px, ${panOffset.y / zoomScale}px)`,
+                  }}
+                />
+              )}
             </div>
 
             {/* Sidebar Right Navigation */}
@@ -446,6 +553,7 @@ export default function ShowcaseGallery({ images }: ShowcaseGalleryProps) {
                     setActiveIndex(idx);
                     setZoomScale(1);
                     setPanOffset({ x: 0, y: 0 });
+                    setLightboxMode('scroll');
                   }}
                   className={`w-14 h-10 sm:w-20 sm:h-14 rounded-sm border overflow-hidden flex-shrink-0 transition-all duration-200 cursor-pointer ${
                     idx === activeIndex

@@ -95,6 +95,21 @@ export default function OnlineProjectCard({ project }: OnlineProjectCardProps) {
             {project.description}
           </p>
 
+          {/* Prominent Disclaimer Notice (if present) */}
+          {project.disclaimer && (
+            <div className="w-full mb-6 p-3 sm:p-3.5 bg-brand-orange/10 border-l-2 border-brand-orange rounded-sm font-sans text-xs text-brand-cream/90 leading-relaxed max-w-xl flex items-start gap-2.5">
+              <span className="text-brand-orange font-bold select-none text-sm leading-none mt-0.5" aria-hidden="true">
+                &#9888;
+              </span>
+              <div>
+                <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-brand-orange block mb-0.5">
+                  Notice / Disclaimer
+                </span>
+                <span>{project.disclaimer}</span>
+              </div>
+            </div>
+          )}
+
           {/* Technology Badges */}
           <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
             {project.tags.map((tag) => (

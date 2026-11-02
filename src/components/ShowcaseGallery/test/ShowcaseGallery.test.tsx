@@ -13,8 +13,6 @@ describe('ShowcaseGallery Component', () => {
   it('renders all gallery images in both mobile grid and desktop carousel modes', () => {
     render(<ShowcaseGallery images={mockImages} />);
 
-    // Since images are rendered in both layouts:
-    // mobile (4 images) + desktop carousel (4 images) = 8 images total
     const images = screen.getAllByRole('img', { name: /Showcase frame/i });
     expect(images.length).toBe(8);
   });
@@ -92,7 +90,7 @@ describe('ShowcaseGallery Component', () => {
     // Find center slide (initially at index 0)
     // The active card is clickable and triggers lightbox
     const desktopImages = screen.getAllByRole('img', { name: /Showcase frame/i });
-    
+
     // The first desktop image is at index 0
     // Click the active image card container to trigger openLightbox
     // The image itself is pointer-events-none, so click its wrapper parent
@@ -132,5 +130,66 @@ describe('ShowcaseGallery Component', () => {
 
     // Verify lightbox closed
     expect(screen.queryByText(/SYSTEM CAPTURE/i)).not.toBeInTheDocument();
+  });
+
+  it('renders narrow image with scrollable frame and SCROLL DOWN indicator when active', () => {
+    render(<ShowcaseGallery images={mockImages} />);
+
+    const desktopImages = screen.getAllByRole('img', { name: /Showcase frame/i });
+    const activeDesktopImg = desktopImages[4];
+
+    Object.defineProperty(activeDesktopImg, 'naturalWidth', { value: 300, configurable: true });
+    Object.defineProperty(activeDesktopImg, 'naturalHeight', { value: 2000, configurable: true });
+    fireEvent.load(activeDesktopImg);
+
+    expect(screen.getByText(/SCROLL DOWN/i)).toBeInTheDocument();
+    expect(screen.queryByText(/CLICK TO ZOOM/i)).not.toBeInTheDocument();
+
+    const scrollContainer = screen.getByText(/SCROLL DOWN/i).closest('.relative')?.querySelector('.overflow-y-auto');
+    expect(scrollContainer).toBeInTheDocument();
+    expect(scrollContainer).toHaveClass('overflow-y-auto');
+    expect(scrollContainer).toHaveClass('w-[55%]');
+  });
+
+  it('does not trigger lightbox on click for narrow active image to allow scrolling', () => {
+    render(<ShowcaseGallery images={mockImages} />);
+
+    const desktopImages = screen.getAllByRole('img', { name: /Showcase frame/i });
+    const activeDesktopImg = desktopImages[4];
+
+    Object.defineProperty(activeDesktopImg, 'naturalWidth', { value: 300, configurable: true });
+    Object.defineProperty(activeDesktopImg, 'naturalHeight', { value: 2000, configurable: true });
+    fireEvent.load(activeDesktopImg);
+
+    const scrollContainer = screen.getByText(/SCROLL DOWN/i).closest('.relative')?.querySelector('.overflow-y-auto');
+    if (scrollContainer) {
+      fireEvent.click(scrollContainer);
+    }
+
+    expect(screen.queryByText(/SYSTEM CAPTURE/i)).not.toBeInTheDocument();
+  });
+
+  it('provides fit/scroll view toggle and omits zoom controls in lightbox for narrow images', () => {
+    render(<ShowcaseGallery images={mockImages} />);
+
+    const desktopImages = screen.getAllByRole('img', { name: /Showcase frame/i });
+    Object.defineProperty(desktopImages[4], 'naturalWidth', { value: 300, configurable: true });
+    Object.defineProperty(desktopImages[4], 'naturalHeight', { value: 2000, configurable: true });
+    fireEvent.load(desktopImages[4]);
+
+    const mobileImages = screen.getAllByRole('img', { name: /Showcase frame/i });
+    const mobileWrapper = mobileImages[0].parentElement;
+    if (mobileWrapper) {
+      fireEvent.click(mobileWrapper);
+    }
+
+    expect(screen.getByText(/SYSTEM CAPTURE/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/Fit to Screen/i)).toBeInTheDocument();
+    expect(screen.queryByTitle(/Zoom In/i)).not.toBeInTheDocument();
+    expect(screen.queryByTitle(/Zoom Out/i)).not.toBeInTheDocument();
+
+    const toggleButton = screen.getByTitle(/Fit to Screen/i);
+    fireEvent.click(toggleButton);
+    expect(screen.getByTitle(/Scroll View/i)).toBeInTheDocument();
   });
 });

@@ -72,12 +72,11 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
 
       {/* Main Container */}
       <main
-        className={`w-full flex flex-col items-center pt-28 sm:pt-32 pb-16 flex-grow transition-all duration-[800ms] ease-out transform ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
+        className={`w-full flex flex-col items-center pt-28 sm:pt-32 pb-16 flex-grow transition-all duration-[800ms] ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
       >
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 md:px-16 lg:px-24">
-          
+
           {/* 1. Title & Header Intro Section */}
           <div className="max-w-4xl mt-6 sm:mt-10 mb-10 sm:mb-14">
             <span className="text-brand-cyan font-mono text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase mb-5 block">
@@ -108,6 +107,15 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                   className="w-full h-auto object-contain max-h-24 sm:max-h-32 select-none filter drop-shadow-[0_0_15px_rgba(251,113,133,0.35)]"
                 />
               </div>
+            ) : project.id === 'sitges-app' ? (
+              <div className="mb-6">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-brand-orange tracking-tight leading-[1.1] uppercase">
+                  SITGES 2026
+                </h1>
+                <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-brand-cream/90 tracking-wider block mt-2">
+                  (COMPANION PWA)
+                </span>
+              </div>
             ) : (
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-white tracking-tight leading-[1.1] mb-6">
                 {project.title}
@@ -129,11 +137,11 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
 
           {/* 3. Description & Metadata Narrative Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-24 mb-16 sm:mb-24">
-            
+
             {/* Left Column: Tech Spec Panels */}
             <div className="col-span-12 lg:col-span-4 flex flex-col gap-6 font-mono text-xs sm:text-sm">
               <RevealWrapper className="flex flex-col gap-6">
-                
+
                 {/* Meta details card */}
                 <div className="border border-brand-cyan/30 bg-[#0A0E1A]/95 p-5 sm:p-6 rounded-sm flex flex-col gap-5 transition-all duration-300 hover:border-brand-cyan/50 hover:shadow-[0_0_20px_rgba(23,208,208,0.1)]">
                   {details?.client && (
@@ -251,6 +259,25 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
                 })
               ) : (
                 <p>No project description details available.</p>
+              )}
+
+              {/* Disclaimer with Warning Sign */}
+              {(project.disclaimer || details?.disclaimer) && (
+                <RevealWrapper>
+                  <div className="p-4 sm:p-5 bg-brand-orange/10 border-l-4 border-brand-orange rounded-sm font-sans text-xs sm:text-sm text-brand-cream/90 flex items-start gap-3 shadow-[0_0_20px_rgba(255,197,86,0.1)] mt-2">
+                    <span className="text-brand-orange text-base sm:text-lg font-bold leading-none mt-0.5 select-none" aria-hidden="true">
+                      &#9888;
+                    </span>
+                    <div>
+                      <span className="font-mono text-brand-orange font-bold tracking-widest uppercase text-xs block mb-1">
+                        PROJECT DISCLAIMER
+                      </span>
+                      <p className="leading-relaxed">
+                        {details?.disclaimer || project.disclaimer}
+                      </p>
+                    </div>
+                  </div>
+                </RevealWrapper>
               )}
             </div>
 

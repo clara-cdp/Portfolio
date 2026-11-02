@@ -20,14 +20,41 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText(/status Active/i)).toBeInTheDocument();
   });
 
+  it('renders Sitges 2026 companion app project card at top of section with visible disclaimer', () => {
+    render(<OnlineProjectsSection />);
+
+    expect(screen.getByText('SITGES 2026')).toBeInTheDocument();
+    expect(screen.getByText('Companion PWA')).toBeInTheDocument();
+
+    expect(
+      screen.getByText(/Mobile-first Progressive Web App \(PWA\) companion tailored for Sitges Film Festival attendees/i)
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('Notice / Disclaimer')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Independent personal project. Not affiliated with or endorsed by the Sitges Film Festival/i)
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('REACT 19')).toBeInTheDocument();
+    expect(screen.getByText('WEB CRYPTO API')).toBeInTheDocument();
+    expect(screen.getByText('VITEST')).toBeInTheDocument();
+
+    const githubLinks = screen.getAllByRole('link', { name: 'GITHUB' });
+    const sitgesGithub = githubLinks.find((link) => link.getAttribute('href') === 'https://github.com/clara-cdp/6sitgesApp');
+    expect(sitgesGithub).toBeInTheDocument();
+
+    const image = screen.getByRole('img', { name: 'SITGES 2026' });
+    expect(image).toBeInTheDocument();
+
+    const projectHeadings = screen.getAllByRole('heading', { level: 3 });
+    expect(projectHeadings[0]).toHaveTextContent('SITGES 2026');
+  });
+
   it('renders a paws in time project details inside project card', () => {
     render(<OnlineProjectsSection />);
 
-    // Check project title
     expect(screen.getByText('A PAWS IN TIME')).toBeInTheDocument();
-
-    // Check project completed badge details
-    expect(screen.getAllByText('COMPLETED')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('COMPLETED')[1]).toBeInTheDocument();
     expect(screen.getAllByText('MVC')[0]).toBeInTheDocument();
 
     // Check description text
@@ -43,9 +70,9 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getAllByText('SQLITE')[0]).toBeInTheDocument();
 
     // Check Github anchor button
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[0];
+    const githubLinks = screen.getAllByRole('link', { name: 'GITHUB' });
+    const githubLink = githubLinks.find((link) => link.getAttribute('href') === 'https://github.com/clara-cdp/A-Paws-In-Time');
     expect(githubLink).toBeInTheDocument();
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/A-Paws-In-Time');
     expect(githubLink).toHaveAttribute('target', '_blank');
 
     // Check showcase image
@@ -75,7 +102,8 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('SPATIE')).toBeInTheDocument();
 
     // Verify CASE STUDY button is rendered for this project card
-    const caseStudyLink = screen.getAllByRole('link', { name: 'CASE STUDY' })[1];
+    const caseStudyLinks = screen.getAllByRole('link', { name: 'CASE STUDY' });
+    const caseStudyLink = caseStudyLinks.find((link) => link.getAttribute('href') === '#online/projects/a-paws-in-time-api');
     expect(caseStudyLink).toBeInTheDocument();
     expect(caseStudyLink).toHaveAttribute('href', '#online/projects/a-paws-in-time-api');
 
@@ -108,14 +136,13 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getAllByText('REACT')[1]).toBeInTheDocument();
     expect(screen.getAllByText('TYPESCRIPT')[1]).toBeInTheDocument();
     expect(screen.getAllByText('TAILWIND CSS')[0]).toBeInTheDocument();
-    expect(screen.getByText('VITE')).toBeInTheDocument();
+    expect(screen.getAllByText('VITE')[0]).toBeInTheDocument();
 
     // Check Github anchor button
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[1];
+    const githubLinks = screen.getAllByRole('link', { name: 'GITHUB' });
+    const githubLink = githubLinks.find((link) => link.getAttribute('href') === 'https://github.com/clara-cdp/Reactivity');
     expect(githubLink).toBeInTheDocument();
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/Reactivity');
   });
-
 
   it('ensures tech badges have correct transition and hover classes', () => {
     render(<OnlineProjectsSection />);
@@ -137,7 +164,7 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getByText('MATCH UP!')).toBeInTheDocument();
 
     // Check project completed badge details
-    expect(screen.getAllByText('COMPLETED')[1]).toBeInTheDocument();
+    expect(screen.getAllByText('COMPLETED')[2]).toBeInTheDocument();
     expect(screen.getByText('Vanilla JS & CSS')).toBeInTheDocument();
 
     // Check description text
@@ -152,9 +179,9 @@ describe('OnlineProjectsSection Component', () => {
     expect(screen.getAllByText('JAVASCRIPT')[2]).toBeInTheDocument();
 
     // Check GITHUB link
-    const githubLink = screen.getAllByRole('link', { name: 'GITHUB' })[2];
+    const githubLinks = screen.getAllByRole('link', { name: 'GITHUB' });
+    const githubLink = githubLinks.find((link) => link.getAttribute('href') === 'https://github.com/clara-cdp/MATCH-UP-GAME');
     expect(githubLink).toBeInTheDocument();
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp/MATCH-UP-GAME');
 
     // Check portrait display height constraints
     const image = screen.getByRole('img', { name: 'MATCH UP!' });
