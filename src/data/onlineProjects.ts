@@ -41,6 +41,7 @@ import sitgesApp3 from '../assets/Sitges-App/Sitges-app-3.png';
 import sitgesApp4 from '../assets/Sitges-App/Sitges-app-4.png';
 import sitgesFigma from '../assets/Sitges-App/figma.png';
 import filmDetail from '../assets/Sitges-App/film_detail.jpeg';
+import filmDetailHalf from '../assets/Sitges-App/film-detail-HALF.jpeg';
 import marathonDetail from '../assets/Sitges-App/marathon_detail.jpeg';
 
 export interface OnlineProjectDetail {
@@ -111,6 +112,7 @@ export const onlineProjects: OnlineProject[] = [
         sitgesApp4,
         sitgesFigma,
         filmDetail,
+        filmDetailHalf,
         marathonDetail
       ],
       githubUrl: "https://github.com/clara-cdp/6sitgesApp"
