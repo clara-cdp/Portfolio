@@ -1,6 +1,7 @@
 import { render, screen, act } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import OfflinePage from '../OfflinePage';
+import { journeyEntries } from '../../components/OfflineSections/JourneySection';
 
 describe('OfflinePage Component', () => {
   beforeEach(() => {
@@ -22,14 +23,11 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText('ideas')).toBeInTheDocument();
     expect(screen.getByText('visible')).toBeInTheDocument();
 
-    // Check eyebrow
     expect(screen.getByText(/offline - design portfolio/i)).toBeInTheDocument();
-
-    // Check details
     expect(screen.getByText(/branding, visual identity, editorial thinking/i)).toBeInTheDocument();
     expect(screen.getByText(/scroll to explore/i)).toBeInTheDocument();
 
-    // Check Section 01 - Design Identity elements
+    // Check Section 01 
     expect(screen.getByText('01 - DESIGN IDENTITY')).toBeInTheDocument();
     expect(screen.getByText('Design as')).toBeInTheDocument();
     expect(screen.getByText('communication')).toBeInTheDocument();
@@ -39,37 +37,25 @@ describe('OfflinePage Component', () => {
     expect(screen.getByText(/whether creating a visual identity/i)).toBeInTheDocument();
     expect(screen.getByText(/every project begins with a message/i)).toBeInTheDocument();
 
-    // Check Section 02 - Journey elements
+    // Check Section 02 
     expect(screen.getByText('02 - JOURNEY')).toBeInTheDocument();
     expect(screen.getByText(/Not a straight line/i)).toBeInTheDocument();
     expect(screen.getByText('better')).toBeInTheDocument();
 
-    // Check Journey Timeline entries
-    expect(screen.getByText('2008')).toBeInTheDocument();
-    expect(screen.getByText('Leadership & Operations')).toBeInTheDocument();
-    expect(screen.getByText('how to work with people.')).toBeInTheDocument();
-    expect(screen.getByText(/Before design became my profession/i)).toBeInTheDocument();
+    // Timeline entries 
+    journeyEntries.forEach((entry) => {
+      expect(screen.getByText(entry.year)).toBeInTheDocument();
+      expect(screen.getByText(entry.title)).toBeInTheDocument();
+      expect(screen.getByText(entry.subtitle)).toBeInTheDocument();
+      entry.description.forEach((desc) => {
+        expect(screen.getByText(desc)).toBeInTheDocument();
+      });
+    });
 
-    expect(screen.getByText('2016')).toBeInTheDocument();
-    expect(screen.getByText('Set Design & Production')).toBeInTheDocument();
-    expect(screen.getByText('how to bring ideas into reality')).toBeInTheDocument();
-    expect(screen.getByText(/Drawn by creative work/i)).toBeInTheDocument();
-
-    expect(screen.getByText('2021')).toBeInTheDocument();
-    expect(screen.getByText('Graphic Design & Visual Communication')).toBeInTheDocument();
-    expect(screen.getByText('how to communicate')).toBeInTheDocument();
-    expect(screen.getByText(/Design became my full-time focus/i)).toBeInTheDocument();
-
-    expect(screen.getByText('TODAY')).toBeInTheDocument();
-    expect(screen.getByText('Design & Development')).toBeInTheDocument();
-    expect(screen.getByText('how to build experiences')).toBeInTheDocument();
-    expect(screen.getByText(/The more I worked with brands/i)).toBeInTheDocument();
-
-    // Check Section 03 - Projects elements
+    // Check Section 03 
     expect(screen.getByText('03 - PROJECTS')).toBeInTheDocument();
-    expect(screen.getByText(/Work as/i)).toBeInTheDocument();
-    expect(screen.getByText(/evidence/i)).toBeInTheDocument();
-    expect(screen.getByText(/Ideas are interesting/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /The Things I.*Make/i })).toBeInTheDocument();
+    expect(screen.getByText(/A SELECTION OF IDEAS BROUGHT TO LIFE THROUGH DESIGN/i)).toBeInTheDocument();
     expect(screen.getByText(/Finished work is more convincing/i)).toBeInTheDocument();
 
     // Check project cards rendering
@@ -86,7 +72,7 @@ describe('OfflinePage Component', () => {
     const detailLinks = screen.getAllByText(/see details/i);
     expect(detailLinks).toHaveLength(4);
 
-    // Check Section 05 - Contact elements
+    // Check Section 05 
     expect(screen.getByText('05 - CONTACT')).toBeInTheDocument();
     expect(screen.getByText(/Let's work/i)).toBeInTheDocument();
     expect(screen.getByText(/together/i)).toBeInTheDocument();
@@ -106,7 +92,7 @@ describe('OfflinePage Component', () => {
     expect(githubLink).toHaveAttribute('href', 'https://github.com/clara-cdp');
     expect(githubLink).toHaveAttribute('target', '_blank');
 
-    // Check Footer details
+    // Check Footer 
     expect(screen.getByText('PORTFOLIO 2026')).toBeInTheDocument();
     expect(screen.getByText(/MADE WITH REACT \+ TAILWIND/i)).toBeInTheDocument();
     expect(screen.getByText(/by Clara Cerdà de Palou/i)).toBeInTheDocument();
@@ -161,27 +147,27 @@ describe('OfflinePage Component', () => {
 
   it('toggles mobile menu dropdown when hamburger menu button is clicked and closes on link click', () => {
     const { container } = render(<OfflinePage />);
-    
+
     const menuBtn = screen.getByRole('button', { name: /toggle menu/i });
     expect(menuBtn).toBeInTheDocument();
-    
+
     const dropdownPanel = container.querySelector('.absolute');
     expect(dropdownPanel).toBeInTheDocument();
     expect(dropdownPanel).toHaveClass('invisible');
     expect(dropdownPanel).not.toHaveClass('visible');
-    
+
     // Toggle to open
     act(() => {
       menuBtn.click();
     });
     expect(dropdownPanel).toHaveClass('visible');
     expect(dropdownPanel).not.toHaveClass('invisible');
-    
+
     // Click dropdown link to close
     const dropdownLinks = dropdownPanel?.querySelectorAll('a');
     expect(dropdownLinks).toHaveLength(5);
     expect(dropdownLinks?.[0]).toHaveTextContent('Identity');
-    
+
     act(() => {
       dropdownLinks?.[0].click();
     });
@@ -228,7 +214,7 @@ describe('OfflinePage Component', () => {
     // Trigger intersection on projects (light section)
     const projectsObserver = callbacks.find(obs => obs.element.id === 'projects');
     expect(projectsObserver).toBeDefined();
-    
+
     act(() => {
       projectsObserver?.callback([{ isIntersecting: true, target: projectsObserver.element }]);
     });
