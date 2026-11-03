@@ -4,41 +4,40 @@ const journeyEntries = [
   {
     year: "2008",
     title: "Leadership & Operations",
-    subtitle: "how to work with people.",
+    subtitle: "How to work with people.",
     description: [
-      "Before design became my profession, I spent several years leading teams in a fast-paced international environment.",
-      "Working closely with people taught me how to communicate clearly, adapt quickly, and make decisions under pressure. It also taught me that most challenges are ultimately human ones.",
-      "That understanding continues to shape the way I approach my work today."
+      "Before moving into creative work, I spent several years managing teams in an international, fast-paced environment.",
+      "It taught me to communicate clearly, adapt quickly, and make decisions under pressure. Most importantly, I learned that understanding people is at the heart of good teamwork."
     ]
   },
   {
     year: "2016",
     title: "Set Design & Production",
-    subtitle: "how to bring ideas into reality",
+    subtitle: "How to bring ideas to life.",
     description: [
-      "Drawn by creative work, I moved into theatre production and live events in London.",
-      "Working on stage sets, props, logistics, and installations showed me how ideas become real experiences. Every project required balancing creative vision with practical constraints while collaborating across multiple disciplines.",
-      "It taught me how to turn concepts into something tangible."
+      "Drawn to creative work, I moved into theatre production and live events in London.",
+      "Working on sets, props, and installations taught me to balance creative ideas with practical constraints, collaborate across disciplines, and turn concepts into tangible experiences."
     ]
   },
   {
     year: "2021",
     title: "Graphic Design & Visual Communication",
-    subtitle: "how to communicate",
+    subtitle: "How to communicate visually.",
     description: [
-      "Design became my full-time focus through branding, visual identity, editorial design, and communication projects.",
-      "My role extended beyond creating visuals. It involved understanding objectives, creating coherent systems, and guiding projects from concept through production and delivery.",
-      "Design taught me how to create clarity from complexity."
+      "Design became my professional focus through branding, visual identity, and editorial projects.",
+      "Beyond creating visuals, I learned to understand objectives, develop coherent design systems, and manage projects from concept to production.",
+      "Above all, design taught me to bring clarity to complexity."
     ]
   },
   {
     year: "TODAY",
     title: "Design & Development",
-    subtitle: "how to build experiences",
+    subtitle: "How to build experiences.",
     description: [
-      "The more I worked with brands and communication systems, the more curious I became about what happens beyond the visual layer.",
-      "Learning to program introduced a new dimension: interaction, behaviour, and systems. It expanded my ability to solve problems and allowed me to think not only about how something looks, but also how it works.",
-      "Today, my work sits between design and technology, combining communication, structure, and digital experiences."
+      "My curiosity about what happens beyond the visual layer led me into programming.",
+      "Development introduced interaction, logic, and functionality, expanding how I approach and solve problems.",
+      "Today, I combine design thinking with frontend and full-stack development to create digital experiences that work as well as they look."
+
     ]
   }
 ];

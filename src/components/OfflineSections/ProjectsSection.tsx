@@ -43,7 +43,6 @@ function ProjectDetails({ project }: { project: Project }) {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
 
-  // Base classes for the text container
   let textContainerClasses = 'w-full md:w-1/2 flex flex-col items-start rounded-sm';
 
   if (project.variant === 'background') {
@@ -51,11 +50,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   } else if (project.variant === 'outlined') {
     textContainerClasses += ' border border-brand-dark/15 p-8 md:p-12 justify-center';
   } else {
-    // minimal
     textContainerClasses += ' px-2 justify-center';
   }
 
-  // Use items-stretch for boxed card layouts so columns have the same height
   const parentClasses = `flex flex-col md:flex-row gap-8 md:gap-12 w-full ${isEven ? '' : 'md:flex-row-reverse'
     } ${project.variant === 'minimal' ? 'items-center' : 'items-stretch'}`;
 
@@ -94,17 +91,16 @@ export default function ProjectsSection() {
             03 - PROJECTS
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-serif font-normal tracking-tight leading-[1.1] select-none text-brand-dark mb-8">
-            Work as <span className="block md:inline italic">evidence</span>
+            The Things I  <span className="block md:inline italic">Make</span>
           </h2>
           <div className="space-y-4">
             <h3 className="text-brand-dark font-sans font-bold text-sm sm:text-base tracking-wide uppercase">
-              Ideas are interesting.
+              A SELECTION OF IDEAS BROUGHT TO LIFE THROUGH DESIGN..
               <br />
               Finished work is more convincing.
             </h3>
             <p className="text-brand-light text-xs sm:text-sm leading-relaxed tracking-wide font-sans">
-              These projects represent different aspects of my practice, from visual identity and communication systems to interactive products and software development.
-            </p>
+              A collection of work exploring visual communication, design systems, and digital development.            </p>
           </div>
         </div>
 
