@@ -136,10 +136,10 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
           </div>
 
           {/* 3. Description & Metadata Narrative Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-24 mb-16 sm:mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-24 mb-16 sm:mb-24 wrap-anywhere">
 
             {/* Left Column: Tech Spec Panels */}
-            <div className="col-span-12 lg:col-span-4 flex flex-col gap-6 font-mono text-xs sm:text-sm">
+            <div className="min-w-0 lg:col-span-4 flex flex-col gap-6 font-mono text-xs sm:text-sm">
               <RevealWrapper className="flex flex-col gap-6">
 
                 {/* Meta details card */}
@@ -238,7 +238,7 @@ export default function OnlineProjectDetailPage({ projectId }: OnlineProjectDeta
             </div>
 
             {/* Right Column: Case narratives */}
-            <div className="col-span-12 lg:col-span-8 flex flex-col gap-8 text-brand-cream/80 text-sm sm:text-base leading-relaxed tracking-wide font-sans lg:pt-1">
+            <div className="min-w-0 lg:col-span-8 flex flex-col gap-8 text-brand-cream/80 text-sm sm:text-base leading-relaxed tracking-wide font-sans lg:pt-1">
               {details?.longDescription ? (
                 details.longDescription.map((item, index) => {
                   if (item.startsWith('## ')) {
