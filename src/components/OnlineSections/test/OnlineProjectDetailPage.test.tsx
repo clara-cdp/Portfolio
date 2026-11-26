@@ -48,6 +48,23 @@ describe('OnlineProjectDetailPage Component', () => {
     ).toBeInTheDocument();
   });
 
+  it('uses one column for Sitges details until the large breakpoint', () => {
+    render(<OnlineProjectDetailPage projectId="sitges-app" />);
+
+    const deliverable = screen.getByText('Client-side encrypted ticket vault (AES-256-GCM & PBKDF2)');
+    const grid = deliverable.closest('.grid');
+    const [metadata, narrative] = Array.from(grid?.children ?? []);
+
+    expect(grid).toHaveClass('grid-cols-1', 'lg:grid-cols-12', 'wrap-anywhere');
+    expect(metadata).toContainElement(deliverable);
+    expect(metadata).toContainElement(screen.getByRole('link', { name: /view repository/i }));
+    expect(metadata).toHaveClass('min-w-0', 'lg:col-span-4');
+    expect(metadata).not.toHaveClass('col-span-12');
+    expect(narrative).toContainElement(screen.getByRole('heading', { name: /overview & purpose/i }));
+    expect(narrative).toHaveClass('min-w-0', 'lg:col-span-8');
+    expect(narrative).not.toHaveClass('col-span-12');
+  });
+
   it('renders showcase gallery capture images and heading', () => {
     render(<OnlineProjectDetailPage projectId="a-paws-in-time" />);
 
